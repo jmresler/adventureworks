@@ -8,6 +8,8 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,8 +54,20 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "PersonType")
     private String personType;
+    @Basic(optional=false)
+    @Column(name="NameStyle")
+    private Boolean nameStyle; 
     @Column(name = "Title")
     private String title;
+    @Basic(optional=false)
+    @Column(name="FirstName")
+    private String firstName;
+    @Basic(optional=false)
+    @Column(name="MiddleName")
+    private String middleName;
+    @Basic(optional=false)
+    @Column(name="LastName")
+    private String lastName;
     @Column(name = "Suffix")
     private String suffix;
     @Basic(optional = false)
@@ -97,7 +111,39 @@ public class Person implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    public Integer getBusinessEntityID() {
+    public Boolean getNameStyle() {
+		return nameStyle;
+	}
+
+	public void setNameStyle(Boolean nameStyle) {
+		this.nameStyle = nameStyle;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Integer getBusinessEntityID() {
         return businessEntityID;
     }
 
@@ -212,29 +258,36 @@ public class Person implements Serializable {
         this.password = password;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (businessEntityID != null ? businessEntityID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
-            return false;
-        }
-        Person other = (Person) object;
-        if ((this.businessEntityID == null && other.businessEntityID != null) || (this.businessEntityID != null && !this.businessEntityID.equals(other.businessEntityID))) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {
         return "org.jmresler.spring.aw.entities.Person[ businessEntityID=" + businessEntityID + " ]";
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(additionalContactInfo, businessEntity, businessEntityID, demographics, emailPromotion,
+				firstName, lastName, middleName, modifiedDate, nameStyle, password, personType, rowguid, suffix, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		return Objects.equals(additionalContactInfo, other.additionalContactInfo)
+				&& Objects.equals(businessEntity, other.businessEntity)
+				&& Objects.equals(businessEntityID, other.businessEntityID)
+				&& Objects.equals(demographics, other.demographics) && emailPromotion == other.emailPromotion
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)
+				&& Objects.equals(middleName, other.middleName) && Objects.equals(modifiedDate, other.modifiedDate)
+				&& Objects.equals(nameStyle, other.nameStyle) && Objects.equals(password, other.password)
+				&& Objects.equals(personType, other.personType) && Objects.equals(rowguid, other.rowguid)
+				&& Objects.equals(suffix, other.suffix) && Objects.equals(title, other.title);
+	}
     
 }

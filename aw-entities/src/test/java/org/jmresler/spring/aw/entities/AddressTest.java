@@ -28,7 +28,8 @@ public class AddressTest {
 
 	@Test
 	void testAddressInteger() {
-		Query query = em.createNamedQuery("Address.findAll");
+		Query query = em.createNamedQuery("Address.findByCity");
+		query.setParameter("city", "Cheltenham");
 		query.getResultList().forEach(result -> logger.info(result.toString()));
 	}
 

@@ -107,6 +107,10 @@
 			<property name="javax.persistence.jdbc.password"
 				value="Kadena1988#" />
 			<property name="eclipselink.logging.level" value="FINE" />
+			<property name="javax.persistence.schema-generation.scripts.action" value="create"/>
+			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+			<property name="eclipselink.ddl-generation.output-mode" value="sql-script"/>
 		</properties>
 	</persistence-unit>
 </persistence>
