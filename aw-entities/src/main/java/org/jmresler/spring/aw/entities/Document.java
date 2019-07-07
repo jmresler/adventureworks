@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -15,30 +20,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "Document", schema = "Production", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"DocumentLevel", "DocumentNode"}),
-    @UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "Document", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Document.findAll", query = "SELECT d FROM Document d"),
@@ -60,51 +50,214 @@ public class Document implements Serializable {
     @Id
     @Basic(optional = false)
     @Lob
-    @Column(name = "DocumentNode", nullable = false)
+    @Column(name = "DocumentNode")
     private byte[] documentNode;
     @Column(name = "DocumentLevel")
     private Short documentLevel;
     @Basic(optional = false)
-    @Column(name = "Title", nullable = false, length = 50)
+    @Column(name = "Title")
     private String title;
     @Basic(optional = false)
-    @Column(name = "Owner", nullable = false)
+    @Column(name = "Owner")
     private int owner;
     @Basic(optional = false)
-    @Column(name = "FolderFlag", nullable = false)
+    @Column(name = "FolderFlag")
     private boolean folderFlag;
     @Basic(optional = false)
-    @Column(name = "FileName", nullable = false, length = 400)
+    @Column(name = "FileName")
     private String fileName;
     @Basic(optional = false)
-    @Column(name = "FileExtension", nullable = false, length = 8)
+    @Column(name = "FileExtension")
     private String fileExtension;
     @Basic(optional = false)
-    @Column(name = "Revision", nullable = false, length = 5)
+    @Column(name = "Revision")
     private String revision;
     @Basic(optional = false)
-    @Column(name = "ChangeNumber", nullable = false)
+    @Column(name = "ChangeNumber")
     private int changeNumber;
     @Basic(optional = false)
-    @Column(name = "Status", nullable = false)
+    @Column(name = "Status")
     private short status;
-    @Column(name = "DocumentSummary", length = 2147483647)
+    @Column(name = "DocumentSummary")
     private String documentSummary;
     @Lob
     @Column(name = "Document")
     private byte[] document;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "document")
     private Collection<ProductDocument> productDocumentCollection;
+
+    public Document() {
+    }
 
     public Document(byte[] documentNode) {
         this.documentNode = documentNode;
     }
+
+    public Document(byte[] documentNode, String title, int owner, boolean folderFlag, String fileName, String fileExtension, String revision, int changeNumber, short status, String rowguid, Date modifiedDate) {
+        this.documentNode = documentNode;
+        this.title = title;
+        this.owner = owner;
+        this.folderFlag = folderFlag;
+        this.fileName = fileName;
+        this.fileExtension = fileExtension;
+        this.revision = revision;
+        this.changeNumber = changeNumber;
+        this.status = status;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public byte[] getDocumentNode() {
+        return documentNode;
+    }
+
+    public void setDocumentNode(byte[] documentNode) {
+        this.documentNode = documentNode;
+    }
+
+    public Short getDocumentLevel() {
+        return documentLevel;
+    }
+
+    public void setDocumentLevel(Short documentLevel) {
+        this.documentLevel = documentLevel;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getOwner() {
+        return owner;
+    }
+
+    public void setOwner(int owner) {
+        this.owner = owner;
+    }
+
+    public boolean getFolderFlag() {
+        return folderFlag;
+    }
+
+    public void setFolderFlag(boolean folderFlag) {
+        this.folderFlag = folderFlag;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
+    }
+
+    public String getRevision() {
+        return revision;
+    }
+
+    public void setRevision(String revision) {
+        this.revision = revision;
+    }
+
+    public int getChangeNumber() {
+        return changeNumber;
+    }
+
+    public void setChangeNumber(int changeNumber) {
+        this.changeNumber = changeNumber;
+    }
+
+    public short getStatus() {
+        return status;
+    }
+
+    public void setStatus(short status) {
+        this.status = status;
+    }
+
+    public String getDocumentSummary() {
+        return documentSummary;
+    }
+
+    public void setDocumentSummary(String documentSummary) {
+        this.documentSummary = documentSummary;
+    }
+
+    public byte[] getDocument() {
+        return document;
+    }
+
+    public void setDocument(byte[] document) {
+        this.document = document;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<ProductDocument> getProductDocumentCollection() {
+        return productDocumentCollection;
+    }
+
+    public void setProductDocumentCollection(Collection<ProductDocument> productDocumentCollection) {
+        this.productDocumentCollection = productDocumentCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (documentNode != null ? documentNode.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Document)) {
+            return false;
+        }
+        Document other = (Document) object;
+        if ((this.documentNode == null && other.documentNode != null) || (this.documentNode != null && !this.documentNode.equals(other.documentNode))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.Document[ documentNode=" + documentNode + " ]";
+    }
+    
 }

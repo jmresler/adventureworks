@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -14,25 +19,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "ProductModelProductDescriptionCulture", schema = "Production")
+@Table(name = "ProductModelProductDescriptionCulture", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductModelProductDescriptionCulture.findAll", query = "SELECT p FROM ProductModelProductDescriptionCulture p"),
@@ -46,16 +39,98 @@ public class ProductModelProductDescriptionCulture implements Serializable {
     @EmbeddedId
     protected ProductModelProductDescriptionCulturePK productModelProductDescriptionCulturePK;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JoinColumn(name = "CultureID", referencedColumnName = "CultureID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "CultureID", referencedColumnName = "CultureID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Culture culture;
-    @JoinColumn(name = "ProductDescriptionID", referencedColumnName = "ProductDescriptionID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "ProductDescriptionID", referencedColumnName = "ProductDescriptionID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private ProductDescription productDescription;
-    @JoinColumn(name = "ProductModelID", referencedColumnName = "ProductModelID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "ProductModelID", referencedColumnName = "ProductModelID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private ProductModel productModel;    
+    private ProductModel productModel;
+
+    public ProductModelProductDescriptionCulture() {
+    }
+
+    public ProductModelProductDescriptionCulture(ProductModelProductDescriptionCulturePK productModelProductDescriptionCulturePK) {
+        this.productModelProductDescriptionCulturePK = productModelProductDescriptionCulturePK;
+    }
+
+    public ProductModelProductDescriptionCulture(ProductModelProductDescriptionCulturePK productModelProductDescriptionCulturePK, Date modifiedDate) {
+        this.productModelProductDescriptionCulturePK = productModelProductDescriptionCulturePK;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public ProductModelProductDescriptionCulture(int productModelID, int productDescriptionID, String cultureID) {
+        this.productModelProductDescriptionCulturePK = new ProductModelProductDescriptionCulturePK(productModelID, productDescriptionID, cultureID);
+    }
+
+    public ProductModelProductDescriptionCulturePK getProductModelProductDescriptionCulturePK() {
+        return productModelProductDescriptionCulturePK;
+    }
+
+    public void setProductModelProductDescriptionCulturePK(ProductModelProductDescriptionCulturePK productModelProductDescriptionCulturePK) {
+        this.productModelProductDescriptionCulturePK = productModelProductDescriptionCulturePK;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Culture getCulture() {
+        return culture;
+    }
+
+    public void setCulture(Culture culture) {
+        this.culture = culture;
+    }
+
+    public ProductDescription getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(ProductDescription productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public ProductModel getProductModel() {
+        return productModel;
+    }
+
+    public void setProductModel(ProductModel productModel) {
+        this.productModel = productModel;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (productModelProductDescriptionCulturePK != null ? productModelProductDescriptionCulturePK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProductModelProductDescriptionCulture)) {
+            return false;
+        }
+        ProductModelProductDescriptionCulture other = (ProductModelProductDescriptionCulture) object;
+        if ((this.productModelProductDescriptionCulturePK == null && other.productModelProductDescriptionCulturePK != null) || (this.productModelProductDescriptionCulturePK != null && !this.productModelProductDescriptionCulturePK.equals(other.productModelProductDescriptionCulturePK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.ProductModelProductDescriptionCulture[ productModelProductDescriptionCulturePK=" + productModelProductDescriptionCulturePK + " ]";
+    }
+    
 }

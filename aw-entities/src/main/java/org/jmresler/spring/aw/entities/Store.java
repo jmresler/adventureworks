@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -15,29 +20,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "Store", schema = "Sales", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "Store", catalog = "AdventureWorks2017", schema = "Sales")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Store.findAll", query = "SELECT s FROM Store s"),
@@ -50,26 +41,108 @@ public class Store implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "BusinessEntityID", nullable = false)
+    @Column(name = "BusinessEntityID")
     private Integer businessEntityID;
-    @Column(name = "Demographics", length = 2147483647)
+    @Column(name = "Demographics")
     private String demographics;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(mappedBy = "storeID")
     private Collection<Customer> customerCollection;
     @JoinColumn(name = "SalesPersonID", referencedColumnName = "BusinessEntityID")
     @ManyToOne
     private SalesPerson salesPersonID;
 
+    public Store() {
+    }
+
     public Store(Integer businessEntityID) {
         this.businessEntityID = businessEntityID;
     }
 
+    public Store(Integer businessEntityID, String rowguid, Date modifiedDate) {
+        this.businessEntityID = businessEntityID;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getBusinessEntityID() {
+        return businessEntityID;
+    }
+
+    public void setBusinessEntityID(Integer businessEntityID) {
+        this.businessEntityID = businessEntityID;
+    }
+
+    public String getDemographics() {
+        return demographics;
+    }
+
+    public void setDemographics(String demographics) {
+        this.demographics = demographics;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<Customer> getCustomerCollection() {
+        return customerCollection;
+    }
+
+    public void setCustomerCollection(Collection<Customer> customerCollection) {
+        this.customerCollection = customerCollection;
+    }
+
+    public SalesPerson getSalesPersonID() {
+        return salesPersonID;
+    }
+
+    public void setSalesPersonID(SalesPerson salesPersonID) {
+        this.salesPersonID = salesPersonID;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (businessEntityID != null ? businessEntityID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Store)) {
+            return false;
+        }
+        Store other = (Store) object;
+        if ((this.businessEntityID == null && other.businessEntityID != null) || (this.businessEntityID != null && !this.businessEntityID.equals(other.businessEntityID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.Store[ businessEntityID=" + businessEntityID + " ]";
+    }
+    
 }

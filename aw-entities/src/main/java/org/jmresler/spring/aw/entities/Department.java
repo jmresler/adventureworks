@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -16,25 +21,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "Department", schema = "HumanResources")
+@Table(name = "Department", catalog = "AdventureWorks2017", schema = "HumanResources")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d"),
@@ -45,17 +38,75 @@ public class Department implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "DepartmentID", nullable = false)
+    @Column(name = "DepartmentID")
     private Short departmentID;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
     private Collection<EmployeeDepartmentHistory> employeeDepartmentHistoryCollection;
+
+    public Department() {
+    }
 
     public Department(Short departmentID) {
         this.departmentID = departmentID;
     }
+
+    public Department(Short departmentID, Date modifiedDate) {
+        this.departmentID = departmentID;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Short getDepartmentID() {
+        return departmentID;
+    }
+
+    public void setDepartmentID(Short departmentID) {
+        this.departmentID = departmentID;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<EmployeeDepartmentHistory> getEmployeeDepartmentHistoryCollection() {
+        return employeeDepartmentHistoryCollection;
+    }
+
+    public void setEmployeeDepartmentHistoryCollection(Collection<EmployeeDepartmentHistory> employeeDepartmentHistoryCollection) {
+        this.employeeDepartmentHistoryCollection = employeeDepartmentHistoryCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (departmentID != null ? departmentID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Department)) {
+            return false;
+        }
+        Department other = (Department) object;
+        if ((this.departmentID == null && other.departmentID != null) || (this.departmentID != null && !this.departmentID.equals(other.departmentID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.Department[ departmentID=" + departmentID + " ]";
+    }
+    
 }

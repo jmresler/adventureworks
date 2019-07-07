@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -12,25 +17,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "vJobCandidateEducation", schema = "HumanResources")
+@Table(name = "vJobCandidateEducation", catalog = "AdventureWorks2017", schema = "HumanResources")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VJobCandidateEducation.findAll", query = "SELECT v FROM VJobCandidateEducation v"),
@@ -52,9 +45,9 @@ public class VJobCandidateEducation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "JobCandidateID", nullable = false)
+    @Column(name = "JobCandidateID")
     private int jobCandidateID;
-    @Column(name = "Level", length = 2147483647)
+    @Column(name = "Level")
     private String level;
     @Column(name = "StartDate")
     @Temporal(TemporalType.TIMESTAMP)
@@ -62,23 +55,130 @@ public class VJobCandidateEducation implements Serializable {
     @Column(name = "EndDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
-    @Column(name = "Degree", length = 50)
+    @Column(name = "Degree")
     private String degree;
-    @Column(name = "Major", length = 50)
+    @Column(name = "Major")
     private String major;
-    @Column(name = "Minor", length = 50)
+    @Column(name = "Minor")
     private String minor;
-    @Column(name = "GPA", length = 5)
+    @Column(name = "GPA")
     private String gpa;
-    @Column(name = "GPAScale", length = 5)
+    @Column(name = "GPAScale")
     private String gPAScale;
-    @Column(name = "School", length = 100)
+    @Column(name = "School")
     private String school;
-    @Column(name = "CountryRegion", length = 100)
+    @Column(name = "CountryRegion")
     private String countryRegion;
-    @Column(name = "State", length = 100)
+    @Column(name = "State")
     private String state;
-    @Column(name = "City", length = 100)
+    @Column(name = "City")
     private String city;
+
+    public VJobCandidateEducation() {
+    }
+
+    public int getJobCandidateID() {
+        return jobCandidateID;
+    }
+
+    public void setJobCandidateID(int jobCandidateID) {
+        this.jobCandidateID = jobCandidateID;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getMinor() {
+        return minor;
+    }
+
+    public void setMinor(String minor) {
+        this.minor = minor;
+    }
+
+    public String getGpa() {
+        return gpa;
+    }
+
+    public void setGpa(String gpa) {
+        this.gpa = gpa;
+    }
+
+    public String getGPAScale() {
+        return gPAScale;
+    }
+
+    public void setGPAScale(String gPAScale) {
+        this.gPAScale = gPAScale;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getCountryRegion() {
+        return countryRegion;
+    }
+
+    public void setCountryRegion(String countryRegion) {
+        this.countryRegion = countryRegion;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
     
 }

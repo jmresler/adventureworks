@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -15,28 +20,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "ProductSubcategory", schema = "Production", uniqueConstraints = {@UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "ProductSubcategory", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductSubcategory.findAll", query = "SELECT p FROM ProductSubcategory p"),
@@ -48,24 +40,98 @@ public class ProductSubcategory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ProductSubcategoryID", nullable = false)
+    @Column(name = "ProductSubcategoryID")
     private Integer productSubcategoryID;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(mappedBy = "productSubcategoryID")
     private Collection<Product> productCollection;
-    @JoinColumn(name = "ProductCategoryID", referencedColumnName = "ProductCategoryID", nullable = false)
+    @JoinColumn(name = "ProductCategoryID", referencedColumnName = "ProductCategoryID")
     @ManyToOne(optional = false)
     private ProductCategory productCategoryID;
+
+    public ProductSubcategory() {
+    }
 
     public ProductSubcategory(Integer productSubcategoryID) {
         this.productSubcategoryID = productSubcategoryID;
     }
 
+    public ProductSubcategory(Integer productSubcategoryID, String rowguid, Date modifiedDate) {
+        this.productSubcategoryID = productSubcategoryID;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getProductSubcategoryID() {
+        return productSubcategoryID;
+    }
+
+    public void setProductSubcategoryID(Integer productSubcategoryID) {
+        this.productSubcategoryID = productSubcategoryID;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<Product> getProductCollection() {
+        return productCollection;
+    }
+
+    public void setProductCollection(Collection<Product> productCollection) {
+        this.productCollection = productCollection;
+    }
+
+    public ProductCategory getProductCategoryID() {
+        return productCategoryID;
+    }
+
+    public void setProductCategoryID(ProductCategory productCategoryID) {
+        this.productCategoryID = productCategoryID;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (productSubcategoryID != null ? productSubcategoryID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProductSubcategory)) {
+            return false;
+        }
+        ProductSubcategory other = (ProductSubcategory) object;
+        if ((this.productSubcategoryID == null && other.productSubcategoryID != null) || (this.productSubcategoryID != null && !this.productSubcategoryID.equals(other.productSubcategoryID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.ProductSubcategory[ productSubcategoryID=" + productSubcategoryID + " ]";
+    }
+    
 }

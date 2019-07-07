@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -17,25 +22,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "ProductPhoto", schema = "Production")
+@Table(name = "ProductPhoto", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductPhoto.findAll", query = "SELECT p FROM ProductPhoto p"),
@@ -48,27 +41,117 @@ public class ProductPhoto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ProductPhotoID", nullable = false)
+    @Column(name = "ProductPhotoID")
     private Integer productPhotoID;
     @Lob
     @Column(name = "ThumbNailPhoto")
     private byte[] thumbNailPhoto;
-    @Column(name = "ThumbnailPhotoFileName", length = 50)
+    @Column(name = "ThumbnailPhotoFileName")
     private String thumbnailPhotoFileName;
     @Lob
     @Column(name = "LargePhoto")
     private byte[] largePhoto;
-    @Column(name = "LargePhotoFileName", length = 50)
+    @Column(name = "LargePhotoFileName")
     private String largePhotoFileName;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productPhoto")
     private Collection<ProductProductPhoto> productProductPhotoCollection;
+
+    public ProductPhoto() {
+    }
 
     public ProductPhoto(Integer productPhotoID) {
         this.productPhotoID = productPhotoID;
     }
+
+    public ProductPhoto(Integer productPhotoID, Date modifiedDate) {
+        this.productPhotoID = productPhotoID;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getProductPhotoID() {
+        return productPhotoID;
+    }
+
+    public void setProductPhotoID(Integer productPhotoID) {
+        this.productPhotoID = productPhotoID;
+    }
+
+    public byte[] getThumbNailPhoto() {
+        return thumbNailPhoto;
+    }
+
+    public void setThumbNailPhoto(byte[] thumbNailPhoto) {
+        this.thumbNailPhoto = thumbNailPhoto;
+    }
+
+    public String getThumbnailPhotoFileName() {
+        return thumbnailPhotoFileName;
+    }
+
+    public void setThumbnailPhotoFileName(String thumbnailPhotoFileName) {
+        this.thumbnailPhotoFileName = thumbnailPhotoFileName;
+    }
+
+    public byte[] getLargePhoto() {
+        return largePhoto;
+    }
+
+    public void setLargePhoto(byte[] largePhoto) {
+        this.largePhoto = largePhoto;
+    }
+
+    public String getLargePhotoFileName() {
+        return largePhotoFileName;
+    }
+
+    public void setLargePhotoFileName(String largePhotoFileName) {
+        this.largePhotoFileName = largePhotoFileName;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<ProductProductPhoto> getProductProductPhotoCollection() {
+        return productProductPhotoCollection;
+    }
+
+    public void setProductProductPhotoCollection(Collection<ProductProductPhoto> productProductPhotoCollection) {
+        this.productProductPhotoCollection = productProductPhotoCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (productPhotoID != null ? productPhotoID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProductPhoto)) {
+            return false;
+        }
+        ProductPhoto other = (ProductPhoto) object;
+        if ((this.productPhotoID == null && other.productPhotoID != null) || (this.productPhotoID != null && !this.productPhotoID.equals(other.productPhotoID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.ProductPhoto[ productPhotoID=" + productPhotoID + " ]";
+    }
+    
 }

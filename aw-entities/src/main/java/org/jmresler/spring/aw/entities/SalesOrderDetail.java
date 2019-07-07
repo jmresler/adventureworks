@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -15,27 +20,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "SalesOrderDetail", schema = "Sales", uniqueConstraints = {@UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "SalesOrderDetail", catalog = "AdventureWorks2017", schema = "Sales")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SalesOrderDetail.findAll", query = "SELECT s FROM SalesOrderDetail s"),
@@ -53,43 +45,161 @@ public class SalesOrderDetail implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected SalesOrderDetailPK salesOrderDetailPK;
-    @Column(name = "CarrierTrackingNumber", length = 25)
+    @Column(name = "CarrierTrackingNumber")
     private String carrierTrackingNumber;
     @Basic(optional = false)
-    @Column(name = "OrderQty", nullable = false)
+    @Column(name = "OrderQty")
     private short orderQty;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "UnitPrice", nullable = false, precision = 19, scale = 4)
+    @Column(name = "UnitPrice")
     private BigDecimal unitPrice;
     @Basic(optional = false)
-    @Column(name = "UnitPriceDiscount", nullable = false, precision = 19, scale = 4)
+    @Column(name = "UnitPriceDiscount")
     private BigDecimal unitPriceDiscount;
     @Basic(optional = false)
-    @Column(name = "LineTotal", nullable = false, precision = 38, scale = 6)
+    @Column(name = "LineTotal")
     private BigDecimal lineTotal;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JoinColumn(name = "SalesOrderID", referencedColumnName = "SalesOrderID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "SalesOrderID", referencedColumnName = "SalesOrderID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SalesOrderHeader salesOrderHeader;
     @JoinColumns({
-        @JoinColumn(name = "SpecialOfferID", referencedColumnName = "SpecialOfferID", nullable = false),
-        @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", nullable = false)})
+        @JoinColumn(name = "SpecialOfferID", referencedColumnName = "SpecialOfferID"),
+        @JoinColumn(name = "ProductID", referencedColumnName = "ProductID")})
     @ManyToOne(optional = false)
     private SpecialOfferProduct specialOfferProduct;
 
+    public SalesOrderDetail() {
+    }
 
     public SalesOrderDetail(SalesOrderDetailPK salesOrderDetailPK) {
         this.salesOrderDetailPK = salesOrderDetailPK;
     }
 
+    public SalesOrderDetail(SalesOrderDetailPK salesOrderDetailPK, short orderQty, BigDecimal unitPrice, BigDecimal unitPriceDiscount, BigDecimal lineTotal, String rowguid, Date modifiedDate) {
+        this.salesOrderDetailPK = salesOrderDetailPK;
+        this.orderQty = orderQty;
+        this.unitPrice = unitPrice;
+        this.unitPriceDiscount = unitPriceDiscount;
+        this.lineTotal = lineTotal;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
     public SalesOrderDetail(int salesOrderID, int salesOrderDetailID) {
         this.salesOrderDetailPK = new SalesOrderDetailPK(salesOrderID, salesOrderDetailID);
-    }    
+    }
+
+    public SalesOrderDetailPK getSalesOrderDetailPK() {
+        return salesOrderDetailPK;
+    }
+
+    public void setSalesOrderDetailPK(SalesOrderDetailPK salesOrderDetailPK) {
+        this.salesOrderDetailPK = salesOrderDetailPK;
+    }
+
+    public String getCarrierTrackingNumber() {
+        return carrierTrackingNumber;
+    }
+
+    public void setCarrierTrackingNumber(String carrierTrackingNumber) {
+        this.carrierTrackingNumber = carrierTrackingNumber;
+    }
+
+    public short getOrderQty() {
+        return orderQty;
+    }
+
+    public void setOrderQty(short orderQty) {
+        this.orderQty = orderQty;
+    }
+
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public BigDecimal getUnitPriceDiscount() {
+        return unitPriceDiscount;
+    }
+
+    public void setUnitPriceDiscount(BigDecimal unitPriceDiscount) {
+        this.unitPriceDiscount = unitPriceDiscount;
+    }
+
+    public BigDecimal getLineTotal() {
+        return lineTotal;
+    }
+
+    public void setLineTotal(BigDecimal lineTotal) {
+        this.lineTotal = lineTotal;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public SalesOrderHeader getSalesOrderHeader() {
+        return salesOrderHeader;
+    }
+
+    public void setSalesOrderHeader(SalesOrderHeader salesOrderHeader) {
+        this.salesOrderHeader = salesOrderHeader;
+    }
+
+    public SpecialOfferProduct getSpecialOfferProduct() {
+        return specialOfferProduct;
+    }
+
+    public void setSpecialOfferProduct(SpecialOfferProduct specialOfferProduct) {
+        this.specialOfferProduct = specialOfferProduct;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (salesOrderDetailPK != null ? salesOrderDetailPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof SalesOrderDetail)) {
+            return false;
+        }
+        SalesOrderDetail other = (SalesOrderDetail) object;
+        if ((this.salesOrderDetailPK == null && other.salesOrderDetailPK != null) || (this.salesOrderDetailPK != null && !this.salesOrderDetailPK.equals(other.salesOrderDetailPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.SalesOrderDetail[ salesOrderDetailPK=" + salesOrderDetailPK + " ]";
+    }
+    
 }

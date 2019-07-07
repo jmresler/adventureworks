@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -12,25 +17,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "vAdditionalContactInfo", schema = "Person")
+@Table(name = "vAdditionalContactInfo", catalog = "AdventureWorks2017", schema = "Person")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VAdditionalContactInfo.findAll", query = "SELECT v FROM VAdditionalContactInfo v"),
@@ -84,5 +77,120 @@ public class VAdditionalContactInfo implements Serializable {
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+
+    public VAdditionalContactInfo() {
+    }
+
+    public int getBusinessEntityID() {
+        return businessEntityID;
+    }
+
+    public void setBusinessEntityID(int businessEntityID) {
+        this.businessEntityID = businessEntityID;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
+
+    public String getTelephoneSpecialInstructions() {
+        return telephoneSpecialInstructions;
+    }
+
+    public void setTelephoneSpecialInstructions(String telephoneSpecialInstructions) {
+        this.telephoneSpecialInstructions = telephoneSpecialInstructions;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStateProvince() {
+        return stateProvince;
+    }
+
+    public void setStateProvince(String stateProvince) {
+        this.stateProvince = stateProvince;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCountryRegion() {
+        return countryRegion;
+    }
+
+    public void setCountryRegion(String countryRegion) {
+        this.countryRegion = countryRegion;
+    }
+
+    public String getHomeAddressSpecialInstructions() {
+        return homeAddressSpecialInstructions;
+    }
+
+    public void setHomeAddressSpecialInstructions(String homeAddressSpecialInstructions) {
+        this.homeAddressSpecialInstructions = homeAddressSpecialInstructions;
+    }
+
+    public String getEMailAddress() {
+        return eMailAddress;
+    }
+
+    public void setEMailAddress(String eMailAddress) {
+        this.eMailAddress = eMailAddress;
+    }
+
+    public String getEMailSpecialInstructions() {
+        return eMailSpecialInstructions;
+    }
+
+    public void setEMailSpecialInstructions(String eMailSpecialInstructions) {
+        this.eMailSpecialInstructions = eMailSpecialInstructions;
+    }
+
+    public String getEMailTelephoneNumber() {
+        return eMailTelephoneNumber;
+    }
+
+    public void setEMailTelephoneNumber(String eMailTelephoneNumber) {
+        this.eMailTelephoneNumber = eMailTelephoneNumber;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
     
 }

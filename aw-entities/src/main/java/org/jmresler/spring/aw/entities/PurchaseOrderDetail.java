@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -15,25 +20,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "PurchaseOrderDetail", schema = "Purchasing")
+@Table(name = "PurchaseOrderDetail", catalog = "AdventureWorks2017", schema = "Purchasing")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PurchaseOrderDetail.findAll", query = "SELECT p FROM PurchaseOrderDetail p"),
@@ -54,41 +47,174 @@ public class PurchaseOrderDetail implements Serializable {
     @EmbeddedId
     protected PurchaseOrderDetailPK purchaseOrderDetailPK;
     @Basic(optional = false)
-    @Column(name = "DueDate", nullable = false)
+    @Column(name = "DueDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dueDate;
     @Basic(optional = false)
-    @Column(name = "OrderQty", nullable = false)
+    @Column(name = "OrderQty")
     private short orderQty;
     @Basic(optional = false)
-    @Column(name = "ProductID", nullable = false)
+    @Column(name = "ProductID")
     private int productID;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "UnitPrice", nullable = false, precision = 19, scale = 4)
+    @Column(name = "UnitPrice")
     private BigDecimal unitPrice;
     @Basic(optional = false)
-    @Column(name = "LineTotal", nullable = false, precision = 19, scale = 4)
+    @Column(name = "LineTotal")
     private BigDecimal lineTotal;
     @Basic(optional = false)
-    @Column(name = "ReceivedQty", nullable = false, precision = 8, scale = 2)
+    @Column(name = "ReceivedQty")
     private BigDecimal receivedQty;
     @Basic(optional = false)
-    @Column(name = "RejectedQty", nullable = false, precision = 8, scale = 2)
+    @Column(name = "RejectedQty")
     private BigDecimal rejectedQty;
     @Basic(optional = false)
-    @Column(name = "StockedQty", nullable = false, precision = 9, scale = 2)
+    @Column(name = "StockedQty")
     private BigDecimal stockedQty;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JoinColumn(name = "PurchaseOrderID", referencedColumnName = "PurchaseOrderID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "PurchaseOrderID", referencedColumnName = "PurchaseOrderID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private PurchaseOrderHeader purchaseOrderHeader;
 
+    public PurchaseOrderDetail() {
+    }
+
     public PurchaseOrderDetail(PurchaseOrderDetailPK purchaseOrderDetailPK) {
         this.purchaseOrderDetailPK = purchaseOrderDetailPK;
+    }
+
+    public PurchaseOrderDetail(PurchaseOrderDetailPK purchaseOrderDetailPK, Date dueDate, short orderQty, int productID, BigDecimal unitPrice, BigDecimal lineTotal, BigDecimal receivedQty, BigDecimal rejectedQty, BigDecimal stockedQty, Date modifiedDate) {
+        this.purchaseOrderDetailPK = purchaseOrderDetailPK;
+        this.dueDate = dueDate;
+        this.orderQty = orderQty;
+        this.productID = productID;
+        this.unitPrice = unitPrice;
+        this.lineTotal = lineTotal;
+        this.receivedQty = receivedQty;
+        this.rejectedQty = rejectedQty;
+        this.stockedQty = stockedQty;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public PurchaseOrderDetail(int purchaseOrderID, int purchaseOrderDetailID) {
+        this.purchaseOrderDetailPK = new PurchaseOrderDetailPK(purchaseOrderID, purchaseOrderDetailID);
+    }
+
+    public PurchaseOrderDetailPK getPurchaseOrderDetailPK() {
+        return purchaseOrderDetailPK;
+    }
+
+    public void setPurchaseOrderDetailPK(PurchaseOrderDetailPK purchaseOrderDetailPK) {
+        this.purchaseOrderDetailPK = purchaseOrderDetailPK;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public short getOrderQty() {
+        return orderQty;
+    }
+
+    public void setOrderQty(short orderQty) {
+        this.orderQty = orderQty;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public BigDecimal getLineTotal() {
+        return lineTotal;
+    }
+
+    public void setLineTotal(BigDecimal lineTotal) {
+        this.lineTotal = lineTotal;
+    }
+
+    public BigDecimal getReceivedQty() {
+        return receivedQty;
+    }
+
+    public void setReceivedQty(BigDecimal receivedQty) {
+        this.receivedQty = receivedQty;
+    }
+
+    public BigDecimal getRejectedQty() {
+        return rejectedQty;
+    }
+
+    public void setRejectedQty(BigDecimal rejectedQty) {
+        this.rejectedQty = rejectedQty;
+    }
+
+    public BigDecimal getStockedQty() {
+        return stockedQty;
+    }
+
+    public void setStockedQty(BigDecimal stockedQty) {
+        this.stockedQty = stockedQty;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public PurchaseOrderHeader getPurchaseOrderHeader() {
+        return purchaseOrderHeader;
+    }
+
+    public void setPurchaseOrderHeader(PurchaseOrderHeader purchaseOrderHeader) {
+        this.purchaseOrderHeader = purchaseOrderHeader;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (purchaseOrderDetailPK != null ? purchaseOrderDetailPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof PurchaseOrderDetail)) {
+            return false;
+        }
+        PurchaseOrderDetail other = (PurchaseOrderDetail) object;
+        if ((this.purchaseOrderDetailPK == null && other.purchaseOrderDetailPK != null) || (this.purchaseOrderDetailPK != null && !this.purchaseOrderDetailPK.equals(other.purchaseOrderDetailPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.PurchaseOrderDetail[ purchaseOrderDetailPK=" + purchaseOrderDetailPK + " ]";
     }
     
 }

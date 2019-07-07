@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -9,25 +14,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "vProductAndDescription", schema = "Production")
+@Table(name = "vProductAndDescription", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VProductAndDescription.findAll", query = "SELECT v FROM VProductAndDescription v"),
@@ -39,13 +32,40 @@ public class VProductAndDescription implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ProductID", nullable = false)
+    @Column(name = "ProductID")
     private int productID;
     @Basic(optional = false)
-    @Column(name = "CultureID", nullable = false, length = 6)
+    @Column(name = "CultureID")
     private String cultureID;
     @Basic(optional = false)
-    @Column(name = "Description", nullable = false, length = 400)
+    @Column(name = "Description")
     private String description;
+
+    public VProductAndDescription() {
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public String getCultureID() {
+        return cultureID;
+    }
+
+    public void setCultureID(String cultureID) {
+        this.cultureID = cultureID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     
 }

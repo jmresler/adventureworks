@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -7,35 +12,73 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Embeddable
 public class ProductCostHistoryPK implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -1923521751349712349L;
-	@Basic(optional = false)
-    @Column(name = "ProductID", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "ProductID")
     private int productID;
     @Basic(optional = false)
-    @Column(name = "StartDate", nullable = false)
+    @Column(name = "StartDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date startDate;    
+    private Date startDate;
+
+    public ProductCostHistoryPK() {
+    }
+
+    public ProductCostHistoryPK(int productID, Date startDate) {
+        this.productID = productID;
+        this.startDate = startDate;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (int) productID;
+        hash += (startDate != null ? startDate.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProductCostHistoryPK)) {
+            return false;
+        }
+        ProductCostHistoryPK other = (ProductCostHistoryPK) object;
+        if (this.productID != other.productID) {
+            return false;
+        }
+        if ((this.startDate == null && other.startDate != null) || (this.startDate != null && !this.startDate.equals(other.startDate))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.ProductCostHistoryPK[ productID=" + productID + ", startDate=" + startDate + " ]";
+    }
+    
 }

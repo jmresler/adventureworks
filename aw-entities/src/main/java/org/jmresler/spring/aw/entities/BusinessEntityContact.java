@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -14,25 +19,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "BusinessEntityContact", schema = "Person")
+@Table(name = "BusinessEntityContact", catalog = "AdventureWorks2017", schema = "Person")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "BusinessEntityContact.findAll", query = "SELECT b FROM BusinessEntityContact b"),
@@ -63,7 +56,94 @@ public class BusinessEntityContact implements Serializable {
     @ManyToOne(optional = false)
     private Person person;
 
+    public BusinessEntityContact() {
+    }
+
     public BusinessEntityContact(BusinessEntityContactPK businessEntityContactPK) {
         this.businessEntityContactPK = businessEntityContactPK;
     }
+
+    public BusinessEntityContact(BusinessEntityContactPK businessEntityContactPK, String rowguid, Date modifiedDate) {
+        this.businessEntityContactPK = businessEntityContactPK;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public BusinessEntityContact(int businessEntityID, int personID, int contactTypeID) {
+        this.businessEntityContactPK = new BusinessEntityContactPK(businessEntityID, personID, contactTypeID);
+    }
+
+    public BusinessEntityContactPK getBusinessEntityContactPK() {
+        return businessEntityContactPK;
+    }
+
+    public void setBusinessEntityContactPK(BusinessEntityContactPK businessEntityContactPK) {
+        this.businessEntityContactPK = businessEntityContactPK;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public BusinessEntity getBusinessEntity() {
+        return businessEntity;
+    }
+
+    public void setBusinessEntity(BusinessEntity businessEntity) {
+        this.businessEntity = businessEntity;
+    }
+
+    public ContactType getContactType() {
+        return contactType;
+    }
+
+    public void setContactType(ContactType contactType) {
+        this.contactType = contactType;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (businessEntityContactPK != null ? businessEntityContactPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof BusinessEntityContact)) {
+            return false;
+        }
+        BusinessEntityContact other = (BusinessEntityContact) object;
+        if ((this.businessEntityContactPK == null && other.businessEntityContactPK != null) || (this.businessEntityContactPK != null && !this.businessEntityContactPK.equals(other.businessEntityContactPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.BusinessEntityContact[ businessEntityContactPK=" + businessEntityContactPK + " ]";
+    }
+    
 }

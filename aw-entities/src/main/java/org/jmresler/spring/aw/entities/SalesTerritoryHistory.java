@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -13,27 +18,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "SalesTerritoryHistory", schema = "Sales", uniqueConstraints = {@UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "SalesTerritoryHistory", catalog = "AdventureWorks2017", schema = "Sales")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SalesTerritoryHistory.findAll", query = "SELECT s FROM SalesTerritoryHistory s"),
@@ -52,21 +44,107 @@ public class SalesTerritoryHistory implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SalesPerson salesPerson;
-    @JoinColumn(name = "TerritoryID", referencedColumnName = "TerritoryID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "TerritoryID", referencedColumnName = "TerritoryID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SalesTerritory salesTerritory;
 
+    public SalesTerritoryHistory() {
+    }
+
     public SalesTerritoryHistory(SalesTerritoryHistoryPK salesTerritoryHistoryPK) {
         this.salesTerritoryHistoryPK = salesTerritoryHistoryPK;
+    }
+
+    public SalesTerritoryHistory(SalesTerritoryHistoryPK salesTerritoryHistoryPK, String rowguid, Date modifiedDate) {
+        this.salesTerritoryHistoryPK = salesTerritoryHistoryPK;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public SalesTerritoryHistory(int businessEntityID, int territoryID, Date startDate) {
+        this.salesTerritoryHistoryPK = new SalesTerritoryHistoryPK(businessEntityID, territoryID, startDate);
+    }
+
+    public SalesTerritoryHistoryPK getSalesTerritoryHistoryPK() {
+        return salesTerritoryHistoryPK;
+    }
+
+    public void setSalesTerritoryHistoryPK(SalesTerritoryHistoryPK salesTerritoryHistoryPK) {
+        this.salesTerritoryHistoryPK = salesTerritoryHistoryPK;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public SalesPerson getSalesPerson() {
+        return salesPerson;
+    }
+
+    public void setSalesPerson(SalesPerson salesPerson) {
+        this.salesPerson = salesPerson;
+    }
+
+    public SalesTerritory getSalesTerritory() {
+        return salesTerritory;
+    }
+
+    public void setSalesTerritory(SalesTerritory salesTerritory) {
+        this.salesTerritory = salesTerritory;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (salesTerritoryHistoryPK != null ? salesTerritoryHistoryPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof SalesTerritoryHistory)) {
+            return false;
+        }
+        SalesTerritoryHistory other = (SalesTerritoryHistory) object;
+        if ((this.salesTerritoryHistoryPK == null && other.salesTerritoryHistoryPK != null) || (this.salesTerritoryHistoryPK != null && !this.salesTerritoryHistoryPK.equals(other.salesTerritoryHistoryPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.SalesTerritoryHistory[ salesTerritoryHistoryPK=" + salesTerritoryHistoryPK + " ]";
     }
     
 }

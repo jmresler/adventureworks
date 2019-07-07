@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -9,25 +14,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "vStateProvinceCountryRegion", schema = "Person")
+@Table(name = "vStateProvinceCountryRegion", catalog = "AdventureWorks2017", schema = "Person")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VStateProvinceCountryRegion.findAll", query = "SELECT v FROM VStateProvinceCountryRegion v"),
@@ -51,5 +44,40 @@ public class VStateProvinceCountryRegion implements Serializable {
     @Basic(optional = false)
     @Column(name = "CountryRegionCode")
     private String countryRegionCode;
+
+    public VStateProvinceCountryRegion() {
+    }
+
+    public int getStateProvinceID() {
+        return stateProvinceID;
+    }
+
+    public void setStateProvinceID(int stateProvinceID) {
+        this.stateProvinceID = stateProvinceID;
+    }
+
+    public String getStateProvinceCode() {
+        return stateProvinceCode;
+    }
+
+    public void setStateProvinceCode(String stateProvinceCode) {
+        this.stateProvinceCode = stateProvinceCode;
+    }
+
+    public int getTerritoryID() {
+        return territoryID;
+    }
+
+    public void setTerritoryID(int territoryID) {
+        this.territoryID = territoryID;
+    }
+
+    public String getCountryRegionCode() {
+        return countryRegionCode;
+    }
+
+    public void setCountryRegionCode(String countryRegionCode) {
+        this.countryRegionCode = countryRegionCode;
+    }
     
 }

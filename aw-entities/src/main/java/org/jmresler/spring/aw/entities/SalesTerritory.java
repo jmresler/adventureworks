@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -15,28 +20,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "SalesTerritory", schema = "Sales", uniqueConstraints = {@UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "SalesTerritory", catalog = "AdventureWorks2017", schema = "Sales")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SalesTerritory.findAll", query = "SELECT s FROM SalesTerritory s"),
@@ -54,48 +46,193 @@ public class SalesTerritory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "TerritoryID", nullable = false)
+    @Column(name = "TerritoryID")
     private Integer territoryID;
     @Basic(optional = false)
-    @Column(name = "CountryRegionCode", nullable = false, length = 3)
+    @Column(name = "CountryRegionCode")
     private String countryRegionCode;
     @Basic(optional = false)
-    @Column(name = "Group", nullable = false, length = 50)
+    @Column(name = "Group")
     private String group;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "SalesYTD", nullable = false, precision = 19, scale = 4)
+    @Column(name = "SalesYTD")
     private BigDecimal salesYTD;
     @Basic(optional = false)
-    @Column(name = "SalesLastYear", nullable = false, precision = 19, scale = 4)
+    @Column(name = "SalesLastYear")
     private BigDecimal salesLastYear;
     @Basic(optional = false)
-    @Column(name = "CostYTD", nullable = false, precision = 19, scale = 4)
+    @Column(name = "CostYTD")
     private BigDecimal costYTD;
     @Basic(optional = false)
-    @Column(name = "CostLastYear", nullable = false, precision = 19, scale = 4)
+    @Column(name = "CostLastYear")
     private BigDecimal costLastYear;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(mappedBy = "territoryID")
     private Collection<Customer> customerCollection;
-    @XmlTransient
     @OneToMany(mappedBy = "territoryID")
     private Collection<SalesPerson> salesPersonCollection;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "salesTerritory")
     private Collection<SalesTerritoryHistory> salesTerritoryHistoryCollection;
-    @XmlTransient
     @OneToMany(mappedBy = "territoryID")
     private Collection<SalesOrderHeader> salesOrderHeaderCollection;
+
+    public SalesTerritory() {
+    }
 
     public SalesTerritory(Integer territoryID) {
         this.territoryID = territoryID;
     }
+
+    public SalesTerritory(Integer territoryID, String countryRegionCode, String group, BigDecimal salesYTD, BigDecimal salesLastYear, BigDecimal costYTD, BigDecimal costLastYear, String rowguid, Date modifiedDate) {
+        this.territoryID = territoryID;
+        this.countryRegionCode = countryRegionCode;
+        this.group = group;
+        this.salesYTD = salesYTD;
+        this.salesLastYear = salesLastYear;
+        this.costYTD = costYTD;
+        this.costLastYear = costLastYear;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getTerritoryID() {
+        return territoryID;
+    }
+
+    public void setTerritoryID(Integer territoryID) {
+        this.territoryID = territoryID;
+    }
+
+    public String getCountryRegionCode() {
+        return countryRegionCode;
+    }
+
+    public void setCountryRegionCode(String countryRegionCode) {
+        this.countryRegionCode = countryRegionCode;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public BigDecimal getSalesYTD() {
+        return salesYTD;
+    }
+
+    public void setSalesYTD(BigDecimal salesYTD) {
+        this.salesYTD = salesYTD;
+    }
+
+    public BigDecimal getSalesLastYear() {
+        return salesLastYear;
+    }
+
+    public void setSalesLastYear(BigDecimal salesLastYear) {
+        this.salesLastYear = salesLastYear;
+    }
+
+    public BigDecimal getCostYTD() {
+        return costYTD;
+    }
+
+    public void setCostYTD(BigDecimal costYTD) {
+        this.costYTD = costYTD;
+    }
+
+    public BigDecimal getCostLastYear() {
+        return costLastYear;
+    }
+
+    public void setCostLastYear(BigDecimal costLastYear) {
+        this.costLastYear = costLastYear;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<Customer> getCustomerCollection() {
+        return customerCollection;
+    }
+
+    public void setCustomerCollection(Collection<Customer> customerCollection) {
+        this.customerCollection = customerCollection;
+    }
+
+    @XmlTransient
+    public Collection<SalesPerson> getSalesPersonCollection() {
+        return salesPersonCollection;
+    }
+
+    public void setSalesPersonCollection(Collection<SalesPerson> salesPersonCollection) {
+        this.salesPersonCollection = salesPersonCollection;
+    }
+
+    @XmlTransient
+    public Collection<SalesTerritoryHistory> getSalesTerritoryHistoryCollection() {
+        return salesTerritoryHistoryCollection;
+    }
+
+    public void setSalesTerritoryHistoryCollection(Collection<SalesTerritoryHistory> salesTerritoryHistoryCollection) {
+        this.salesTerritoryHistoryCollection = salesTerritoryHistoryCollection;
+    }
+
+    @XmlTransient
+    public Collection<SalesOrderHeader> getSalesOrderHeaderCollection() {
+        return salesOrderHeaderCollection;
+    }
+
+    public void setSalesOrderHeaderCollection(Collection<SalesOrderHeader> salesOrderHeaderCollection) {
+        this.salesOrderHeaderCollection = salesOrderHeaderCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (territoryID != null ? territoryID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof SalesTerritory)) {
+            return false;
+        }
+        SalesTerritory other = (SalesTerritory) object;
+        if ((this.territoryID == null && other.territoryID != null) || (this.territoryID != null && !this.territoryID.equals(other.territoryID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.SalesTerritory[ territoryID=" + territoryID + " ]";
+    }
+    
 }

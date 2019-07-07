@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -16,25 +21,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "Currency", schema = "Sales")
+@Table(name = "Currency", catalog = "AdventureWorks2017", schema = "Sales")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Currency.findAll", query = "SELECT c FROM Currency c"),
@@ -45,24 +38,97 @@ public class Currency implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "CurrencyCode", nullable = false, length = 3)
+    @Column(name = "CurrencyCode")
     private String currencyCode;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fromCurrencyCode")
     private Collection<CurrencyRate> currencyRateCollection;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "toCurrencyCode")
     private Collection<CurrencyRate> currencyRateCollection1;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "currency")
     private Collection<CountryRegionCurrency> countryRegionCurrencyCollection;
 
+    public Currency() {
+    }
+
     public Currency(String currencyCode) {
         this.currencyCode = currencyCode;
+    }
+
+    public Currency(String currencyCode, Date modifiedDate) {
+        this.currencyCode = currencyCode;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<CurrencyRate> getCurrencyRateCollection() {
+        return currencyRateCollection;
+    }
+
+    public void setCurrencyRateCollection(Collection<CurrencyRate> currencyRateCollection) {
+        this.currencyRateCollection = currencyRateCollection;
+    }
+
+    @XmlTransient
+    public Collection<CurrencyRate> getCurrencyRateCollection1() {
+        return currencyRateCollection1;
+    }
+
+    public void setCurrencyRateCollection1(Collection<CurrencyRate> currencyRateCollection1) {
+        this.currencyRateCollection1 = currencyRateCollection1;
+    }
+
+    @XmlTransient
+    public Collection<CountryRegionCurrency> getCountryRegionCurrencyCollection() {
+        return countryRegionCurrencyCollection;
+    }
+
+    public void setCountryRegionCurrencyCollection(Collection<CountryRegionCurrency> countryRegionCurrencyCollection) {
+        this.countryRegionCurrencyCollection = countryRegionCurrencyCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (currencyCode != null ? currencyCode.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Currency)) {
+            return false;
+        }
+        Currency other = (Currency) object;
+        if ((this.currencyCode == null && other.currencyCode != null) || (this.currencyCode != null && !this.currencyCode.equals(other.currencyCode))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.Currency[ currencyCode=" + currencyCode + " ]";
     }
     
 }

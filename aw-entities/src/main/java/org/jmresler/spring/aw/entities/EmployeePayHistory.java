@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -15,25 +20,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "EmployeePayHistory", schema = "HumanResources")
+@Table(name = "EmployeePayHistory", catalog = "AdventureWorks2017", schema = "HumanResources")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EmployeePayHistory.findAll", query = "SELECT e FROM EmployeePayHistory e"),
@@ -49,20 +42,100 @@ public class EmployeePayHistory implements Serializable {
     protected EmployeePayHistoryPK employeePayHistoryPK;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "Rate", nullable = false, precision = 19, scale = 4)
+    @Column(name = "Rate")
     private BigDecimal rate;
     @Basic(optional = false)
-    @Column(name = "PayFrequency", nullable = false)
+    @Column(name = "PayFrequency")
     private short payFrequency;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Employee employee;
 
+    public EmployeePayHistory() {
+    }
+
     public EmployeePayHistory(EmployeePayHistoryPK employeePayHistoryPK) {
         this.employeePayHistoryPK = employeePayHistoryPK;
-    }    
+    }
+
+    public EmployeePayHistory(EmployeePayHistoryPK employeePayHistoryPK, BigDecimal rate, short payFrequency, Date modifiedDate) {
+        this.employeePayHistoryPK = employeePayHistoryPK;
+        this.rate = rate;
+        this.payFrequency = payFrequency;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public EmployeePayHistory(int businessEntityID, Date rateChangeDate) {
+        this.employeePayHistoryPK = new EmployeePayHistoryPK(businessEntityID, rateChangeDate);
+    }
+
+    public EmployeePayHistoryPK getEmployeePayHistoryPK() {
+        return employeePayHistoryPK;
+    }
+
+    public void setEmployeePayHistoryPK(EmployeePayHistoryPK employeePayHistoryPK) {
+        this.employeePayHistoryPK = employeePayHistoryPK;
+    }
+
+    public BigDecimal getRate() {
+        return rate;
+    }
+
+    public void setRate(BigDecimal rate) {
+        this.rate = rate;
+    }
+
+    public short getPayFrequency() {
+        return payFrequency;
+    }
+
+    public void setPayFrequency(short payFrequency) {
+        this.payFrequency = payFrequency;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (employeePayHistoryPK != null ? employeePayHistoryPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof EmployeePayHistory)) {
+            return false;
+        }
+        EmployeePayHistory other = (EmployeePayHistory) object;
+        if ((this.employeePayHistoryPK == null && other.employeePayHistoryPK != null) || (this.employeePayHistoryPK != null && !this.employeePayHistoryPK.equals(other.employeePayHistoryPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.EmployeePayHistory[ employeePayHistoryPK=" + employeePayHistoryPK + " ]";
+    }
+    
 }

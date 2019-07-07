@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -15,25 +20,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "WorkOrderRouting", schema = "Production")
+@Table(name = "WorkOrderRouting", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "WorkOrderRouting.findAll", query = "SELECT w FROM WorkOrderRouting w"),
@@ -54,11 +47,11 @@ public class WorkOrderRouting implements Serializable {
     @EmbeddedId
     protected WorkOrderRoutingPK workOrderRoutingPK;
     @Basic(optional = false)
-    @Column(name = "ScheduledStartDate", nullable = false)
+    @Column(name = "ScheduledStartDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date scheduledStartDate;
     @Basic(optional = false)
-    @Column(name = "ScheduledEndDate", nullable = false)
+    @Column(name = "ScheduledEndDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date scheduledEndDate;
     @Column(name = "ActualStartDate")
@@ -68,26 +61,154 @@ public class WorkOrderRouting implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date actualEndDate;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "ActualResourceHrs", precision = 9, scale = 4)
+    @Column(name = "ActualResourceHrs")
     private BigDecimal actualResourceHrs;
     @Basic(optional = false)
-    @Column(name = "PlannedCost", nullable = false, precision = 19, scale = 4)
+    @Column(name = "PlannedCost")
     private BigDecimal plannedCost;
-    @Column(name = "ActualCost", precision = 19, scale = 4)
+    @Column(name = "ActualCost")
     private BigDecimal actualCost;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JoinColumn(name = "LocationID", referencedColumnName = "LocationID", nullable = false)
+    @JoinColumn(name = "LocationID", referencedColumnName = "LocationID")
     @ManyToOne(optional = false)
     private Location locationID;
-    @JoinColumn(name = "WorkOrderID", referencedColumnName = "WorkOrderID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "WorkOrderID", referencedColumnName = "WorkOrderID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private WorkOrder workOrder;
 
+    public WorkOrderRouting() {
+    }
+
     public WorkOrderRouting(WorkOrderRoutingPK workOrderRoutingPK) {
         this.workOrderRoutingPK = workOrderRoutingPK;
+    }
+
+    public WorkOrderRouting(WorkOrderRoutingPK workOrderRoutingPK, Date scheduledStartDate, Date scheduledEndDate, BigDecimal plannedCost, Date modifiedDate) {
+        this.workOrderRoutingPK = workOrderRoutingPK;
+        this.scheduledStartDate = scheduledStartDate;
+        this.scheduledEndDate = scheduledEndDate;
+        this.plannedCost = plannedCost;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public WorkOrderRouting(int workOrderID, int productID, short operationSequence) {
+        this.workOrderRoutingPK = new WorkOrderRoutingPK(workOrderID, productID, operationSequence);
+    }
+
+    public WorkOrderRoutingPK getWorkOrderRoutingPK() {
+        return workOrderRoutingPK;
+    }
+
+    public void setWorkOrderRoutingPK(WorkOrderRoutingPK workOrderRoutingPK) {
+        this.workOrderRoutingPK = workOrderRoutingPK;
+    }
+
+    public Date getScheduledStartDate() {
+        return scheduledStartDate;
+    }
+
+    public void setScheduledStartDate(Date scheduledStartDate) {
+        this.scheduledStartDate = scheduledStartDate;
+    }
+
+    public Date getScheduledEndDate() {
+        return scheduledEndDate;
+    }
+
+    public void setScheduledEndDate(Date scheduledEndDate) {
+        this.scheduledEndDate = scheduledEndDate;
+    }
+
+    public Date getActualStartDate() {
+        return actualStartDate;
+    }
+
+    public void setActualStartDate(Date actualStartDate) {
+        this.actualStartDate = actualStartDate;
+    }
+
+    public Date getActualEndDate() {
+        return actualEndDate;
+    }
+
+    public void setActualEndDate(Date actualEndDate) {
+        this.actualEndDate = actualEndDate;
+    }
+
+    public BigDecimal getActualResourceHrs() {
+        return actualResourceHrs;
+    }
+
+    public void setActualResourceHrs(BigDecimal actualResourceHrs) {
+        this.actualResourceHrs = actualResourceHrs;
+    }
+
+    public BigDecimal getPlannedCost() {
+        return plannedCost;
+    }
+
+    public void setPlannedCost(BigDecimal plannedCost) {
+        this.plannedCost = plannedCost;
+    }
+
+    public BigDecimal getActualCost() {
+        return actualCost;
+    }
+
+    public void setActualCost(BigDecimal actualCost) {
+        this.actualCost = actualCost;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Location getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(Location locationID) {
+        this.locationID = locationID;
+    }
+
+    public WorkOrder getWorkOrder() {
+        return workOrder;
+    }
+
+    public void setWorkOrder(WorkOrder workOrder) {
+        this.workOrder = workOrder;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (workOrderRoutingPK != null ? workOrderRoutingPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof WorkOrderRouting)) {
+            return false;
+        }
+        WorkOrderRouting other = (WorkOrderRouting) object;
+        if ((this.workOrderRoutingPK == null && other.workOrderRoutingPK != null) || (this.workOrderRoutingPK != null && !this.workOrderRoutingPK.equals(other.workOrderRoutingPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.WorkOrderRouting[ workOrderRoutingPK=" + workOrderRoutingPK + " ]";
     }
     
 }

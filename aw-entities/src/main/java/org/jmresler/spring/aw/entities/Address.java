@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -20,25 +25,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString(of = {"addressID","businessEntityAddressCollection"})
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "Address", schema = "Person")
+@Table(name = "Address", catalog = "AdventureWorks2017", schema = "Person")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
@@ -48,10 +41,7 @@ import lombok.ToString;
     @NamedQuery(name = "Address.findByCity", query = "SELECT a FROM Address a WHERE a.city = :city"),
     @NamedQuery(name = "Address.findByPostalCode", query = "SELECT a FROM Address a WHERE a.postalCode = :postalCode"),
     @NamedQuery(name = "Address.findByRowguid", query = "SELECT a FROM Address a WHERE a.rowguid = :rowguid"),
-    @NamedQuery(name = "Address.findByModifiedDate", query = "SELECT a FROM Address a WHERE a.modifiedDate = :modifiedDate"),
-    @NamedQuery(name = "Address.countAddress", query = "SELECT COUNT(a.addressID) FROM Address a"),
-    @NamedQuery(name = "Address.findAddressLine1", query = "SELECT a.addressLine1 FROM Address a"),
-    @NamedQuery(name = "Address.findSpatialLocation", query = "SELECT CAST(a.spatialLocation AS VARCHAR(500)) FROM Address a")})
+    @NamedQuery(name = "Address.findByModifiedDate", query = "SELECT a FROM Address a WHERE a.modifiedDate = :modifiedDate")})
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -83,11 +73,129 @@ public class Address implements Serializable {
     @JoinColumn(name = "StateProvinceID", referencedColumnName = "StateProvinceID")
     @ManyToOne(optional = false)
     private StateProvince stateProvinceID;
-    @XmlTransient
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.LAZY)
     private Collection<BusinessEntityAddress> businessEntityAddressCollection;
+
+    public Address() {
+    }
 
     public Address(Integer addressID) {
         this.addressID = addressID;
     }
+
+    public Address(Integer addressID, String addressLine1, String city, String postalCode, String rowguid, Date modifiedDate) {
+        this.addressID = addressID;
+        this.addressLine1 = addressLine1;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getAddressID() {
+        return addressID;
+    }
+
+    public void setAddressID(Integer addressID) {
+        this.addressID = addressID;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public byte[] getSpatialLocation() {
+        return spatialLocation;
+    }
+
+    public void setSpatialLocation(byte[] spatialLocation) {
+        this.spatialLocation = spatialLocation;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public StateProvince getStateProvinceID() {
+        return stateProvinceID;
+    }
+
+    public void setStateProvinceID(StateProvince stateProvinceID) {
+        this.stateProvinceID = stateProvinceID;
+    }
+
+    @XmlTransient
+    public Collection<BusinessEntityAddress> getBusinessEntityAddressCollection() {
+        return businessEntityAddressCollection;
+    }
+
+    public void setBusinessEntityAddressCollection(Collection<BusinessEntityAddress> businessEntityAddressCollection) {
+        this.businessEntityAddressCollection = businessEntityAddressCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (addressID != null ? addressID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Address)) {
+            return false;
+        }
+        Address other = (Address) object;
+        if ((this.addressID == null && other.addressID != null) || (this.addressID != null && !this.addressID.equals(other.addressID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.Address[ addressID=" + addressID + " ]";
+    }
+    
 }

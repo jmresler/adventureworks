@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -14,24 +19,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder@Entity
-@Table(name = "ProductDocument", schema = "Production")
+@Entity
+@Table(name = "ProductDocument", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductDocument.findAll", query = "SELECT p FROM ProductDocument p"),
@@ -43,13 +37,87 @@ public class ProductDocument implements Serializable {
     @EmbeddedId
     protected ProductDocumentPK productDocumentPK;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JoinColumn(name = "DocumentNode", referencedColumnName = "DocumentNode", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "DocumentNode", referencedColumnName = "DocumentNode", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Document document;
-    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Product product;    
+    private Product product;
+
+    public ProductDocument() {
+    }
+
+    public ProductDocument(ProductDocumentPK productDocumentPK) {
+        this.productDocumentPK = productDocumentPK;
+    }
+
+    public ProductDocument(ProductDocumentPK productDocumentPK, Date modifiedDate) {
+        this.productDocumentPK = productDocumentPK;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public ProductDocument(int productID, byte[] documentNode) {
+        this.productDocumentPK = new ProductDocumentPK(productID, documentNode);
+    }
+
+    public ProductDocumentPK getProductDocumentPK() {
+        return productDocumentPK;
+    }
+
+    public void setProductDocumentPK(ProductDocumentPK productDocumentPK) {
+        this.productDocumentPK = productDocumentPK;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (productDocumentPK != null ? productDocumentPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProductDocument)) {
+            return false;
+        }
+        ProductDocument other = (ProductDocument) object;
+        if ((this.productDocumentPK == null && other.productDocumentPK != null) || (this.productDocumentPK != null && !this.productDocumentPK.equals(other.productDocumentPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.ProductDocument[ productDocumentPK=" + productDocumentPK + " ]";
+    }
+    
 }

@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -15,25 +20,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "ProductListPriceHistory", schema = "Production")
+@Table(name = "ProductListPriceHistory", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductListPriceHistory.findAll", query = "SELECT p FROM ProductListPriceHistory p"),
@@ -52,18 +45,96 @@ public class ProductListPriceHistory implements Serializable {
     private Date endDate;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "ListPrice", nullable = false, precision = 19, scale = 4)
+    @Column(name = "ListPrice")
     private BigDecimal listPrice;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Product product;
 
+    public ProductListPriceHistory() {
+    }
+
     public ProductListPriceHistory(ProductListPriceHistoryPK productListPriceHistoryPK) {
         this.productListPriceHistoryPK = productListPriceHistoryPK;
+    }
+
+    public ProductListPriceHistory(ProductListPriceHistoryPK productListPriceHistoryPK, BigDecimal listPrice, Date modifiedDate) {
+        this.productListPriceHistoryPK = productListPriceHistoryPK;
+        this.listPrice = listPrice;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public ProductListPriceHistory(int productID, Date startDate) {
+        this.productListPriceHistoryPK = new ProductListPriceHistoryPK(productID, startDate);
+    }
+
+    public ProductListPriceHistoryPK getProductListPriceHistoryPK() {
+        return productListPriceHistoryPK;
+    }
+
+    public void setProductListPriceHistoryPK(ProductListPriceHistoryPK productListPriceHistoryPK) {
+        this.productListPriceHistoryPK = productListPriceHistoryPK;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public BigDecimal getListPrice() {
+        return listPrice;
+    }
+
+    public void setListPrice(BigDecimal listPrice) {
+        this.listPrice = listPrice;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (productListPriceHistoryPK != null ? productListPriceHistoryPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProductListPriceHistory)) {
+            return false;
+        }
+        ProductListPriceHistory other = (ProductListPriceHistory) object;
+        if ((this.productListPriceHistoryPK == null && other.productListPriceHistoryPK != null) || (this.productListPriceHistoryPK != null && !this.productListPriceHistoryPK.equals(other.productListPriceHistoryPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.ProductListPriceHistory[ productListPriceHistoryPK=" + productListPriceHistoryPK + " ]";
     }
     
 }

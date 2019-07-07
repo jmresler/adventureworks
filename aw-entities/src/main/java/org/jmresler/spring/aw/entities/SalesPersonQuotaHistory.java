@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -14,27 +19,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "SalesPersonQuotaHistory", schema = "Sales", uniqueConstraints = {@UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "SalesPersonQuotaHistory", catalog = "AdventureWorks2017", schema = "Sales")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SalesPersonQuotaHistory.findAll", query = "SELECT s FROM SalesPersonQuotaHistory s"),
@@ -50,20 +42,100 @@ public class SalesPersonQuotaHistory implements Serializable {
     protected SalesPersonQuotaHistoryPK salesPersonQuotaHistoryPK;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "SalesQuota", nullable = false, precision = 19, scale = 4)
+    @Column(name = "SalesQuota")
     private BigDecimal salesQuota;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SalesPerson salesPerson;
 
+    public SalesPersonQuotaHistory() {
+    }
+
     public SalesPersonQuotaHistory(SalesPersonQuotaHistoryPK salesPersonQuotaHistoryPK) {
         this.salesPersonQuotaHistoryPK = salesPersonQuotaHistoryPK;
-    }    
+    }
+
+    public SalesPersonQuotaHistory(SalesPersonQuotaHistoryPK salesPersonQuotaHistoryPK, BigDecimal salesQuota, String rowguid, Date modifiedDate) {
+        this.salesPersonQuotaHistoryPK = salesPersonQuotaHistoryPK;
+        this.salesQuota = salesQuota;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public SalesPersonQuotaHistory(int businessEntityID, Date quotaDate) {
+        this.salesPersonQuotaHistoryPK = new SalesPersonQuotaHistoryPK(businessEntityID, quotaDate);
+    }
+
+    public SalesPersonQuotaHistoryPK getSalesPersonQuotaHistoryPK() {
+        return salesPersonQuotaHistoryPK;
+    }
+
+    public void setSalesPersonQuotaHistoryPK(SalesPersonQuotaHistoryPK salesPersonQuotaHistoryPK) {
+        this.salesPersonQuotaHistoryPK = salesPersonQuotaHistoryPK;
+    }
+
+    public BigDecimal getSalesQuota() {
+        return salesQuota;
+    }
+
+    public void setSalesQuota(BigDecimal salesQuota) {
+        this.salesQuota = salesQuota;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public SalesPerson getSalesPerson() {
+        return salesPerson;
+    }
+
+    public void setSalesPerson(SalesPerson salesPerson) {
+        this.salesPerson = salesPerson;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (salesPersonQuotaHistoryPK != null ? salesPersonQuotaHistoryPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof SalesPersonQuotaHistory)) {
+            return false;
+        }
+        SalesPersonQuotaHistory other = (SalesPersonQuotaHistory) object;
+        if ((this.salesPersonQuotaHistoryPK == null && other.salesPersonQuotaHistoryPK != null) || (this.salesPersonQuotaHistoryPK != null && !this.salesPersonQuotaHistoryPK.equals(other.salesPersonQuotaHistoryPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.SalesPersonQuotaHistory[ salesPersonQuotaHistoryPK=" + salesPersonQuotaHistoryPK + " ]";
+    }
+    
 }

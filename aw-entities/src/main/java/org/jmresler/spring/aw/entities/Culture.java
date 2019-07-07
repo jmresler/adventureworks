@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -16,25 +21,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "Culture", schema = "Production")
+@Table(name = "Culture", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Culture.findAll", query = "SELECT c FROM Culture c"),
@@ -45,17 +38,75 @@ public class Culture implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "CultureID", nullable = false, length = 6)
+    @Column(name = "CultureID")
     private String cultureID;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "culture")
     private Collection<ProductModelProductDescriptionCulture> productModelProductDescriptionCultureCollection;
+
+    public Culture() {
+    }
 
     public Culture(String cultureID) {
         this.cultureID = cultureID;
     }
+
+    public Culture(String cultureID, Date modifiedDate) {
+        this.cultureID = cultureID;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public String getCultureID() {
+        return cultureID;
+    }
+
+    public void setCultureID(String cultureID) {
+        this.cultureID = cultureID;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<ProductModelProductDescriptionCulture> getProductModelProductDescriptionCultureCollection() {
+        return productModelProductDescriptionCultureCollection;
+    }
+
+    public void setProductModelProductDescriptionCultureCollection(Collection<ProductModelProductDescriptionCulture> productModelProductDescriptionCultureCollection) {
+        this.productModelProductDescriptionCultureCollection = productModelProductDescriptionCultureCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (cultureID != null ? cultureID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Culture)) {
+            return false;
+        }
+        Culture other = (Culture) object;
+        if ((this.cultureID == null && other.cultureID != null) || (this.cultureID != null && !this.cultureID.equals(other.cultureID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.Culture[ cultureID=" + cultureID + " ]";
+    }
+    
 }

@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -20,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author John
  */
 @Entity
-@Table(name = "EmailAddress", schema = "Person")
+@Table(name = "EmailAddress", catalog = "AdventureWorks2017", schema = "Person")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EmailAddress.findAll", query = "SELECT e FROM EmailAddress e"),

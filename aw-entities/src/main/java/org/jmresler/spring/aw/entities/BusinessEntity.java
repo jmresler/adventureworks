@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -17,25 +22,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "BusinessEntity", schema = "Person")
+@Table(name = "BusinessEntity", catalog = "AdventureWorks2017", schema = "Person")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "BusinessEntity.findAll", query = "SELECT b FROM BusinessEntity b"),
@@ -56,16 +49,99 @@ public class BusinessEntity implements Serializable {
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessEntity")
     private Collection<BusinessEntityContact> businessEntityContactCollection;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessEntity")
     private Collection<BusinessEntityAddress> businessEntityAddressCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessEntity")
     private Person person;
 
+    public BusinessEntity() {
+    }
+
     public BusinessEntity(Integer businessEntityID) {
         this.businessEntityID = businessEntityID;
     }
+
+    public BusinessEntity(Integer businessEntityID, String rowguid, Date modifiedDate) {
+        this.businessEntityID = businessEntityID;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getBusinessEntityID() {
+        return businessEntityID;
+    }
+
+    public void setBusinessEntityID(Integer businessEntityID) {
+        this.businessEntityID = businessEntityID;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<BusinessEntityContact> getBusinessEntityContactCollection() {
+        return businessEntityContactCollection;
+    }
+
+    public void setBusinessEntityContactCollection(Collection<BusinessEntityContact> businessEntityContactCollection) {
+        this.businessEntityContactCollection = businessEntityContactCollection;
+    }
+
+    @XmlTransient
+    public Collection<BusinessEntityAddress> getBusinessEntityAddressCollection() {
+        return businessEntityAddressCollection;
+    }
+
+    public void setBusinessEntityAddressCollection(Collection<BusinessEntityAddress> businessEntityAddressCollection) {
+        this.businessEntityAddressCollection = businessEntityAddressCollection;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (businessEntityID != null ? businessEntityID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof BusinessEntity)) {
+            return false;
+        }
+        BusinessEntity other = (BusinessEntity) object;
+        if ((this.businessEntityID == null && other.businessEntityID != null) || (this.businessEntityID != null && !this.businessEntityID.equals(other.businessEntityID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.BusinessEntity[ businessEntityID=" + businessEntityID + " ]";
+    }
+    
 }

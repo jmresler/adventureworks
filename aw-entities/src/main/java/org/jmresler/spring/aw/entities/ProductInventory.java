@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -14,25 +19,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "ProductInventory", schema = "Production")
+@Table(name = "ProductInventory", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductInventory.findAll", query = "SELECT p FROM ProductInventory p"),
@@ -49,29 +42,135 @@ public class ProductInventory implements Serializable {
     @EmbeddedId
     protected ProductInventoryPK productInventoryPK;
     @Basic(optional = false)
-    @Column(name = "Shelf", nullable = false, length = 10)
+    @Column(name = "Shelf")
     private String shelf;
     @Basic(optional = false)
-    @Column(name = "Bin", nullable = false)
+    @Column(name = "Bin")
     private short bin;
     @Basic(optional = false)
-    @Column(name = "Quantity", nullable = false)
+    @Column(name = "Quantity")
     private short quantity;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JoinColumn(name = "LocationID", referencedColumnName = "LocationID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "LocationID", referencedColumnName = "LocationID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Location location;
-    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Product product;
+
+    public ProductInventory() {
+    }
 
     public ProductInventory(ProductInventoryPK productInventoryPK) {
         this.productInventoryPK = productInventoryPK;
     }
+
+    public ProductInventory(ProductInventoryPK productInventoryPK, String shelf, short bin, short quantity, String rowguid, Date modifiedDate) {
+        this.productInventoryPK = productInventoryPK;
+        this.shelf = shelf;
+        this.bin = bin;
+        this.quantity = quantity;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public ProductInventory(int productID, short locationID) {
+        this.productInventoryPK = new ProductInventoryPK(productID, locationID);
+    }
+
+    public ProductInventoryPK getProductInventoryPK() {
+        return productInventoryPK;
+    }
+
+    public void setProductInventoryPK(ProductInventoryPK productInventoryPK) {
+        this.productInventoryPK = productInventoryPK;
+    }
+
+    public String getShelf() {
+        return shelf;
+    }
+
+    public void setShelf(String shelf) {
+        this.shelf = shelf;
+    }
+
+    public short getBin() {
+        return bin;
+    }
+
+    public void setBin(short bin) {
+        this.bin = bin;
+    }
+
+    public short getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(short quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (productInventoryPK != null ? productInventoryPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProductInventory)) {
+            return false;
+        }
+        ProductInventory other = (ProductInventory) object;
+        if ((this.productInventoryPK == null && other.productInventoryPK != null) || (this.productInventoryPK != null && !this.productInventoryPK.equals(other.productInventoryPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.ProductInventory[ productInventoryPK=" + productInventoryPK + " ]";
+    }
+    
 }

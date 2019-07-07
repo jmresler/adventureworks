@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -12,25 +17,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "vJobCandidate", schema = "HumanResources")
+@Table(name = "vJobCandidate", catalog = "AdventureWorks2017", schema = "HumanResources")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VJobCandidate.findAll", query = "SELECT v FROM VJobCandidate v"),
@@ -55,38 +48,170 @@ public class VJobCandidate implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "JobCandidateID", nullable = false)
+    @Column(name = "JobCandidateID")
     private int jobCandidateID;
     @Column(name = "BusinessEntityID")
     private Integer businessEntityID;
-    @Column(name = "Prefix", length = 30)
+    @Column(name = "Prefix")
     private String prefix;
-    @Column(name = "First", length = 30)
+    @Column(name = "First")
     private String first;
-    @Column(name = "Middle", length = 30)
+    @Column(name = "Middle")
     private String middle;
-    @Column(name = "Last", length = 30)
+    @Column(name = "Last")
     private String last;
-    @Column(name = "Suffix", length = 30)
+    @Column(name = "Suffix")
     private String suffix;
-    @Column(name = "Skills", length = 2147483647)
+    @Column(name = "Skills")
     private String skills;
-    @Column(name = "Type", length = 30)
+    @Column(name = "Type")
     private String type;
-    @Column(name = "CountryRegion", length = 100)
+    @Column(name = "CountryRegion")
     private String countryRegion;
-    @Column(name = "State", length = 100)
+    @Column(name = "State")
     private String state;
-    @Column(name = "City", length = 100)
+    @Column(name = "City")
     private String city;
-    @Column(name = "PostalCode", length = 20)
+    @Column(name = "PostalCode")
     private String postalCode;
-    @Column(name = "EMail", length = 2147483647)
+    @Column(name = "EMail")
     private String eMail;
-    @Column(name = "WebSite", length = 2147483647)
+    @Column(name = "WebSite")
     private String webSite;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+
+    public VJobCandidate() {
+    }
+
+    public int getJobCandidateID() {
+        return jobCandidateID;
+    }
+
+    public void setJobCandidateID(int jobCandidateID) {
+        this.jobCandidateID = jobCandidateID;
+    }
+
+    public Integer getBusinessEntityID() {
+        return businessEntityID;
+    }
+
+    public void setBusinessEntityID(Integer businessEntityID) {
+        this.businessEntityID = businessEntityID;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public String getFirst() {
+        return first;
+    }
+
+    public void setFirst(String first) {
+        this.first = first;
+    }
+
+    public String getMiddle() {
+        return middle;
+    }
+
+    public void setMiddle(String middle) {
+        this.middle = middle;
+    }
+
+    public String getLast() {
+        return last;
+    }
+
+    public void setLast(String last) {
+        this.last = last;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCountryRegion() {
+        return countryRegion;
+    }
+
+    public void setCountryRegion(String countryRegion) {
+        this.countryRegion = countryRegion;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getEMail() {
+        return eMail;
+    }
+
+    public void setEMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public String getWebSite() {
+        return webSite;
+    }
+
+    public void setWebSite(String webSite) {
+        this.webSite = webSite;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+    
 }

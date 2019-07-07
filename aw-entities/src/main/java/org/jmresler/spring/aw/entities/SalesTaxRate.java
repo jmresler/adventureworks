@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -12,29 +17,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "SalesTaxRate", schema = "Sales", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"StateProvinceID", "TaxType"}),
-    @UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "SalesTaxRate", catalog = "AdventureWorks2017", schema = "Sales")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SalesTaxRate.findAll", query = "SELECT s FROM SalesTaxRate s"),
@@ -49,27 +39,113 @@ public class SalesTaxRate implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "SalesTaxRateID", nullable = false)
+    @Column(name = "SalesTaxRateID")
     private Integer salesTaxRateID;
     @Basic(optional = false)
-    @Column(name = "StateProvinceID", nullable = false)
+    @Column(name = "StateProvinceID")
     private int stateProvinceID;
     @Basic(optional = false)
-    @Column(name = "TaxType", nullable = false)
+    @Column(name = "TaxType")
     private short taxType;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "TaxRate", nullable = false, precision = 10, scale = 4)
+    @Column(name = "TaxRate")
     private BigDecimal taxRate;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
 
+    public SalesTaxRate() {
+    }
+
     public SalesTaxRate(Integer salesTaxRateID) {
         this.salesTaxRateID = salesTaxRateID;
-    }    
+    }
+
+    public SalesTaxRate(Integer salesTaxRateID, int stateProvinceID, short taxType, BigDecimal taxRate, String rowguid, Date modifiedDate) {
+        this.salesTaxRateID = salesTaxRateID;
+        this.stateProvinceID = stateProvinceID;
+        this.taxType = taxType;
+        this.taxRate = taxRate;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getSalesTaxRateID() {
+        return salesTaxRateID;
+    }
+
+    public void setSalesTaxRateID(Integer salesTaxRateID) {
+        this.salesTaxRateID = salesTaxRateID;
+    }
+
+    public int getStateProvinceID() {
+        return stateProvinceID;
+    }
+
+    public void setStateProvinceID(int stateProvinceID) {
+        this.stateProvinceID = stateProvinceID;
+    }
+
+    public short getTaxType() {
+        return taxType;
+    }
+
+    public void setTaxType(short taxType) {
+        this.taxType = taxType;
+    }
+
+    public BigDecimal getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(BigDecimal taxRate) {
+        this.taxRate = taxRate;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (salesTaxRateID != null ? salesTaxRateID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof SalesTaxRate)) {
+            return false;
+        }
+        SalesTaxRate other = (SalesTaxRate) object;
+        if ((this.salesTaxRateID == null && other.salesTaxRateID != null) || (this.salesTaxRateID != null && !this.salesTaxRateID.equals(other.salesTaxRateID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.SalesTaxRate[ salesTaxRateID=" + salesTaxRateID + " ]";
+    }
+    
 }

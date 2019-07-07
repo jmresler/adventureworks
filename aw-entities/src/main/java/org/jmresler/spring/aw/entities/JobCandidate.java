@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -20,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author John
  */
 @Entity
-@Table(name = "JobCandidate", schema = "HumanResources")
+@Table(name = "JobCandidate", catalog = "AdventureWorks2017", schema = "HumanResources")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "JobCandidate.findAll", query = "SELECT j FROM JobCandidate j"),
@@ -32,12 +37,12 @@ public class JobCandidate implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "JobCandidateID", nullable = false)
+    @Column(name = "JobCandidateID")
     private Integer jobCandidateID;
-    @Column(name = "Resume", length = 2147483647)
+    @Column(name = "Resume")
     private String resume;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
     @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID")

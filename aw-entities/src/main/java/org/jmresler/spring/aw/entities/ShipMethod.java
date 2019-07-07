@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -15,28 +20,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "ShipMethod", schema = "Purchasing", uniqueConstraints = {@UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "ShipMethod", catalog = "AdventureWorks2017", schema = "Purchasing")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ShipMethod.findAll", query = "SELECT s FROM ShipMethod s"),
@@ -50,28 +42,112 @@ public class ShipMethod implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ShipMethodID", nullable = false)
+    @Column(name = "ShipMethodID")
     private Integer shipMethodID;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "ShipBase", nullable = false, precision = 19, scale = 4)
+    @Column(name = "ShipBase")
     private BigDecimal shipBase;
     @Basic(optional = false)
-    @Column(name = "ShipRate", nullable = false, precision = 19, scale = 4)
+    @Column(name = "ShipRate")
     private BigDecimal shipRate;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shipMethodID")
     private Collection<PurchaseOrderHeader> purchaseOrderHeaderCollection;
+
+    public ShipMethod() {
+    }
 
     public ShipMethod(Integer shipMethodID) {
         this.shipMethodID = shipMethodID;
     }
 
+    public ShipMethod(Integer shipMethodID, BigDecimal shipBase, BigDecimal shipRate, String rowguid, Date modifiedDate) {
+        this.shipMethodID = shipMethodID;
+        this.shipBase = shipBase;
+        this.shipRate = shipRate;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getShipMethodID() {
+        return shipMethodID;
+    }
+
+    public void setShipMethodID(Integer shipMethodID) {
+        this.shipMethodID = shipMethodID;
+    }
+
+    public BigDecimal getShipBase() {
+        return shipBase;
+    }
+
+    public void setShipBase(BigDecimal shipBase) {
+        this.shipBase = shipBase;
+    }
+
+    public BigDecimal getShipRate() {
+        return shipRate;
+    }
+
+    public void setShipRate(BigDecimal shipRate) {
+        this.shipRate = shipRate;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<PurchaseOrderHeader> getPurchaseOrderHeaderCollection() {
+        return purchaseOrderHeaderCollection;
+    }
+
+    public void setPurchaseOrderHeaderCollection(Collection<PurchaseOrderHeader> purchaseOrderHeaderCollection) {
+        this.purchaseOrderHeaderCollection = purchaseOrderHeaderCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (shipMethodID != null ? shipMethodID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ShipMethod)) {
+            return false;
+        }
+        ShipMethod other = (ShipMethod) object;
+        if ((this.shipMethodID == null && other.shipMethodID != null) || (this.shipMethodID != null && !this.shipMethodID.equals(other.shipMethodID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.ShipMethod[ shipMethodID=" + shipMethodID + " ]";
+    }
+    
 }

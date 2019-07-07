@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -14,25 +19,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "BusinessEntityAddress", schema = "Person")
+@Table(name = "BusinessEntityAddress", catalog = "AdventureWorks2017", schema = "Person")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "BusinessEntityAddress.findAll", query = "SELECT b FROM BusinessEntityAddress b"),
@@ -63,7 +56,94 @@ public class BusinessEntityAddress implements Serializable {
     @ManyToOne(optional = false)
     private BusinessEntity businessEntity;
 
+    public BusinessEntityAddress() {
+    }
+
     public BusinessEntityAddress(BusinessEntityAddressPK businessEntityAddressPK) {
         this.businessEntityAddressPK = businessEntityAddressPK;
     }
+
+    public BusinessEntityAddress(BusinessEntityAddressPK businessEntityAddressPK, String rowguid, Date modifiedDate) {
+        this.businessEntityAddressPK = businessEntityAddressPK;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public BusinessEntityAddress(int businessEntityID, int addressID, int addressTypeID) {
+        this.businessEntityAddressPK = new BusinessEntityAddressPK(businessEntityID, addressID, addressTypeID);
+    }
+
+    public BusinessEntityAddressPK getBusinessEntityAddressPK() {
+        return businessEntityAddressPK;
+    }
+
+    public void setBusinessEntityAddressPK(BusinessEntityAddressPK businessEntityAddressPK) {
+        this.businessEntityAddressPK = businessEntityAddressPK;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public AddressType getAddressType() {
+        return addressType;
+    }
+
+    public void setAddressType(AddressType addressType) {
+        this.addressType = addressType;
+    }
+
+    public BusinessEntity getBusinessEntity() {
+        return businessEntity;
+    }
+
+    public void setBusinessEntity(BusinessEntity businessEntity) {
+        this.businessEntity = businessEntity;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (businessEntityAddressPK != null ? businessEntityAddressPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof BusinessEntityAddress)) {
+            return false;
+        }
+        BusinessEntityAddress other = (BusinessEntityAddress) object;
+        if ((this.businessEntityAddressPK == null && other.businessEntityAddressPK != null) || (this.businessEntityAddressPK != null && !this.businessEntityAddressPK.equals(other.businessEntityAddressPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.BusinessEntityAddress[ businessEntityAddressPK=" + businessEntityAddressPK + " ]";
+    }
+    
 }

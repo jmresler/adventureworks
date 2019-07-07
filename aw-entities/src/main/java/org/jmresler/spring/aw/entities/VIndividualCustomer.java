@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -9,25 +14,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "vIndividualCustomer", schema = "Sales")
+@Table(name = "vIndividualCustomer", catalog = "AdventureWorks2017", schema = "Sales")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VIndividualCustomer.findAll", query = "SELECT v FROM VIndividualCustomer v"),
@@ -46,28 +39,112 @@ public class VIndividualCustomer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "BusinessEntityID", nullable = false)
+    @Column(name = "BusinessEntityID")
     private int businessEntityID;
-    @Column(name = "Title", length = 8)
+    @Column(name = "Title")
     private String title;
-    @Column(name = "Suffix", length = 10)
+    @Column(name = "Suffix")
     private String suffix;
-    @Column(name = "EmailAddress", length = 50)
+    @Column(name = "EmailAddress")
     private String emailAddress;
     @Basic(optional = false)
-    @Column(name = "EmailPromotion", nullable = false)
+    @Column(name = "EmailPromotion")
     private int emailPromotion;
     @Basic(optional = false)
-    @Column(name = "AddressLine1", nullable = false, length = 60)
+    @Column(name = "AddressLine1")
     private String addressLine1;
-    @Column(name = "AddressLine2", length = 60)
+    @Column(name = "AddressLine2")
     private String addressLine2;
     @Basic(optional = false)
-    @Column(name = "City", nullable = false, length = 30)
+    @Column(name = "City")
     private String city;
     @Basic(optional = false)
-    @Column(name = "PostalCode", nullable = false, length = 15)
+    @Column(name = "PostalCode")
     private String postalCode;
-    @Column(name = "Demographics", length = 2147483647)
-    private String demographics;    
+    @Column(name = "Demographics")
+    private String demographics;
+
+    public VIndividualCustomer() {
+    }
+
+    public int getBusinessEntityID() {
+        return businessEntityID;
+    }
+
+    public void setBusinessEntityID(int businessEntityID) {
+        this.businessEntityID = businessEntityID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public int getEmailPromotion() {
+        return emailPromotion;
+    }
+
+    public void setEmailPromotion(int emailPromotion) {
+        this.emailPromotion = emailPromotion;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getDemographics() {
+        return demographics;
+    }
+
+    public void setDemographics(String demographics) {
+        this.demographics = demographics;
+    }
+    
 }

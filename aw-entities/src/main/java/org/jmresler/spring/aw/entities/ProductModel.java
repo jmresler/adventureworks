@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -14,28 +19,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "ProductModel", schema = "Production", uniqueConstraints = {@UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "ProductModel", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductModel.findAll", query = "SELECT p FROM ProductModel p"),
@@ -49,30 +41,129 @@ public class ProductModel implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ProductModelID", nullable = false)
+    @Column(name = "ProductModelID")
     private Integer productModelID;
-    @Column(name = "CatalogDescription", length = 2147483647)
+    @Column(name = "CatalogDescription")
     private String catalogDescription;
-    @Column(name = "Instructions", length = 2147483647)
+    @Column(name = "Instructions")
     private String instructions;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productModel")
     private Collection<ProductModelIllustration> productModelIllustrationCollection;
-    @XmlTransient
     @OneToMany(mappedBy = "productModelID")
     private Collection<Product> productCollection;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productModel")
     private Collection<ProductModelProductDescriptionCulture> productModelProductDescriptionCultureCollection;
 
+    public ProductModel() {
+    }
+
     public ProductModel(Integer productModelID) {
         this.productModelID = productModelID;
-    }    
+    }
+
+    public ProductModel(Integer productModelID, String rowguid, Date modifiedDate) {
+        this.productModelID = productModelID;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getProductModelID() {
+        return productModelID;
+    }
+
+    public void setProductModelID(Integer productModelID) {
+        this.productModelID = productModelID;
+    }
+
+    public String getCatalogDescription() {
+        return catalogDescription;
+    }
+
+    public void setCatalogDescription(String catalogDescription) {
+        this.catalogDescription = catalogDescription;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<ProductModelIllustration> getProductModelIllustrationCollection() {
+        return productModelIllustrationCollection;
+    }
+
+    public void setProductModelIllustrationCollection(Collection<ProductModelIllustration> productModelIllustrationCollection) {
+        this.productModelIllustrationCollection = productModelIllustrationCollection;
+    }
+
+    @XmlTransient
+    public Collection<Product> getProductCollection() {
+        return productCollection;
+    }
+
+    public void setProductCollection(Collection<Product> productCollection) {
+        this.productCollection = productCollection;
+    }
+
+    @XmlTransient
+    public Collection<ProductModelProductDescriptionCulture> getProductModelProductDescriptionCultureCollection() {
+        return productModelProductDescriptionCultureCollection;
+    }
+
+    public void setProductModelProductDescriptionCultureCollection(Collection<ProductModelProductDescriptionCulture> productModelProductDescriptionCultureCollection) {
+        this.productModelProductDescriptionCultureCollection = productModelProductDescriptionCultureCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (productModelID != null ? productModelID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProductModel)) {
+            return false;
+        }
+        ProductModel other = (ProductModel) object;
+        if ((this.productModelID == null && other.productModelID != null) || (this.productModelID != null && !this.productModelID.equals(other.productModelID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.ProductModel[ productModelID=" + productModelID + " ]";
+    }
+    
 }

@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -14,28 +19,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "ProductCategory", schema = "Production", uniqueConstraints = {@UniqueConstraint(columnNames = {"rowguid"})})
+@Table(name = "ProductCategory", catalog = "AdventureWorks2017", schema = "Production")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductCategory.findAll", query = "SELECT p FROM ProductCategory p"),
@@ -47,20 +39,87 @@ public class ProductCategory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ProductCategoryID", nullable = false)
+    @Column(name = "ProductCategoryID")
     private Integer productCategoryID;
     @Basic(optional = false)
-    @Column(name = "rowguid", nullable = false, length = 36)
+    @Column(name = "rowguid")
     private String rowguid;
     @Basic(optional = false)
-    @Column(name = "ModifiedDate", nullable = false)
+    @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productCategoryID")
     private Collection<ProductSubcategory> productSubcategoryCollection;
+
+    public ProductCategory() {
+    }
 
     public ProductCategory(Integer productCategoryID) {
         this.productCategoryID = productCategoryID;
     }
+
+    public ProductCategory(Integer productCategoryID, String rowguid, Date modifiedDate) {
+        this.productCategoryID = productCategoryID;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getProductCategoryID() {
+        return productCategoryID;
+    }
+
+    public void setProductCategoryID(Integer productCategoryID) {
+        this.productCategoryID = productCategoryID;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<ProductSubcategory> getProductSubcategoryCollection() {
+        return productSubcategoryCollection;
+    }
+
+    public void setProductSubcategoryCollection(Collection<ProductSubcategory> productSubcategoryCollection) {
+        this.productSubcategoryCollection = productSubcategoryCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (productCategoryID != null ? productCategoryID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProductCategory)) {
+            return false;
+        }
+        ProductCategory other = (ProductCategory) object;
+        if ((this.productCategoryID == null && other.productCategoryID != null) || (this.productCategoryID != null && !this.productCategoryID.equals(other.productCategoryID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.ProductCategory[ productCategoryID=" + productCategoryID + " ]";
+    }
+    
 }

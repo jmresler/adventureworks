@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -12,25 +17,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "vJobCandidateEmployment", schema = "HumanResources")
+@Table(name = "vJobCandidateEmployment", catalog = "AdventureWorks2017", schema = "HumanResources")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VJobCandidateEmployment.findAll", query = "SELECT v FROM VJobCandidateEmployment v"),
@@ -50,7 +43,7 @@ public class VJobCandidateEmployment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "JobCandidateID", nullable = false)
+    @Column(name = "JobCandidateID")
     private int jobCandidateID;
     @Column(name = "StartDate")
     @Temporal(TemporalType.TIMESTAMP)
@@ -58,20 +51,112 @@ public class VJobCandidateEmployment implements Serializable {
     @Column(name = "EndDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
-    @Column(name = "OrgName", length = 100)
+    @Column(name = "OrgName")
     private String orgName;
-    @Column(name = "JobTitle", length = 100)
+    @Column(name = "JobTitle")
     private String jobTitle;
-    @Column(name = "Responsibility", length = 2147483647)
+    @Column(name = "Responsibility")
     private String responsibility;
-    @Column(name = "FunctionCategory", length = 2147483647)
+    @Column(name = "FunctionCategory")
     private String functionCategory;
-    @Column(name = "IndustryCategory", length = 2147483647)
+    @Column(name = "IndustryCategory")
     private String industryCategory;
-    @Column(name = "CountryRegion", length = 2147483647)
+    @Column(name = "CountryRegion")
     private String countryRegion;
-    @Column(name = "State", length = 2147483647)
+    @Column(name = "State")
     private String state;
-    @Column(name = "City", length = 2147483647)
+    @Column(name = "City")
     private String city;
+
+    public VJobCandidateEmployment() {
+    }
+
+    public int getJobCandidateID() {
+        return jobCandidateID;
+    }
+
+    public void setJobCandidateID(int jobCandidateID) {
+        this.jobCandidateID = jobCandidateID;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public String getResponsibility() {
+        return responsibility;
+    }
+
+    public void setResponsibility(String responsibility) {
+        this.responsibility = responsibility;
+    }
+
+    public String getFunctionCategory() {
+        return functionCategory;
+    }
+
+    public void setFunctionCategory(String functionCategory) {
+        this.functionCategory = functionCategory;
+    }
+
+    public String getIndustryCategory() {
+        return industryCategory;
+    }
+
+    public void setIndustryCategory(String industryCategory) {
+        this.industryCategory = industryCategory;
+    }
+
+    public String getCountryRegion() {
+        return countryRegion;
+    }
+
+    public void setCountryRegion(String countryRegion) {
+        this.countryRegion = countryRegion;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+    
 }

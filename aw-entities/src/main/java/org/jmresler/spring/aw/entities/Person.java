@@ -1,9 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,27 +24,12 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "Person", schema = "Person")
+@Table(name = "Person", catalog = "AdventureWorks2017", schema = "Person")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p"),
@@ -65,12 +54,6 @@ public class Person implements Serializable {
     private String personType;
     @Column(name = "Title")
     private String title;
-    @Column(name="FirstName")
-    private String firstName;
-    @Column(name="MiddleName")
-    private String middleName;
-    @Column(name="LastName")
-    private String lastName;
     @Column(name = "Suffix")
     private String suffix;
     @Basic(optional = false)
@@ -87,16 +70,10 @@ public class Person implements Serializable {
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JsonIgnore
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     private Collection<PersonPhone> personPhoneCollection;
-    @JsonIgnore
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     private Collection<EmailAddress> emailAddressCollection;
-    @JsonIgnore
-    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     private Collection<BusinessEntityContact> businessEntityContactCollection;
     @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
@@ -104,4 +81,160 @@ public class Person implements Serializable {
     private BusinessEntity businessEntity;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "person")
     private Password password;
+
+    public Person() {
+    }
+
+    public Person(Integer businessEntityID) {
+        this.businessEntityID = businessEntityID;
+    }
+
+    public Person(Integer businessEntityID, String personType, int emailPromotion, String rowguid, Date modifiedDate) {
+        this.businessEntityID = businessEntityID;
+        this.personType = personType;
+        this.emailPromotion = emailPromotion;
+        this.rowguid = rowguid;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getBusinessEntityID() {
+        return businessEntityID;
+    }
+
+    public void setBusinessEntityID(Integer businessEntityID) {
+        this.businessEntityID = businessEntityID;
+    }
+
+    public String getPersonType() {
+        return personType;
+    }
+
+    public void setPersonType(String personType) {
+        this.personType = personType;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    public int getEmailPromotion() {
+        return emailPromotion;
+    }
+
+    public void setEmailPromotion(int emailPromotion) {
+        this.emailPromotion = emailPromotion;
+    }
+
+    public String getAdditionalContactInfo() {
+        return additionalContactInfo;
+    }
+
+    public void setAdditionalContactInfo(String additionalContactInfo) {
+        this.additionalContactInfo = additionalContactInfo;
+    }
+
+    public String getDemographics() {
+        return demographics;
+    }
+
+    public void setDemographics(String demographics) {
+        this.demographics = demographics;
+    }
+
+    public String getRowguid() {
+        return rowguid;
+    }
+
+    public void setRowguid(String rowguid) {
+        this.rowguid = rowguid;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @XmlTransient
+    public Collection<PersonPhone> getPersonPhoneCollection() {
+        return personPhoneCollection;
+    }
+
+    public void setPersonPhoneCollection(Collection<PersonPhone> personPhoneCollection) {
+        this.personPhoneCollection = personPhoneCollection;
+    }
+
+    @XmlTransient
+    public Collection<EmailAddress> getEmailAddressCollection() {
+        return emailAddressCollection;
+    }
+
+    public void setEmailAddressCollection(Collection<EmailAddress> emailAddressCollection) {
+        this.emailAddressCollection = emailAddressCollection;
+    }
+
+    @XmlTransient
+    public Collection<BusinessEntityContact> getBusinessEntityContactCollection() {
+        return businessEntityContactCollection;
+    }
+
+    public void setBusinessEntityContactCollection(Collection<BusinessEntityContact> businessEntityContactCollection) {
+        this.businessEntityContactCollection = businessEntityContactCollection;
+    }
+
+    public BusinessEntity getBusinessEntity() {
+        return businessEntity;
+    }
+
+    public void setBusinessEntity(BusinessEntity businessEntity) {
+        this.businessEntity = businessEntity;
+    }
+
+    public Password getPassword() {
+        return password;
+    }
+
+    public void setPassword(Password password) {
+        this.password = password;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (businessEntityID != null ? businessEntityID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Person)) {
+            return false;
+        }
+        Person other = (Person) object;
+        if ((this.businessEntityID == null && other.businessEntityID != null) || (this.businessEntityID != null && !this.businessEntityID.equals(other.businessEntityID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.jmresler.spring.aw.entities.Person[ businessEntityID=" + businessEntityID + " ]";
+    }
+    
 }

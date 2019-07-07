@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -13,25 +18,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author John
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "vPersonDemographics", schema = "Sales")
+@Table(name = "vPersonDemographics", catalog = "AdventureWorks2017", schema = "Sales")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VPersonDemographics.findAll", query = "SELECT v FROM VPersonDemographics v"),
@@ -53,10 +46,10 @@ public class VPersonDemographics implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "BusinessEntityID", nullable = false)
+    @Column(name = "BusinessEntityID")
     private int businessEntityID;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "TotalPurchaseYTD", precision = 19, scale = 4)
+    @Column(name = "TotalPurchaseYTD")
     private BigDecimal totalPurchaseYTD;
     @Column(name = "DateFirstPurchase")
     @Temporal(TemporalType.TIMESTAMP)
@@ -64,23 +57,130 @@ public class VPersonDemographics implements Serializable {
     @Column(name = "BirthDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
-    @Column(name = "MaritalStatus", length = 1)
+    @Column(name = "MaritalStatus")
     private String maritalStatus;
-    @Column(name = "YearlyIncome", length = 30)
+    @Column(name = "YearlyIncome")
     private String yearlyIncome;
-    @Column(name = "Gender", length = 1)
+    @Column(name = "Gender")
     private String gender;
     @Column(name = "TotalChildren")
     private Integer totalChildren;
     @Column(name = "NumberChildrenAtHome")
     private Integer numberChildrenAtHome;
-    @Column(name = "Education", length = 30)
+    @Column(name = "Education")
     private String education;
-    @Column(name = "Occupation", length = 30)
+    @Column(name = "Occupation")
     private String occupation;
     @Column(name = "HomeOwnerFlag")
     private Boolean homeOwnerFlag;
     @Column(name = "NumberCarsOwned")
     private Integer numberCarsOwned;
+
+    public VPersonDemographics() {
+    }
+
+    public int getBusinessEntityID() {
+        return businessEntityID;
+    }
+
+    public void setBusinessEntityID(int businessEntityID) {
+        this.businessEntityID = businessEntityID;
+    }
+
+    public BigDecimal getTotalPurchaseYTD() {
+        return totalPurchaseYTD;
+    }
+
+    public void setTotalPurchaseYTD(BigDecimal totalPurchaseYTD) {
+        this.totalPurchaseYTD = totalPurchaseYTD;
+    }
+
+    public Date getDateFirstPurchase() {
+        return dateFirstPurchase;
+    }
+
+    public void setDateFirstPurchase(Date dateFirstPurchase) {
+        this.dateFirstPurchase = dateFirstPurchase;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public void setMaritalStatus(String maritalStatus) {
+        this.maritalStatus = maritalStatus;
+    }
+
+    public String getYearlyIncome() {
+        return yearlyIncome;
+    }
+
+    public void setYearlyIncome(String yearlyIncome) {
+        this.yearlyIncome = yearlyIncome;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Integer getTotalChildren() {
+        return totalChildren;
+    }
+
+    public void setTotalChildren(Integer totalChildren) {
+        this.totalChildren = totalChildren;
+    }
+
+    public Integer getNumberChildrenAtHome() {
+        return numberChildrenAtHome;
+    }
+
+    public void setNumberChildrenAtHome(Integer numberChildrenAtHome) {
+        this.numberChildrenAtHome = numberChildrenAtHome;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public Boolean getHomeOwnerFlag() {
+        return homeOwnerFlag;
+    }
+
+    public void setHomeOwnerFlag(Boolean homeOwnerFlag) {
+        this.homeOwnerFlag = homeOwnerFlag;
+    }
+
+    public Integer getNumberCarsOwned() {
+        return numberCarsOwned;
+    }
+
+    public void setNumberCarsOwned(Integer numberCarsOwned) {
+        this.numberCarsOwned = numberCarsOwned;
+    }
     
 }
