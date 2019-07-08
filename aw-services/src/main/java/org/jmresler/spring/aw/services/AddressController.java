@@ -18,9 +18,9 @@ public class AddressController {
 
 	@Autowired protected AddressRepository addressRepository;
 	
-	@RequestMapping("/getaddress/{id}")
-	public Address getAddress(int id) {
-		return addressRepository.getOne(id);
+	@RequestMapping("/addresses")
+	public Iterable<Address> getAddresses() {
+		return addressRepository.findAll();
 	}
 	
 }

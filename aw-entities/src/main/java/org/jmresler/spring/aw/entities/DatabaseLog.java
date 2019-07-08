@@ -8,11 +8,14 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "DatabaseLog", catalog = "AdventureWorks2017", schema = "dbo")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "DatabaseLog.findAll", query = "SELECT d FROM DatabaseLog d"),
+    @NamedQuery(name = "DatabaseLog.findById", query = "SELECT d FROM DatabaseLog d WHERE d.databaseLogID = :databaseLogID")})
 public class DatabaseLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,6 +38,7 @@ public class DatabaseLog implements Serializable {
     @Basic(optional = false)
     @Column(name = "DatabaseLogID")
     private Integer databaseLogID;
+    @Temporal(TemporalType.TIME)
     @Basic(optional = false)
     @Column(name = "PostTime")
     private Date postTime;
@@ -42,7 +49,7 @@ public class DatabaseLog implements Serializable {
     @Column(name = "Event")
     private String event;
     @Basic(optional = true)
-    @Column(name = "Schema")
+    @Column(name = "'Schema'")
     private String schema;
     @Basic(optional = true)
     @Column(name = "Object")
@@ -52,8 +59,8 @@ public class DatabaseLog implements Serializable {
     @Column(name = "TSQL")
     private String tSQL;
     @Basic(optional = true)
-    @Column(name = "XML")
-    private String xML;
+    @Column(name = "XmlEvent")
+    private String xmlEvent;
 
     public DatabaseLog() {
     }
@@ -69,7 +76,7 @@ public class DatabaseLog implements Serializable {
                         String schema, 
                         String dbObject, 
                         String tSQL, 
-                        String xML) {
+                        String xmlEvent) {
         this.databaseLogID = databaseLogID;
         this.postTime = postTime;
         this.databaseUser = databaseUser;
@@ -77,7 +84,7 @@ public class DatabaseLog implements Serializable {
         this.schema = schema;
         this.dbObject = dbObject;
         this.tSQL = tSQL;
-        this.xML = xML;
+        this.xmlEvent = xmlEvent;
     }
 
     public Integer getDatabaseLogID() {
@@ -136,12 +143,12 @@ public class DatabaseLog implements Serializable {
         this.tSQL = tSQL;
     }
 
-    public String getXML() {
-        return xML;
+    public String getXmlEvent() {
+        return xmlEvent;
     }
 
-    public void setXML(String xML) {
-        this.xML = xML;
+    public void setXmlEvent(String xML) {
+        this.xmlEvent = xML;
     }
 
     @Override
@@ -154,7 +161,7 @@ public class DatabaseLog implements Serializable {
         hash = 37 * hash + Objects.hashCode(this.schema);
         hash = 37 * hash + Objects.hashCode(this.dbObject);
         hash = 37 * hash + Objects.hashCode(this.tSQL);
-        hash = 37 * hash + Objects.hashCode(this.xML);
+        hash = 37 * hash + Objects.hashCode(this.xmlEvent);
         return hash;
     }
 
@@ -185,7 +192,7 @@ public class DatabaseLog implements Serializable {
         if (!Objects.equals(this.tSQL, other.tSQL)) {
             return false;
         }
-        if (!Objects.equals(this.xML, other.xML)) {
+        if (!Objects.equals(this.xmlEvent, other.xmlEvent)) {
             return false;
         }
         if (!Objects.equals(this.databaseLogID, other.databaseLogID)) {
@@ -199,6 +206,6 @@ public class DatabaseLog implements Serializable {
 
     @Override
     public String toString() {
-        return "DatabaseLog{" + "databaseLogID=" + databaseLogID + ", postTime=" + postTime + ", databaseUser=" + databaseUser + ", event=" + event + ", schema=" + schema + ", dbObject=" + dbObject + ", tSQL=" + tSQL + ", xML=" + xML + '}';
+        return "DatabaseLog{" + "databaseLogID=" + databaseLogID + ", postTime=" + postTime + ", databaseUser=" + databaseUser + ", event=" + event + ", schema=" + schema + ", dbObject=" + dbObject + ", tSQL=" + tSQL + ", xmlEvent=" + xmlEvent + '}';
     }
 }

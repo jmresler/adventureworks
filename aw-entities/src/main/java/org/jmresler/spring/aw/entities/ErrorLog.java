@@ -12,7 +12,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -22,6 +26,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "ErrorLog", catalog = "AdventureWorks2017", schema = "dbo")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "ErrorLog.findAll", query = "SELECT e FROM ErrorLog e"),
+    @NamedQuery(name = "ErrorLog.findById", query = "SELECT e FROM ErrorLog e WHERE e.errorLogID = :errorLogID")})
 public class ErrorLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,6 +36,7 @@ public class ErrorLog implements Serializable {
     @Basic(optional = false)
     @Column(name = "ErrorLogID")
     private Integer errorLogID;
+    @Temporal(TemporalType.TIME)
     @Basic(optional = false)
     @Column(name = "ErrorTime")
     private Date errorTime;

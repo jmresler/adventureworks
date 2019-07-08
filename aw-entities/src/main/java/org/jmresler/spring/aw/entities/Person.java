@@ -26,6 +26,8 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author John
@@ -84,10 +86,13 @@ public class Person implements Serializable {
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     private Collection<PersonPhone> personPhoneCollection;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     private Collection<EmailAddress> emailAddressCollection;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     private Collection<BusinessEntityContact> businessEntityContactCollection;
     @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)

@@ -2,9 +2,10 @@ package org.jmresler.spring.aw;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
+import org.jmresler.spring.aw.entities.DatabaseLog;
 
 /**
  *
@@ -16,15 +17,10 @@ public class Main {
     private static final EntityManager em = emf.createEntityManager();
 
     public static void main(String[] args) {
-    	EntityTransaction transaction = em.getTransaction();
-    	transaction.begin();
-		Query addressQuery = em.createNamedQuery("Address.findSpatialLocation");
-		addressQuery.setFirstResult(20);
-		addressQuery.setMaxResults(10);
-		addressQuery.getResultList().forEach(result -> {
-			System.out.println(result);
-		});
-		transaction.commit();
+    	em.getTransaction().begin();
+    	Query query = em.createNamedQuery("DatabaseLog.findAll", DatabaseLog.class);
+    	query.getResultList().forEach(System.out::println);
+    	em.getTransaction().commit();
 	}
     
     public static void persist(Object object) {

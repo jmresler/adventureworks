@@ -5,9 +5,11 @@
  */
 package org.jmresler.spring.aw.entities;
 
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,7 +17,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,6 +26,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  *
@@ -60,8 +63,10 @@ public class Address implements Serializable {
     @Basic(optional = false)
     @Column(name = "PostalCode")
     private String postalCode;
-    @Lob
+    // need to fix this converter to work with byte[] conversion
+    @Basic(optional = true)
     @Column(name = "SpatialLocation")
+    // @Converter(name = "geographyConverter", converterClass = GeographyConverter.class)
     private byte[] spatialLocation;
     @Basic(optional = false)
     @Column(name = "rowguid")
@@ -70,9 +75,11 @@ public class Address implements Serializable {
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    @JsonIgnore
     @JoinColumn(name = "StateProvinceID", referencedColumnName = "StateProvinceID")
     @ManyToOne(optional = false)
     private StateProvince stateProvinceID;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.LAZY)
     private Collection<BusinessEntityAddress> businessEntityAddressCollection;
 

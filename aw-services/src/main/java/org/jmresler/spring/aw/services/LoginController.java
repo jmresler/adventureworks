@@ -6,6 +6,8 @@ package org.jmresler.spring.aw.services;
 
 import org.jmresler.spring.aw.entities.AppUser;
 import org.jmresler.spring.aw.repositories.AppUserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +23,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class LoginController {
 
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired protected AppUserRepository appUserRepository;
 
 	@RequestMapping(value = "/login", headers = {"application/json"}, method = POST)
@@ -29,7 +32,7 @@ public class LoginController {
 
 		appUserRepository.findByUserName(userName);
 
-		System.out.println("userName: " + userName + " password: " + password);
+		logger.info("userName: " + userName + " password: " + password);
 		
 		return success;
 	}

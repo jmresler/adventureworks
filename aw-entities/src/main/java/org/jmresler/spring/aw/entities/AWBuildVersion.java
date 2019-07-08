@@ -12,7 +12,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -22,6 +26,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "AWBuildVersion", catalog = "AdventureWorks2017", schema = "dbo")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "AWBuildVersion.findAll", query = "SELECT a FROM AWBuildVersion a"),
+    @NamedQuery(name = "AWBuildVersion.findById", query = "SELECT a FROM AWBuildVersion a WHERE a.systemInformationID = :systemInformationID")})
 public class AWBuildVersion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,11 +37,13 @@ public class AWBuildVersion implements Serializable {
     @Column(name = "SystemInformationID")
     private Short systemInformationID;
     @Basic(optional = false)
-    @Column(name = "Database Version")
+    @Column(name = "[Database Version]")
     private String databaseVersion;
+    @Temporal(TemporalType.TIME)
     @Basic(optional = false)
     @Column(name = "VersionDate")
     private Date versionDate;
+    @Temporal(TemporalType.DATE)
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     private Date modifiedDate;
