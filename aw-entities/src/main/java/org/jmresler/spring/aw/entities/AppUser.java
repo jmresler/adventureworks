@@ -4,9 +4,13 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
+
+import javax.annotation.Generated;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -42,8 +46,9 @@ public class AppUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID")
+    @Column(name = "ID", insertable = false)
     private Long id;
     @Basic(optional = false)
     @Column(name = "UserName")
