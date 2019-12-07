@@ -101,11 +101,11 @@
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:sqlserver://localhost\SQLEXPRESS:1433;databaseName=AdventureWorks2017" />
-			<property name="javax.persistence.jdbc.user" value="John" />
+			<property name="javax.persistence.jdbc.user" value="" />
 			<property name="javax.persistence.jdbc.driver"
 				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 			<property name="javax.persistence.jdbc.password"
-				value="Kadena1988#" />
+				value="" />
 			<property name="eclipselink.logging.level" value="FINE" />
 			<property name="javax.persistence.schema-generation.scripts.action" value="create"/>
 			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
