@@ -16,11 +16,12 @@ aw-services.
 The aw-entities project is setup to work with the MS SQL Server express edition.
 The database used is the Adventureworks2017 database. Here are the locations of
 those resources...
-	1. MS SQL Server Express - https://www.microsoft.com/en-us/sql-server/sql-server-editions-express
-	2. SQL Server Management Studio is the tool I use for DB management but you may
-	   use any tool you choose.
-	3. The Adventureworks2017 backup (bak) file is located here:
-	   https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks2017.bak
+
+1. MS SQL Server Express - https://www.microsoft.com/en-us/sql-server/sql-server-editions-express
+2. SQL Server Management Studio is the tool I use for DB management but you may
+   use any tool you choose.
+3. The Adventureworks2017 backup (bak) file is located here:
+   https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks2017.bak
 
 
 The persistence connectivity is setup to use SQL Server Authentication. Additionally the account that
