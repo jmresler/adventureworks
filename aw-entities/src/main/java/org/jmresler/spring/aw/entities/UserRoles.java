@@ -1,117 +1,102 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author John
+ * @author johnm
  */
 @Entity
-@Table(name = "UserRoles", catalog = "AdventureWorks2017", schema = "HumanResources")
+@Table(name = "UserRole", catalog = "AdventureWorks2017", schema = "HumanResources")
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "UserRoles.findAll", query = "SELECT u FROM UserRoles u"),
-		@NamedQuery(name = "UserRoles.findById", query = "SELECT u FROM UserRoles u WHERE u.id = :id"),
-		@NamedQuery(name = "UserRoles.findByRoleName", query = "SELECT u FROM UserRoles u WHERE u.roleName = :roleName") })
+@NamedQueries({
+    @NamedQuery(name = "UserRole.findAll", query = "SELECT u FROM UserRole u")
+    , @NamedQuery(name = "UserRole.findById", query = "SELECT u FROM UserRole u WHERE u.id = :id")
+    , @NamedQuery(name = "UserRole.findByRoleName", query = "SELECT u FROM UserRole u WHERE u.roleName = :roleName")})
 public class UserRoles implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "ID")
-	private Long id;
-	@Basic(optional = false)
-	@Column(name = "RoleName")
-	private String roleName;
-	@JoinColumn(name = "AppUserID_FK", referencedColumnName = "ID")
-	@ManyToOne
-	private AppUser appUserIDFK;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "ID")
+    private Long id;
+    @Basic(optional = false)
+    @Column(name = "RoleName")
+    private String roleName;
+    @ManyToMany(mappedBy = "userRoleList")
+    private List<AppUser> appUserList;
 
-	public UserRoles() {
-	}
+    public UserRoles() {
+    }
 
-	public UserRoles(Long id) {
-		this.id = id;
-	}
+    public UserRoles(Long id) {
+        this.id = id;
+    }
 
-	public UserRoles(Long id, String roleName) {
-		this.id = id;
-		this.roleName = roleName;
-	}
+    public UserRoles(Long id, String roleName) {
+        this.id = id;
+        this.roleName = roleName;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getRoleName() {
-		return roleName;
-	}
+    public String getRoleName() {
+        return roleName;
+    }
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 
-	public AppUser getAppUserIDFK() {
-		return appUserIDFK;
-	}
+    @XmlTransient
+    public List<AppUser> getAppUserList() {
+        return appUserList;
+    }
 
-	public void setAppUserIDFK(AppUser appUserIDFK) {
-		this.appUserIDFK = appUserIDFK;
-	}
+    public void setAppUserList(List<AppUser> appUserList) {
+        this.appUserList = appUserList;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 7;
-		hash = 67 * hash + Objects.hashCode(this.id);
-		hash = 67 * hash + Objects.hashCode(this.roleName);
-		hash = 67 * hash + Objects.hashCode(this.appUserIDFK);
-		return hash;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final UserRoles other = (UserRoles) obj;
-		if (!Objects.equals(this.roleName, other.roleName)) {
-			return false;
-		}
-		if (!Objects.equals(this.id, other.id)) {
-			return false;
-		}
-		if (!Objects.equals(this.appUserIDFK, other.appUserIDFK)) {
-			return false;
-		}
-		return true;
-	}
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof UserRoles)) {
+            return false;
+        }
+        UserRoles other = (UserRoles) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
-	@Override
-	public String toString() {
-		return "org.jmresler.spring.aw.entities.UserRoles[ id=" + id + " ]";
-	}
-
+    @Override
+    public String toString() {
+        return "org.jmresler.aw.entities.UserRole[ id=" + id + " ]";
+    }
+    
 }
