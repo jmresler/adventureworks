@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -40,7 +35,6 @@ public class SalesPersonQuotaHistory implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected SalesPersonQuotaHistoryPK salesPersonQuotaHistoryPK;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "SalesQuota")
     private BigDecimal salesQuota;

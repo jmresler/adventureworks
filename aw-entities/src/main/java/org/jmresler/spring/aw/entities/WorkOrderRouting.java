@@ -60,7 +60,6 @@ public class WorkOrderRouting implements Serializable {
     @Column(name = "ActualEndDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date actualEndDate;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "ActualResourceHrs")
     private BigDecimal actualResourceHrs;
     @Basic(optional = false)
