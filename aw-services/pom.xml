@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.jmresler.spring.aw</groupId>
-	<artifactId>aw-services</artifactId>
+	<artifactId>aw-core-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>aw-services</name>
 	<description>Demo project for Spring Boot</description>
