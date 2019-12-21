@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -17,6 +12,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CountryRegionCurrencyPK implements Serializable {
 
+	private static final long serialVersionUID = 1l;
     @Basic(optional = false)
     @Column(name = "CountryRegionCode")
     private String countryRegionCode;

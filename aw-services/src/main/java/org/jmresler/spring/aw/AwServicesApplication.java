@@ -1,10 +1,6 @@
 package org.jmresler.spring.aw;
 
 
-import java.util.Collections;
-import java.util.Date;
-
-import org.jmresler.spring.aw.entities.AppUser;
 import org.jmresler.spring.aw.repositories.AppUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

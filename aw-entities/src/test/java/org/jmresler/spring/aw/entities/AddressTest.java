@@ -30,7 +30,7 @@ public class AddressTest {
 	void testAddressInteger() {
 		Query query = em.createNamedQuery("Address.findByCity");
 		query.setParameter("city", "Cheltenham");
-		query.getResultList().forEach(result -> logger.info(result.toString()));
+		query.getResultList().forEach(result -> System.out.println("{" + result.toString() + "}" ));
 	}
 
 	@Test

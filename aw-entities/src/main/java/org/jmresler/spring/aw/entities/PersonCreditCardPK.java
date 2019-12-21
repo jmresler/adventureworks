@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -17,7 +12,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PersonCreditCardPK implements Serializable {
 
-    @Basic(optional = false)
+	private static final long serialVersionUID = -2766286179500051481L;
+	@Basic(optional = false)
     @Column(name = "BusinessEntityID")
     private int businessEntityID;
     @Basic(optional = false)

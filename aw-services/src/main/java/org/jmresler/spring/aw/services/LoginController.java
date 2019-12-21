@@ -29,22 +29,16 @@ public class LoginController {
 	@RequestMapping(value = "/login", headers = {"application/json"}, method = POST)
 	public boolean login(@WebParam(name = "userName") String userName, @WebParam(name = "password") String password) {
 		boolean success = false;
-
 		appUserRepository.findByUserName(userName);
-
 		logger.info("userName: " + userName + " password: " + password);
-		
 		return success;
 	}
 
 	@RequestMapping(value = "/logout", method = POST)
 	public boolean logout(String userName) {
 		boolean success = false;
-
 		AppUser user = appUserRepository.findByUserName(userName);
-
 		System.out.println("userName: " + userName + " logged out ");
-
 		return success;
 	}
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -18,7 +13,8 @@ import javax.persistence.Lob;
 @Embeddable
 public class ProductDocumentPK implements Serializable {
 
-    @Basic(optional = false)
+	private static final long serialVersionUID = -709653329338590593L;
+	@Basic(optional = false)
     @Column(name = "ProductID")
     private int productID;
     @Basic(optional = false)

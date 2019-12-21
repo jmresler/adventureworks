@@ -1,20 +1,17 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Objects;
-
-import javax.annotation.Generated;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,32 +20,32 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author John
+ * @author johnm
  */
 @Entity
 @Table(name = "AppUser", catalog = "AdventureWorks2017", schema = "HumanResources")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "AppUser.findAll", query = "SELECT a FROM AppUser a"),
-    @NamedQuery(name = "AppUser.findById", query = "SELECT a FROM AppUser a WHERE a.id = :id"),
-    @NamedQuery(name = "AppUser.findByUserName", query = "SELECT a FROM AppUser a WHERE a.userName = :userName"),
-    @NamedQuery(name = "AppUser.findByPassword", query = "SELECT a FROM AppUser a WHERE a.password = :password"),
-    @NamedQuery(name = "AppUser.findByLoginAttempts", query = "SELECT a FROM AppUser a WHERE a.loginAttempts = :loginAttempts"),
-    @NamedQuery(name = "AppUser.findByLoginHint1", query = "SELECT a FROM AppUser a WHERE a.loginHint1 = :loginHint1"),
-    @NamedQuery(name = "AppUser.findByLoginHintAnswer1", query = "SELECT a FROM AppUser a WHERE a.loginHintAnswer1 = :loginHintAnswer1"),
-    @NamedQuery(name = "AppUser.findByLoginHint2", query = "SELECT a FROM AppUser a WHERE a.loginHint2 = :loginHint2"),
-    @NamedQuery(name = "AppUser.findByLoginHintAnswer2", query = "SELECT a FROM AppUser a WHERE a.loginHintAnswer2 = :loginHintAnswer2"),
-    @NamedQuery(name = "AppUser.findByLoginHint3", query = "SELECT a FROM AppUser a WHERE a.loginHint3 = :loginHint3"),
-    @NamedQuery(name = "AppUser.findByLoginHintAnswer3", query = "SELECT a FROM AppUser a WHERE a.loginHintAnswer3 = :loginHintAnswer3"),
-    @NamedQuery(name = "AppUser.findByIsActive", query = "SELECT a FROM AppUser a WHERE a.isActive = :isActive"),
-    @NamedQuery(name = "AppUser.findByLastUpdate", query = "SELECT a FROM AppUser a WHERE a.lastUpdate = :lastUpdate")})
+    @NamedQuery(name = "AppUser.findAll", query = "SELECT a FROM AppUser a")
+    , @NamedQuery(name = "AppUser.findById", query = "SELECT a FROM AppUser a WHERE a.id = :id")
+    , @NamedQuery(name = "AppUser.findByUserName", query = "SELECT a FROM AppUser a WHERE a.userName = :userName")
+    , @NamedQuery(name = "AppUser.findByPassword", query = "SELECT a FROM AppUser a WHERE a.password = :password")
+    , @NamedQuery(name = "AppUser.findByLoginAttempts", query = "SELECT a FROM AppUser a WHERE a.loginAttempts = :loginAttempts")
+    , @NamedQuery(name = "AppUser.findByLoginHint1", query = "SELECT a FROM AppUser a WHERE a.loginHint1 = :loginHint1")
+    , @NamedQuery(name = "AppUser.findByLoginHintAnswer1", query = "SELECT a FROM AppUser a WHERE a.loginHintAnswer1 = :loginHintAnswer1")
+    , @NamedQuery(name = "AppUser.findByLoginHint2", query = "SELECT a FROM AppUser a WHERE a.loginHint2 = :loginHint2")
+    , @NamedQuery(name = "AppUser.findByLoginHintAnswer2", query = "SELECT a FROM AppUser a WHERE a.loginHintAnswer2 = :loginHintAnswer2")
+    , @NamedQuery(name = "AppUser.findByLoginHint3", query = "SELECT a FROM AppUser a WHERE a.loginHint3 = :loginHint3")
+    , @NamedQuery(name = "AppUser.findByLoginHintAnswer3", query = "SELECT a FROM AppUser a WHERE a.loginHintAnswer3 = :loginHintAnswer3")
+    , @NamedQuery(name = "AppUser.findByIsActive", query = "SELECT a FROM AppUser a WHERE a.isActive = :isActive")
+    , @NamedQuery(name = "AppUser.findByLastUpdate", query = "SELECT a FROM AppUser a WHERE a.lastUpdate = :lastUpdate")
+    , @NamedQuery(name = "AppUser.findByAppUserIdFK", query = "SELECT a FROM AppUser a WHERE a.appUserIdFK = :appUserIdFK")})
 public class AppUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID", insertable = false)
+    @Column(name = "ID")
     private Long id;
     @Basic(optional = false)
     @Column(name = "UserName")
@@ -58,7 +55,7 @@ public class AppUser implements Serializable {
     private String password;
     @Basic(optional = false)
     @Column(name = "LoginAttempts")
-    private short loginAttempts;
+    private int loginAttempts;
     @Basic(optional = false)
     @Column(name = "LoginHint1")
     private String loginHint1;
@@ -77,14 +74,21 @@ public class AppUser implements Serializable {
     @Basic(optional = false)
     @Column(name = "LoginHintAnswer3")
     private String loginHintAnswer3;
+    @Basic(optional = false)
     @Column(name = "IsActive")
-    private Boolean isActive;
+    private boolean isActive;
     @Basic(optional = false)
     @Column(name = "LastUpdate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
-    @OneToMany(mappedBy = "appUserIDFK")
-    private Collection<UserRoles> userRolesCollection;
+    @Basic(optional = false)
+    @Column(name = "AppUserIdFK")
+    private long appUserIdFK;
+    @JoinTable(name = "AppUserRole", joinColumns = {
+        @JoinColumn(name = "UserId", referencedColumnName = "ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "UserRoleId", referencedColumnName = "ID")})
+    @ManyToMany
+    private List<UserRoles> userRoleList;
 
     public AppUser() {
     }
@@ -93,7 +97,7 @@ public class AppUser implements Serializable {
         this.id = id;
     }
 
-    public AppUser(Long id, String userName, String password, short loginAttempts, String loginHint1, String loginHintAnswer1, String loginHint2, String loginHintAnswer2, String loginHint3, String loginHintAnswer3, Date lastUpdate) {
+    public AppUser(Long id, String userName, String password, int loginAttempts, String loginHint1, String loginHintAnswer1, String loginHint2, String loginHintAnswer2, String loginHint3, String loginHintAnswer3, boolean isActive, Date lastUpdate, long appUserIdFK) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -104,7 +108,9 @@ public class AppUser implements Serializable {
         this.loginHintAnswer2 = loginHintAnswer2;
         this.loginHint3 = loginHint3;
         this.loginHintAnswer3 = loginHintAnswer3;
+        this.isActive = isActive;
         this.lastUpdate = lastUpdate;
+        this.appUserIdFK = appUserIdFK;
     }
 
     public Long getId() {
@@ -131,11 +137,11 @@ public class AppUser implements Serializable {
         this.password = password;
     }
 
-    public short getLoginAttempts() {
+    public int getLoginAttempts() {
         return loginAttempts;
     }
 
-    public void setLoginAttempts(short loginAttempts) {
+    public void setLoginAttempts(int loginAttempts) {
         this.loginAttempts = loginAttempts;
     }
 
@@ -187,11 +193,11 @@ public class AppUser implements Serializable {
         this.loginHintAnswer3 = loginHintAnswer3;
     }
 
-    public Boolean getIsActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(Boolean isActive) {
+    public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
 
@@ -203,93 +209,46 @@ public class AppUser implements Serializable {
         this.lastUpdate = lastUpdate;
     }
 
-    @XmlTransient
-    public Collection<UserRoles> getUserRolesCollection() {
-        return userRolesCollection;
+    public long getAppUserIdFK() {
+        return appUserIdFK;
     }
 
-    public void setUserRolesCollection(Collection<UserRoles> userRolesCollection) {
-        this.userRolesCollection = userRolesCollection;
+    public void setAppUserIdFK(long appUserIdFK) {
+        this.appUserIdFK = appUserIdFK;
+    }
+
+    @XmlTransient
+    public List<UserRoles> getUserRoleList() {
+        return userRoleList;
+    }
+
+    public void setUserRoleList(List<UserRoles> userRoleList) {
+        this.userRoleList = userRoleList;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.userName);
-        hash = 97 * hash + Objects.hashCode(this.password);
-        hash = 97 * hash + this.loginAttempts;
-        hash = 97 * hash + Objects.hashCode(this.loginHint1);
-        hash = 97 * hash + Objects.hashCode(this.loginHintAnswer1);
-        hash = 97 * hash + Objects.hashCode(this.loginHint2);
-        hash = 97 * hash + Objects.hashCode(this.loginHintAnswer2);
-        hash = 97 * hash + Objects.hashCode(this.loginHint3);
-        hash = 97 * hash + Objects.hashCode(this.loginHintAnswer3);
-        hash = 97 * hash + Objects.hashCode(this.isActive);
-        hash = 97 * hash + Objects.hashCode(this.lastUpdate);
-        hash = 97 * hash + Objects.hashCode(this.userRolesCollection);
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof AppUser)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final AppUser other = (AppUser) obj;
-        if (this.loginAttempts != other.loginAttempts) {
-            return false;
-        }
-        if (!Objects.equals(this.userName, other.userName)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        if (!Objects.equals(this.loginHint1, other.loginHint1)) {
-            return false;
-        }
-        if (!Objects.equals(this.loginHintAnswer1, other.loginHintAnswer1)) {
-            return false;
-        }
-        if (!Objects.equals(this.loginHint2, other.loginHint2)) {
-            return false;
-        }
-        if (!Objects.equals(this.loginHintAnswer2, other.loginHintAnswer2)) {
-            return false;
-        }
-        if (!Objects.equals(this.loginHint3, other.loginHint3)) {
-            return false;
-        }
-        if (!Objects.equals(this.loginHintAnswer3, other.loginHintAnswer3)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.isActive, other.isActive)) {
-            return false;
-        }
-        if (!Objects.equals(this.lastUpdate, other.lastUpdate)) {
-            return false;
-        }
-        if (!Objects.equals(this.userRolesCollection, other.userRolesCollection)) {
+        AppUser other = (AppUser) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
-    
-
     @Override
     public String toString() {
-        return "org.jmresler.spring.aw.entities.AppUser[ id=" + id + " ]";
+        return "org.jmresler.aw.entities.AppUser[ id=" + id + " ]";
     }
     
 }
