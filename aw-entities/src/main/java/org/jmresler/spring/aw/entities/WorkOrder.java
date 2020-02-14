@@ -21,8 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,7 +28,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "WorkOrder", catalog = "AdventureWorks2017", schema = "Production")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "WorkOrder.findAll", query = "SELECT w FROM WorkOrder w"),
     @NamedQuery(name = "WorkOrder.findByWorkOrderID", query = "SELECT w FROM WorkOrder w WHERE w.workOrderID = :workOrderID"),
@@ -162,7 +159,6 @@ public class WorkOrder implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
     public Collection<WorkOrderRouting> getWorkOrderRoutingCollection() {
         return workOrderRoutingCollection;
     }

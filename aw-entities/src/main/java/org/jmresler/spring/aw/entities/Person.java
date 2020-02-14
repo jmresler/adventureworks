@@ -31,7 +31,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "Person", catalog = "AdventureWorks2017", schema = "Person")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p"),
     @NamedQuery(name = "Person.findByBusinessEntityID", query = "SELECT p FROM Person p WHERE p.businessEntityID = :businessEntityID"),
@@ -218,7 +217,6 @@ public class Person implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
     public Collection<PersonPhone> getPersonPhoneCollection() {
         return personPhoneCollection;
     }
@@ -227,7 +225,6 @@ public class Person implements Serializable {
         this.personPhoneCollection = personPhoneCollection;
     }
 
-    @XmlTransient
     public Collection<EmailAddress> getEmailAddressCollection() {
         return emailAddressCollection;
     }
@@ -236,7 +233,6 @@ public class Person implements Serializable {
         this.emailAddressCollection = emailAddressCollection;
     }
 
-    @XmlTransient
     public Collection<BusinessEntityContact> getBusinessEntityContactCollection() {
         return businessEntityContactCollection;
     }

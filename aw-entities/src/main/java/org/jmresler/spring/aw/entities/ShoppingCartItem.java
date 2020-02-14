@@ -2,6 +2,7 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -21,7 +21,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "ShoppingCartItem", catalog = "AdventureWorks2017", schema = "Sales")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ShoppingCartItem.findAll", query = "SELECT s FROM ShoppingCartItem s"),
     @NamedQuery(name = "ShoppingCartItem.findByShoppingCartItemID", query = "SELECT s FROM ShoppingCartItem s WHERE s.shoppingCartItemID = :shoppingCartItemID"),

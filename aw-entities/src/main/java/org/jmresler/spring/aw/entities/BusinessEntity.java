@@ -26,7 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "BusinessEntity", catalog = "AdventureWorks2017", schema = "Person")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "BusinessEntity.findAll", query = "SELECT b FROM BusinessEntity b"),
     @NamedQuery(name = "BusinessEntity.findByBusinessEntityID", query = "SELECT b FROM BusinessEntity b WHERE b.businessEntityID = :businessEntityID"),
@@ -91,7 +90,6 @@ public class BusinessEntity implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
     public Collection<BusinessEntityContact> getBusinessEntityContactCollection() {
         return businessEntityContactCollection;
     }
@@ -100,7 +98,6 @@ public class BusinessEntity implements Serializable {
         this.businessEntityContactCollection = businessEntityContactCollection;
     }
 
-    @XmlTransient
     public Collection<BusinessEntityAddress> getBusinessEntityAddressCollection() {
         return businessEntityAddressCollection;
     }

@@ -19,7 +19,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -27,7 +26,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "WorkOrderRouting", catalog = "AdventureWorks2017", schema = "Production")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "WorkOrderRouting.findAll", query = "SELECT w FROM WorkOrderRouting w"),
     @NamedQuery(name = "WorkOrderRouting.findByWorkOrderID", query = "SELECT w FROM WorkOrderRouting w WHERE w.workOrderRoutingPK.workOrderID = :workOrderID"),

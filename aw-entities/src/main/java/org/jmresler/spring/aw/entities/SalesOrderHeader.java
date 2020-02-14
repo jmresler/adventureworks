@@ -28,7 +28,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "SalesOrderHeader", catalog = "AdventureWorks2017", schema = "Sales")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SalesOrderHeader.findAll", query = "SELECT s FROM SalesOrderHeader s"),
     @NamedQuery(name = "SalesOrderHeader.findBySalesOrderID", query = "SELECT s FROM SalesOrderHeader s WHERE s.salesOrderID = :salesOrderID"),
@@ -339,7 +338,6 @@ public class SalesOrderHeader implements Serializable {
         this.territoryID = territoryID;
     }
 
-    @XmlTransient
     public Collection<SalesOrderHeaderSalesReason> getSalesOrderHeaderSalesReasonCollection() {
         return salesOrderHeaderSalesReasonCollection;
     }
@@ -348,7 +346,6 @@ public class SalesOrderHeader implements Serializable {
         this.salesOrderHeaderSalesReasonCollection = salesOrderHeaderSalesReasonCollection;
     }
 
-    @XmlTransient
     public Collection<SalesOrderDetail> getSalesOrderDetailCollection() {
         return salesOrderDetailCollection;
     }

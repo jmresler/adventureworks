@@ -3,6 +3,7 @@
  */
 package org.jmresler.spring.aw.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "AppUserRole", catalog = "AdventureWorks2017", schema = "HumanResources")
-public class AppUserRole {
+public class AppUserRole implements Serializable {
 
     @Id
     private long appUserId;

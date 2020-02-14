@@ -23,7 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "ProductReview", catalog = "AdventureWorks2017", schema = "Production")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductReview.findAll", query = "SELECT p FROM ProductReview p"),
     @NamedQuery(name = "ProductReview.findByProductReviewID", query = "SELECT p FROM ProductReview p WHERE p.productReviewID = :productReviewID"),

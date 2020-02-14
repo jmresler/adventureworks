@@ -2,6 +2,7 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "UserRole", catalog = "AdventureWorks2017", schema = "HumanResources")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserRoles.findAll", query = "SELECT u FROM UserRoles u")
     , @NamedQuery(name = "UserRoles.findById", query = "SELECT u FROM UserRoles u WHERE u.id = :id")
@@ -65,7 +64,6 @@ public class UserRoles implements Serializable {
         this.roleName = roleName;
     }
 
-    @XmlTransient
     public List<AppUser> getAppUserList() {
         return appUserList;
     }

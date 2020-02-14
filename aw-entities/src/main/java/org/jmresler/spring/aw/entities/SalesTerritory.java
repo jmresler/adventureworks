@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -26,7 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "SalesTerritory", catalog = "AdventureWorks2017", schema = "Sales")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SalesTerritory.findAll", query = "SELECT s FROM SalesTerritory s"),
     @NamedQuery(name = "SalesTerritory.findByTerritoryID", query = "SELECT s FROM SalesTerritory s WHERE s.territoryID = :territoryID"),
@@ -171,7 +170,6 @@ public class SalesTerritory implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
     public Collection<Customer> getCustomerCollection() {
         return customerCollection;
     }
@@ -180,7 +178,6 @@ public class SalesTerritory implements Serializable {
         this.customerCollection = customerCollection;
     }
 
-    @XmlTransient
     public Collection<SalesPerson> getSalesPersonCollection() {
         return salesPersonCollection;
     }
@@ -189,7 +186,6 @@ public class SalesTerritory implements Serializable {
         this.salesPersonCollection = salesPersonCollection;
     }
 
-    @XmlTransient
     public Collection<SalesTerritoryHistory> getSalesTerritoryHistoryCollection() {
         return salesTerritoryHistoryCollection;
     }
@@ -198,7 +194,6 @@ public class SalesTerritory implements Serializable {
         this.salesTerritoryHistoryCollection = salesTerritoryHistoryCollection;
     }
 
-    @XmlTransient
     public Collection<SalesOrderHeader> getSalesOrderHeaderCollection() {
         return salesOrderHeaderCollection;
     }
