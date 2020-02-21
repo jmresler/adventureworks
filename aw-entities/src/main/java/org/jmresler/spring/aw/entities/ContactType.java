@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "ContactType", catalog = "AdventureWorks2017", schema = "Person")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ContactType.findAll", query = "SELECT c FROM ContactType c"),
     @NamedQuery(name = "ContactType.findByContactTypeID", query = "SELECT c FROM ContactType c WHERE c.contactTypeID = :contactTypeID"),
@@ -72,6 +73,7 @@ public class ContactType implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
+    @XmlTransient
     public Collection<BusinessEntityContact> getBusinessEntityContactCollection() {
         return businessEntityContactCollection;
     }

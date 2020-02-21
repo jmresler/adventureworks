@@ -1,7 +1,6 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -16,6 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vStoreWithAddresses", catalog = "AdventureWorks2017", schema = "Sales")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VStoreWithAddresses.findAll", query = "SELECT v FROM VStoreWithAddresses v"),
     @NamedQuery(name = "VStoreWithAddresses.findByBusinessEntityID", query = "SELECT v FROM VStoreWithAddresses v WHERE v.businessEntityID = :businessEntityID"),

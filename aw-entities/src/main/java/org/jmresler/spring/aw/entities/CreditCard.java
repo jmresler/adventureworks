@@ -3,7 +3,6 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -24,6 +25,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "CreditCard", catalog = "AdventureWorks2017", schema = "Sales")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CreditCard.findAll", query = "SELECT c FROM CreditCard c"),
     @NamedQuery(name = "CreditCard.findByCreditCardID", query = "SELECT c FROM CreditCard c WHERE c.creditCardID = :creditCardID"),
@@ -125,6 +127,7 @@ public class CreditCard implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
+    @XmlTransient
     public Collection<PersonCreditCard> getPersonCreditCardCollection() {
         return personCreditCardCollection;
     }
@@ -133,6 +136,7 @@ public class CreditCard implements Serializable {
         this.personCreditCardCollection = personCreditCardCollection;
     }
 
+    @XmlTransient
     public Collection<SalesOrderHeader> getSalesOrderHeaderCollection() {
         return salesOrderHeaderCollection;
     }

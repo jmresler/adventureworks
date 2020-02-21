@@ -3,7 +3,6 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -22,6 +23,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "Vendor", catalog = "AdventureWorks2017", schema = "Purchasing")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Vendor.findAll", query = "SELECT v FROM Vendor v"),
     @NamedQuery(name = "Vendor.findByBusinessEntityID", query = "SELECT v FROM Vendor v WHERE v.businessEntityID = :businessEntityID"),
@@ -94,6 +96,7 @@ public class Vendor implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
+    @XmlTransient
     public Collection<PurchaseOrderHeader> getPurchaseOrderHeaderCollection() {
         return purchaseOrderHeaderCollection;
     }
@@ -102,6 +105,7 @@ public class Vendor implements Serializable {
         this.purchaseOrderHeaderCollection = purchaseOrderHeaderCollection;
     }
 
+    @XmlTransient
     public Collection<ProductVendor> getProductVendorCollection() {
         return productVendorCollection;
     }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -26,6 +27,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "CurrencyRate", catalog = "AdventureWorks2017", schema = "Sales")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CurrencyRate.findAll", query = "SELECT c FROM CurrencyRate c"),
     @NamedQuery(name = "CurrencyRate.findByCurrencyRateID", query = "SELECT c FROM CurrencyRate c WHERE c.currencyRateID = :currencyRateID"),
@@ -135,6 +137,7 @@ public class CurrencyRate implements Serializable {
         this.toCurrencyCode = toCurrencyCode;
     }
 
+    @XmlTransient
     public Collection<SalesOrderHeader> getSalesOrderHeaderCollection() {
         return salesOrderHeaderCollection;
     }

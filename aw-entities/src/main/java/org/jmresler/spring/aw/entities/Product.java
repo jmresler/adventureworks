@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "Product", catalog = "AdventureWorks2017", schema = "Production")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findByProductID", query = "SELECT p FROM Product p WHERE p.productID = :productID"),
@@ -300,6 +301,7 @@ public class Product implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
+    @XmlTransient
     public Collection<ProductInventory> getProductInventoryCollection() {
         return productInventoryCollection;
     }
@@ -308,6 +310,7 @@ public class Product implements Serializable {
         this.productInventoryCollection = productInventoryCollection;
     }
 
+    @XmlTransient
     public Collection<TransactionHistory> getTransactionHistoryCollection() {
         return transactionHistoryCollection;
     }
@@ -348,6 +351,7 @@ public class Product implements Serializable {
         this.weightUnitMeasureCode = weightUnitMeasureCode;
     }
 
+    @XmlTransient
     public Collection<BillOfMaterials> getBillOfMaterialsCollection() {
         return billOfMaterialsCollection;
     }
@@ -356,6 +360,7 @@ public class Product implements Serializable {
         this.billOfMaterialsCollection = billOfMaterialsCollection;
     }
 
+    @XmlTransient
     public Collection<BillOfMaterials> getBillOfMaterialsCollection1() {
         return billOfMaterialsCollection1;
     }
@@ -364,6 +369,7 @@ public class Product implements Serializable {
         this.billOfMaterialsCollection1 = billOfMaterialsCollection1;
     }
 
+    @XmlTransient
     public Collection<ProductReview> getProductReviewCollection() {
         return productReviewCollection;
     }
@@ -372,6 +378,7 @@ public class Product implements Serializable {
         this.productReviewCollection = productReviewCollection;
     }
 
+    @XmlTransient
     public Collection<ProductCostHistory> getProductCostHistoryCollection() {
         return productCostHistoryCollection;
     }
@@ -380,6 +387,7 @@ public class Product implements Serializable {
         this.productCostHistoryCollection = productCostHistoryCollection;
     }
 
+    @XmlTransient
     public Collection<WorkOrder> getWorkOrderCollection() {
         return workOrderCollection;
     }
@@ -388,6 +396,7 @@ public class Product implements Serializable {
         this.workOrderCollection = workOrderCollection;
     }
 
+    @XmlTransient
     public Collection<ProductProductPhoto> getProductProductPhotoCollection() {
         return productProductPhotoCollection;
     }
@@ -396,6 +405,7 @@ public class Product implements Serializable {
         this.productProductPhotoCollection = productProductPhotoCollection;
     }
 
+    @XmlTransient
     public Collection<ProductListPriceHistory> getProductListPriceHistoryCollection() {
         return productListPriceHistoryCollection;
     }
@@ -404,6 +414,7 @@ public class Product implements Serializable {
         this.productListPriceHistoryCollection = productListPriceHistoryCollection;
     }
 
+    @XmlTransient
     public Collection<ProductDocument> getProductDocumentCollection() {
         return productDocumentCollection;
     }

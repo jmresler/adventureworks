@@ -1,10 +1,8 @@
-
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -26,6 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "UnitMeasure", catalog = "AdventureWorks2017", schema = "Production")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UnitMeasure.findAll", query = "SELECT u FROM UnitMeasure u"),
     @NamedQuery(name = "UnitMeasure.findByUnitMeasureCode", query = "SELECT u FROM UnitMeasure u WHERE u.unitMeasureCode = :unitMeasureCode"),
@@ -77,6 +77,7 @@ public class UnitMeasure implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
+    @XmlTransient
     public Collection<Product> getProductCollection() {
         return productCollection;
     }
@@ -85,6 +86,7 @@ public class UnitMeasure implements Serializable {
         this.productCollection = productCollection;
     }
 
+    @XmlTransient
     public Collection<Product> getProductCollection1() {
         return productCollection1;
     }
@@ -93,6 +95,7 @@ public class UnitMeasure implements Serializable {
         this.productCollection1 = productCollection1;
     }
 
+    @XmlTransient
     public Collection<BillOfMaterials> getBillOfMaterialsCollection() {
         return billOfMaterialsCollection;
     }

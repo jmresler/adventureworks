@@ -1,15 +1,17 @@
 package org.jmresler.spring.aw.repositories;
 
-import java.util.List;
-
 import org.jmresler.spring.aw.entities.Person;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Integer> {
+public interface PersonRepository extends PagingAndSortingRepository<Person, Integer> {
 
-	List<Person> findPersonByFirstNameAndLastName(String firstName, String lastName);
-	
-	
+	/**
+	 * 
+	 * @param bid
+	 * @return
+	 */
+	Person findByBusinessEntityID(int bid);
+
 }

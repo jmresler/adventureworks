@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "Currency", catalog = "AdventureWorks2017", schema = "Sales")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Currency.findAll", query = "SELECT c FROM Currency c"),
     @NamedQuery(name = "Currency.findByCurrencyCode", query = "SELECT c FROM Currency c WHERE c.currencyCode = :currencyCode"),
@@ -76,6 +77,7 @@ public class Currency implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
+    @XmlTransient
     public Collection<CurrencyRate> getCurrencyRateCollection() {
         return currencyRateCollection;
     }
@@ -84,6 +86,7 @@ public class Currency implements Serializable {
         this.currencyRateCollection = currencyRateCollection;
     }
 
+    @XmlTransient
     public Collection<CurrencyRate> getCurrencyRateCollection1() {
         return currencyRateCollection1;
     }
@@ -92,6 +95,7 @@ public class Currency implements Serializable {
         this.currencyRateCollection1 = currencyRateCollection1;
     }
 
+    @XmlTransient
     public Collection<CountryRegionCurrency> getCountryRegionCurrencyCollection() {
         return countryRegionCurrencyCollection;
     }
