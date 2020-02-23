@@ -3,6 +3,7 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,8 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "Department", catalog = "AdventureWorks2017", schema = "HumanResources")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d"),
     @NamedQuery(name = "Department.findByDepartmentID", query = "SELECT d FROM Department d WHERE d.departmentID = :departmentID"),
@@ -33,6 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Department implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -73,7 +73,6 @@ public class Department implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
     public Collection<EmployeeDepartmentHistory> getEmployeeDepartmentHistoryCollection() {
         return employeeDepartmentHistoryCollection;
     }

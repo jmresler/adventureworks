@@ -1,7 +1,10 @@
 package org.jmresler.spring.aw.entities;
 
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -19,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vProductModelCatalogDescription", catalog = "AdventureWorks2017", schema = "Production")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "VProductModelCatalogDescription.findAll", query = "SELECT v FROM VProductModelCatalogDescription v"),
     @NamedQuery(name = "VProductModelCatalogDescription.findByProductModelID", query = "SELECT v FROM VProductModelCatalogDescription v WHERE v.productModelID = :productModelID"),
@@ -49,6 +51,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VProductModelCatalogDescription implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @Basic(optional = false)
     @Column(name = "ProductModelID")
@@ -297,5 +300,94 @@ public class VProductModelCatalogDescription implements Serializable {
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(bikeFrame, color, copyright, crankset, maintenanceDescription, manufacturer, material,
+				modifiedDate, noOfYears, pedal, pictureAngle, pictureSize, productLine, productModelID, productPhotoID,
+				productURL, riderExperience, rowguid, saddle, style, summary, warrantyDescription, warrantyPeriod,
+				wheel);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VProductModelCatalogDescription other = (VProductModelCatalogDescription) obj;
+		return Objects.equals(bikeFrame, other.bikeFrame) && Objects.equals(color, other.color)
+				&& Objects.equals(copyright, other.copyright) && Objects.equals(crankset, other.crankset)
+				&& Objects.equals(maintenanceDescription, other.maintenanceDescription)
+				&& Objects.equals(manufacturer, other.manufacturer) && Objects.equals(material, other.material)
+				&& Objects.equals(modifiedDate, other.modifiedDate) && Objects.equals(noOfYears, other.noOfYears)
+				&& Objects.equals(pedal, other.pedal) && Objects.equals(pictureAngle, other.pictureAngle)
+				&& Objects.equals(pictureSize, other.pictureSize) && Objects.equals(productLine, other.productLine)
+				&& productModelID == other.productModelID && Objects.equals(productPhotoID, other.productPhotoID)
+				&& Objects.equals(productURL, other.productURL)
+				&& Objects.equals(riderExperience, other.riderExperience) && Objects.equals(rowguid, other.rowguid)
+				&& Objects.equals(saddle, other.saddle) && Objects.equals(style, other.style)
+				&& Objects.equals(summary, other.summary)
+				&& Objects.equals(warrantyDescription, other.warrantyDescription)
+				&& Objects.equals(warrantyPeriod, other.warrantyPeriod) && Objects.equals(wheel, other.wheel);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VProductModelCatalogDescription [productModelID=")
+				.append(productModelID)
+				.append(", summary=")
+				.append(summary)
+				.append(", manufacturer=")
+				.append(manufacturer)
+				.append(", copyright=")
+				.append(copyright)
+				.append(", productURL=")
+				.append(productURL)
+				.append(", warrantyPeriod=")
+				.append(warrantyPeriod)
+				.append(", warrantyDescription=")
+				.append(warrantyDescription)
+				.append(", noOfYears=")
+				.append(noOfYears)
+				.append(", maintenanceDescription=")
+				.append(maintenanceDescription)
+				.append(", wheel=")
+				.append(wheel)
+				.append(", saddle=")
+				.append(saddle)
+				.append(", pedal=")
+				.append(pedal)
+				.append(", bikeFrame=")
+				.append(bikeFrame)
+				.append(", crankset=")
+				.append(crankset)
+				.append(", pictureAngle=")
+				.append(pictureAngle)
+				.append(", pictureSize=")
+				.append(pictureSize)
+				.append(", productPhotoID=")
+				.append(productPhotoID)
+				.append(", material=")
+				.append(material)
+				.append(", color=")
+				.append(color)
+				.append(", productLine=")
+				.append(productLine)
+				.append(", style=")
+				.append(style)
+				.append(", riderExperience=")
+				.append(riderExperience)
+				.append(", rowguid=")
+				.append(rowguid)
+				.append(", modifiedDate=")
+				.append(modifiedDate)
+				.append("]");
+		return builder.toString();
+	}
+    
     
 }

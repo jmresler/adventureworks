@@ -2,6 +2,8 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -19,7 +20,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vJobCandidate", catalog = "AdventureWorks2017", schema = "HumanResources")
-@XmlRootElement
+
+// FIXME - There's a problem with the SQL Server syntax in these queries that
+//		   is breaking the query
+
 @NamedQueries({
     @NamedQuery(name = "VJobCandidate.findAll", query = "SELECT v FROM VJobCandidate v"),
     @NamedQuery(name = "VJobCandidate.findByJobCandidateID", query = "SELECT v FROM VJobCandidate v WHERE v.jobCandidateID = :jobCandidateID"),
@@ -41,33 +45,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VJobCandidate implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Basic(optional = false)
     @Column(name = "JobCandidateID")
     private int jobCandidateID;
     @Column(name = "BusinessEntityID")
     private Integer businessEntityID;
-    @Column(name = "Prefix")
+    @Column(name = "[Name.Prefix]")
     private String prefix;
-    @Column(name = "First")
+    @Column(name = "[Name.First]")
     private String first;
-    @Column(name = "Middle")
+    @Column(name = "[Name.Middle]")
     private String middle;
-    @Column(name = "Last")
+    @Column(name = "[Name.Last]")
     private String last;
-    @Column(name = "Suffix")
+    @Column(name = "[Name.Suffix]")
     private String suffix;
     @Column(name = "Skills")
     private String skills;
-    @Column(name = "Type")
+    @Column(name = "[Addr.Type]")
     private String type;
-    @Column(name = "CountryRegion")
+    @Column(name = "[Addr.Loc.CountryRegion]")
     private String countryRegion;
-    @Column(name = "State")
+    @Column(name = "[Addr.Loc.State]")
     private String state;
-    @Column(name = "City")
+    @Column(name = "[Addr.Loc.City]")
     private String city;
-    @Column(name = "PostalCode")
+    @Column(name = "[Addr.PostalCode]")
     private String postalCode;
     @Column(name = "EMail")
     private String eMail;
@@ -208,5 +213,84 @@ public class VJobCandidate implements Serializable {
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(businessEntityID, 
+							city, 
+							countryRegion, 
+							eMail, 
+							first, 
+							jobCandidateID, 
+							last, 
+							middle,
+							modifiedDate, 
+							postalCode, 
+							prefix, 
+							skills, 
+							state, 
+							suffix, 
+							type, 
+							webSite);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VJobCandidate other = (VJobCandidate) obj;
+		return Objects.equals(businessEntityID, other.businessEntityID) && Objects.equals(city, other.city)
+				&& Objects.equals(countryRegion, other.countryRegion) && Objects.equals(eMail, other.eMail)
+				&& Objects.equals(first, other.first) && jobCandidateID == other.jobCandidateID
+				&& Objects.equals(last, other.last) && Objects.equals(middle, other.middle)
+				&& Objects.equals(modifiedDate, other.modifiedDate) && Objects.equals(postalCode, other.postalCode)
+				&& Objects.equals(prefix, other.prefix) && Objects.equals(skills, other.skills)
+				&& Objects.equals(state, other.state) && Objects.equals(suffix, other.suffix)
+				&& Objects.equals(type, other.type) && Objects.equals(webSite, other.webSite);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VJobCandidate [jobCandidateID=")
+				.append(jobCandidateID)
+				.append(", businessEntityID=")
+				.append(businessEntityID)
+				.append(", prefix=")
+				.append(prefix)
+				.append(", first=")
+				.append(first)
+				.append(", middle=")
+				.append(middle)
+				.append(", last=")
+				.append(last)
+				.append(", suffix=")
+				.append(suffix)
+				.append(", skills=")
+				.append(skills)
+				.append(", type=")
+				.append(type)
+				.append(", countryRegion=")
+				.append(countryRegion)
+				.append(", state=")
+				.append(state)
+				.append(", city=")
+				.append(city)
+				.append(", postalCode=")
+				.append(postalCode)
+				.append(", eMail=")
+				.append(eMail)
+				.append(", webSite=")
+				.append(webSite)
+				.append(", modifiedDate=")
+				.append(modifiedDate)
+				.append("]");
+		return builder.toString();
+	}
+
     
 }

@@ -1,6 +1,8 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vProductAndDescription", catalog = "AdventureWorks2017", schema = "Production")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "VProductAndDescription.findAll", query = "SELECT v FROM VProductAndDescription v"),
     @NamedQuery(name = "VProductAndDescription.findByProductID", query = "SELECT v FROM VProductAndDescription v WHERE v.productID = :productID"),
@@ -25,6 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VProductAndDescription implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @Basic(optional = false)
     @Column(name = "ProductID")
@@ -62,5 +64,38 @@ public class VProductAndDescription implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cultureID, description, productID);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VProductAndDescription other = (VProductAndDescription) obj;
+		return Objects.equals(cultureID, other.cultureID) && Objects.equals(description, other.description)
+				&& productID == other.productID;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VProductAndDescription [productID=")
+				.append(productID)
+				.append(", cultureID=")
+				.append(cultureID)
+				.append(", description=")
+				.append(description)
+				.append("]");
+		return builder.toString();
+	}
+    
+	
     
 }

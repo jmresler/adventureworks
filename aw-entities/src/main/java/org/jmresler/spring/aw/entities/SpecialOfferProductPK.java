@@ -1,6 +1,7 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

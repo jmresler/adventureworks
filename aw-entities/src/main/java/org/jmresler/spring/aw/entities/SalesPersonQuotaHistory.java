@@ -3,6 +3,7 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -14,7 +15,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "SalesPersonQuotaHistory", catalog = "AdventureWorks2017", schema = "Sales")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "SalesPersonQuotaHistory.findAll", query = "SELECT s FROM SalesPersonQuotaHistory s"),
     @NamedQuery(name = "SalesPersonQuotaHistory.findByBusinessEntityID", query = "SELECT s FROM SalesPersonQuotaHistory s WHERE s.salesPersonQuotaHistoryPK.businessEntityID = :businessEntityID"),
@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SalesPersonQuotaHistory implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @EmbeddedId
     protected SalesPersonQuotaHistoryPK salesPersonQuotaHistoryPK;
     @Basic(optional = false)

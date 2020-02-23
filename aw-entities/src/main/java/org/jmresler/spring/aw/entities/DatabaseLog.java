@@ -16,7 +16,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,13 +23,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "DatabaseLog", catalog = "AdventureWorks2017", schema = "dbo")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "DatabaseLog.findAll", query = "SELECT d FROM DatabaseLog d"),
     @NamedQuery(name = "DatabaseLog.findById", query = "SELECT d FROM DatabaseLog d WHERE d.databaseLogID = :databaseLogID")})
 public class DatabaseLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

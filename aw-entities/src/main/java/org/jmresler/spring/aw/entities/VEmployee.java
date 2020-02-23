@@ -1,6 +1,8 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vEmployee", catalog = "AdventureWorks2017", schema = "HumanResources")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "VEmployee.findAll", query = "SELECT v FROM VEmployee v"),
     @NamedQuery(name = "VEmployee.findByBusinessEntityID", query = "SELECT v FROM VEmployee v WHERE v.businessEntityID = :businessEntityID"),
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VEmployee implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @Basic(optional = false)
     @Column(name = "BusinessEntityID")
@@ -153,5 +155,66 @@ public class VEmployee implements Serializable {
     public void setAdditionalContactInfo(String additionalContactInfo) {
         this.additionalContactInfo = additionalContactInfo;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(additionalContactInfo, 
+							addressLine1, 
+							addressLine2, 
+							businessEntityID, 
+							city, 
+							emailAddress,
+							emailPromotion, 
+							jobTitle, 
+							postalCode, 
+							suffix, 
+							title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VEmployee other = (VEmployee) obj;
+		return Objects.equals(additionalContactInfo, other.additionalContactInfo)
+				&& Objects.equals(addressLine1, other.addressLine1) && Objects.equals(addressLine2, other.addressLine2)
+				&& businessEntityID == other.businessEntityID && Objects.equals(city, other.city)
+				&& Objects.equals(emailAddress, other.emailAddress) && emailPromotion == other.emailPromotion
+				&& Objects.equals(jobTitle, other.jobTitle) && Objects.equals(postalCode, other.postalCode)
+				&& Objects.equals(suffix, other.suffix) && Objects.equals(title, other.title);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VEmployee [businessEntityID=")
+				.append(businessEntityID)
+				.append(", title=")
+				.append(title)
+				.append(", suffix=")
+				.append(suffix)
+				.append(", jobTitle=")
+				.append(jobTitle)
+				.append(", emailAddress=")
+				.append(emailAddress)
+				.append(", emailPromotion=")
+				.append(emailPromotion)
+				.append(", addressLine1=")
+				.append(addressLine1)
+				.append(", addressLine2=")
+				.append(addressLine2)
+				.append(", city=")
+				.append(city)
+				.append(", postalCode=")
+				.append(postalCode)
+				.append(", additionalContactInfo=")
+				.append(additionalContactInfo).append("]");
+		return builder.toString();
+	}
+
     
 }

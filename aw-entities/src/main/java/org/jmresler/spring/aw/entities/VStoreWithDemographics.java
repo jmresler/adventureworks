@@ -2,6 +2,8 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -17,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vStoreWithDemographics", catalog = "AdventureWorks2017", schema = "Sales")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "VStoreWithDemographics.findAll", query = "SELECT v FROM VStoreWithDemographics v"),
     @NamedQuery(name = "VStoreWithDemographics.findByBusinessEntityID", query = "SELECT v FROM VStoreWithDemographics v WHERE v.businessEntityID = :businessEntityID"),
@@ -149,5 +150,59 @@ public class VStoreWithDemographics implements Serializable {
     public void setNumberEmployees(Integer numberEmployees) {
         this.numberEmployees = numberEmployees;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(annualRevenue, annualSales, bankName, brands, businessEntityID, businessType, internet,
+				numberEmployees, specialty, squareFeet, yearOpened);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VStoreWithDemographics other = (VStoreWithDemographics) obj;
+		return Objects.equals(annualRevenue, other.annualRevenue) && Objects.equals(annualSales, other.annualSales)
+				&& Objects.equals(bankName, other.bankName) && Objects.equals(brands, other.brands)
+				&& businessEntityID == other.businessEntityID && Objects.equals(businessType, other.businessType)
+				&& Objects.equals(internet, other.internet) && Objects.equals(numberEmployees, other.numberEmployees)
+				&& Objects.equals(specialty, other.specialty) && Objects.equals(squareFeet, other.squareFeet)
+				&& Objects.equals(yearOpened, other.yearOpened);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VStoreWithDemographics [businessEntityID=")
+				.append(businessEntityID)
+				.append(", annualSales=")
+				.append(annualSales)
+				.append(", annualRevenue=")
+				.append(annualRevenue)
+				.append(", bankName=")
+				.append(bankName)
+				.append(", businessType=")
+				.append(businessType)
+				.append(", yearOpened=")
+				.append(yearOpened)
+				.append(", specialty=")
+				.append(specialty)
+				.append(", squareFeet=")
+				.append(squareFeet)
+				.append(", brands=")
+				.append(brands)
+				.append(", internet=")
+				.append(internet)
+				.append(", numberEmployees=")
+				.append(numberEmployees)
+				.append("]");
+		return builder.toString();
+	}
+    
+    
     
 }

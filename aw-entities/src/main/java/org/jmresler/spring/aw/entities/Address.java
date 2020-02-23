@@ -21,8 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -32,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "Address", catalog = "AdventureWorks2017", schema = "Person")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
     @NamedQuery(name = "Address.findByAddressID", query = "SELECT a FROM Address a WHERE a.addressID = :addressID"),
@@ -45,6 +43,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -169,7 +168,6 @@ public class Address implements Serializable {
         this.stateProvinceID = stateProvinceID;
     }
 
-    @XmlTransient
     public Collection<BusinessEntityAddress> getBusinessEntityAddressCollection() {
         return businessEntityAddressCollection;
     }

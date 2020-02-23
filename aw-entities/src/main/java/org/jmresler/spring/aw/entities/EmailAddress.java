@@ -2,6 +2,7 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -13,7 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "EmailAddress", catalog = "AdventureWorks2017", schema = "Person")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "EmailAddress.findAll", query = "SELECT e FROM EmailAddress e"),
     @NamedQuery(name = "EmailAddress.findByBusinessEntityID", query = "SELECT e FROM EmailAddress e WHERE e.emailAddressPK.businessEntityID = :businessEntityID"),
@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class EmailAddress implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @EmbeddedId
     protected EmailAddressPK emailAddressPK;
     @Column(name = "EmailAddress")

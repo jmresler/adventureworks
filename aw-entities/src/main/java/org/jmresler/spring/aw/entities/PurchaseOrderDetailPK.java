@@ -1,6 +1,7 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -13,6 +14,7 @@ import javax.persistence.Embeddable;
 public class PurchaseOrderDetailPK implements Serializable {
 
 	private static final long serialVersionUID = 244557690558845859L;
+
 	@Basic(optional = false)
     @Column(name = "PurchaseOrderID")
     private int purchaseOrderID;

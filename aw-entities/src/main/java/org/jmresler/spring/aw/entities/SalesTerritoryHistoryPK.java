@@ -2,6 +2,7 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -16,6 +17,7 @@ import javax.persistence.TemporalType;
 public class SalesTerritoryHistoryPK implements Serializable {
 
 	private static final long serialVersionUID = -4465219691155440237L;
+
 	@Basic(optional = false)
     @Column(name = "BusinessEntityID")
     private int businessEntityID;

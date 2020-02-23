@@ -2,6 +2,7 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -16,6 +17,7 @@ import javax.persistence.TemporalType;
 public class ProductListPriceHistoryPK implements Serializable {
 
 	private static final long serialVersionUID = 4776280440033678606L;
+
 	@Basic(optional = false)
     @Column(name = "ProductID")
     private int productID;

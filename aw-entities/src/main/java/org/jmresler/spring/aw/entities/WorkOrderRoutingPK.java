@@ -6,6 +6,7 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -17,7 +18,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class WorkOrderRoutingPK implements Serializable {
 
-    @Basic(optional = false)
+	private static final long serialVersionUID = -3004998570935904636L;
+	
+	@Basic(optional = false)
     @Column(name = "WorkOrderID")
     private int workOrderID;
     @Basic(optional = false)

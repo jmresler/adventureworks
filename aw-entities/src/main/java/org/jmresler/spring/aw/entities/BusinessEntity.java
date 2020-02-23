@@ -3,6 +3,7 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,8 +18,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -26,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "BusinessEntity", catalog = "AdventureWorks2017", schema = "Person")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "BusinessEntity.findAll", query = "SELECT b FROM BusinessEntity b"),
     @NamedQuery(name = "BusinessEntity.findByBusinessEntityID", query = "SELECT b FROM BusinessEntity b WHERE b.businessEntityID = :businessEntityID"),
@@ -35,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class BusinessEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -91,7 +91,6 @@ public class BusinessEntity implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
     public Collection<BusinessEntityContact> getBusinessEntityContactCollection() {
         return businessEntityContactCollection;
     }
@@ -100,7 +99,6 @@ public class BusinessEntity implements Serializable {
         this.businessEntityContactCollection = businessEntityContactCollection;
     }
 
-    @XmlTransient
     public Collection<BusinessEntityAddress> getBusinessEntityAddressCollection() {
         return businessEntityAddressCollection;
     }

@@ -3,6 +3,7 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,13 +22,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "AWBuildVersion", catalog = "AdventureWorks2017", schema = "dbo")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "AWBuildVersion.findAll", query = "SELECT a FROM AWBuildVersion a"),
     @NamedQuery(name = "AWBuildVersion.findById", query = "SELECT a FROM AWBuildVersion a WHERE a.systemInformationID = :systemInformationID")})
 public class AWBuildVersion implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

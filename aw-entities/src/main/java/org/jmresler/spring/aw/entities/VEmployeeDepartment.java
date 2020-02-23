@@ -2,6 +2,8 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -19,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vEmployeeDepartment", catalog = "AdventureWorks2017", schema = "HumanResources")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "VEmployeeDepartment.findAll", query = "SELECT v FROM VEmployeeDepartment v"),
     @NamedQuery(name = "VEmployeeDepartment.findByBusinessEntityID", query = "SELECT v FROM VEmployeeDepartment v WHERE v.businessEntityID = :businessEntityID"),
@@ -88,5 +89,35 @@ public class VEmployeeDepartment implements Serializable {
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(businessEntityID, jobTitle, startDate, suffix, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VEmployeeDepartment other = (VEmployeeDepartment) obj;
+		return businessEntityID == other.businessEntityID && Objects.equals(jobTitle, other.jobTitle)
+				&& Objects.equals(startDate, other.startDate) && Objects.equals(suffix, other.suffix)
+				&& Objects.equals(title, other.title);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VEmployeeDepartment [businessEntityID=").append(businessEntityID).append(", title=")
+				.append(title).append(", suffix=").append(suffix).append(", jobTitle=").append(jobTitle)
+				.append(", startDate=").append(startDate).append("]");
+		return builder.toString();
+	}
+    
+    
     
 }

@@ -3,6 +3,7 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,8 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -26,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "Employee", catalog = "AdventureWorks2017", schema = "HumanResources")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e"),
     @NamedQuery(name = "Employee.findByBusinessEntityID", query = "SELECT e FROM Employee e WHERE e.businessEntityID = :businessEntityID"),
@@ -44,11 +43,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Employee.findByModifiedDate", query = "SELECT e FROM Employee e WHERE e.modifiedDate = :modifiedDate")})
 public class Employee implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+	
     @Lob
     @Column(name = "OrganizationNode")
     private byte[] organizationNode;
-
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -226,7 +225,6 @@ public class Employee implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
     public Collection<EmployeePayHistory> getEmployeePayHistoryCollection() {
         return employeePayHistoryCollection;
     }
@@ -235,7 +233,6 @@ public class Employee implements Serializable {
         this.employeePayHistoryCollection = employeePayHistoryCollection;
     }
 
-    @XmlTransient
     public Collection<JobCandidate> getJobCandidateCollection() {
         return jobCandidateCollection;
     }
@@ -244,7 +241,6 @@ public class Employee implements Serializable {
         this.jobCandidateCollection = jobCandidateCollection;
     }
 
-    @XmlTransient
     public Collection<EmployeeDepartmentHistory> getEmployeeDepartmentHistoryCollection() {
         return employeeDepartmentHistoryCollection;
     }

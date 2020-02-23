@@ -1,6 +1,9 @@
 package org.jmresler.spring.aw.entities;
 
+
 import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -16,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vStoreWithAddresses", catalog = "AdventureWorks2017", schema = "Sales")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "VStoreWithAddresses.findAll", query = "SELECT v FROM VStoreWithAddresses v"),
     @NamedQuery(name = "VStoreWithAddresses.findByBusinessEntityID", query = "SELECT v FROM VStoreWithAddresses v WHERE v.businessEntityID = :businessEntityID"),
@@ -85,5 +87,42 @@ public class VStoreWithAddresses implements Serializable {
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(addressLine1, addressLine2, businessEntityID, city, postalCode);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VStoreWithAddresses other = (VStoreWithAddresses) obj;
+		return Objects.equals(addressLine1, other.addressLine1) && Objects.equals(addressLine2, other.addressLine2)
+				&& businessEntityID == other.businessEntityID && Objects.equals(city, other.city)
+				&& Objects.equals(postalCode, other.postalCode);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VStoreWithAddresses [businessEntityID=")
+				.append(businessEntityID)
+				.append(", addressLine1=")
+				.append(addressLine1)
+				.append(", addressLine2=")
+				.append(addressLine2)
+				.append(", city=")
+				.append(city)
+				.append(", postalCode=")
+				.append(postalCode)
+				.append("]");
+		return builder.toString();
+	}
+
     
 }

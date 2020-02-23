@@ -1,6 +1,8 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vStateProvinceCountryRegion", catalog = "AdventureWorks2017", schema = "Person")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "VStateProvinceCountryRegion.findAll", query = "SELECT v FROM VStateProvinceCountryRegion v"),
     @NamedQuery(name = "VStateProvinceCountryRegion.findByStateProvinceID", query = "SELECT v FROM VStateProvinceCountryRegion v WHERE v.stateProvinceID = :stateProvinceID"),
@@ -26,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VStateProvinceCountryRegion implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @Basic(optional = false)
     @Column(name = "StateProvinceID")
@@ -74,5 +76,41 @@ public class VStateProvinceCountryRegion implements Serializable {
     public void setCountryRegionCode(String countryRegionCode) {
         this.countryRegionCode = countryRegionCode;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(countryRegionCode, stateProvinceCode, stateProvinceID, territoryID);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VStateProvinceCountryRegion other = (VStateProvinceCountryRegion) obj;
+		return Objects.equals(countryRegionCode, other.countryRegionCode)
+				&& Objects.equals(stateProvinceCode, other.stateProvinceCode)
+				&& stateProvinceID == other.stateProvinceID && territoryID == other.territoryID;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VStateProvinceCountryRegion [stateProvinceID=")
+				.append(stateProvinceID)
+				.append(", stateProvinceCode=")
+				.append(stateProvinceCode)
+				.append(", territoryID=")
+				.append(territoryID)
+				.append(", countryRegionCode=")
+				.append(countryRegionCode)
+				.append("]");
+		return builder.toString();
+	}
+    
+    
     
 }

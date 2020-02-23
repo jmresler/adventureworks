@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,8 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "PurchaseOrderHeader", catalog = "AdventureWorks2017", schema = "Purchasing")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "PurchaseOrderHeader.findAll", query = "SELECT p FROM PurchaseOrderHeader p"),
     @NamedQuery(name = "PurchaseOrderHeader.findByPurchaseOrderID", query = "SELECT p FROM PurchaseOrderHeader p WHERE p.purchaseOrderID = :purchaseOrderID"),
@@ -45,6 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class PurchaseOrderHeader implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -199,7 +199,6 @@ public class PurchaseOrderHeader implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
     public Collection<PurchaseOrderDetail> getPurchaseOrderDetailCollection() {
         return purchaseOrderDetailCollection;
     }

@@ -2,6 +2,8 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -17,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vSalesPerson", catalog = "AdventureWorks2017", schema = "Sales")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "VSalesPerson.findAll", query = "SELECT v FROM VSalesPerson v"),
     @NamedQuery(name = "VSalesPerson.findByBusinessEntityID", query = "SELECT v FROM VSalesPerson v WHERE v.businessEntityID = :businessEntityID"),
@@ -37,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VSalesPerson implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @Basic(optional = false)
     @Column(name = "BusinessEntityID")
@@ -189,5 +191,66 @@ public class VSalesPerson implements Serializable {
     public void setSalesLastYear(BigDecimal salesLastYear) {
         this.salesLastYear = salesLastYear;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(addressLine1, addressLine2, businessEntityID, city, emailAddress, emailPromotion, jobTitle,
+				postalCode, salesLastYear, salesQuota, salesYTD, suffix, territoryGroup, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VSalesPerson other = (VSalesPerson) obj;
+		return Objects.equals(addressLine1, other.addressLine1) && Objects.equals(addressLine2, other.addressLine2)
+				&& businessEntityID == other.businessEntityID && Objects.equals(city, other.city)
+				&& Objects.equals(emailAddress, other.emailAddress) && emailPromotion == other.emailPromotion
+				&& Objects.equals(jobTitle, other.jobTitle) && Objects.equals(postalCode, other.postalCode)
+				&& Objects.equals(salesLastYear, other.salesLastYear) && Objects.equals(salesQuota, other.salesQuota)
+				&& Objects.equals(salesYTD, other.salesYTD) && Objects.equals(suffix, other.suffix)
+				&& Objects.equals(territoryGroup, other.territoryGroup) && Objects.equals(title, other.title);
+	}
+
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VSalesPerson [businessEntityID=")
+				.append(businessEntityID)
+				.append(", title=")
+				.append(title)
+				.append(", suffix=")
+				.append(suffix)
+				.append(", jobTitle=")
+				.append(jobTitle)
+				.append(", emailAddress=")
+				.append(emailAddress)
+				.append(", emailPromotion=")
+				.append(emailPromotion)
+				.append(", addressLine1=")
+				.append(addressLine1)
+				.append(", addressLine2=")
+				.append(addressLine2)
+				.append(", city=")
+				.append(city)
+				.append(", postalCode=")
+				.append(postalCode)
+				.append(", territoryGroup=")
+				.append(territoryGroup)
+				.append(", salesQuota=")
+				.append(salesQuota)
+				.append(", salesYTD=")
+				.append(salesYTD)
+				.append(", salesLastYear=")
+				.append(salesLastYear)
+				.append("]");
+		return builder.toString();
+	}
+ 
     
 }

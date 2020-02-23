@@ -3,6 +3,7 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,8 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "ProductModel", catalog = "AdventureWorks2017", schema = "Production")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "ProductModel.findAll", query = "SELECT p FROM ProductModel p"),
     @NamedQuery(name = "ProductModel.findByProductModelID", query = "SELECT p FROM ProductModel p WHERE p.productModelID = :productModelID"),
@@ -36,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class ProductModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -112,7 +112,6 @@ public class ProductModel implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
     public Collection<ProductModelIllustration> getProductModelIllustrationCollection() {
         return productModelIllustrationCollection;
     }
@@ -121,7 +120,6 @@ public class ProductModel implements Serializable {
         this.productModelIllustrationCollection = productModelIllustrationCollection;
     }
 
-    @XmlTransient
     public Collection<Product> getProductCollection() {
         return productCollection;
     }
@@ -130,7 +128,6 @@ public class ProductModel implements Serializable {
         this.productCollection = productCollection;
     }
 
-    @XmlTransient
     public Collection<ProductModelProductDescriptionCulture> getProductModelProductDescriptionCultureCollection() {
         return productModelProductDescriptionCultureCollection;
     }

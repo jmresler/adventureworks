@@ -3,6 +3,7 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -14,7 +15,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "PurchaseOrderDetail", catalog = "AdventureWorks2017", schema = "Purchasing")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "PurchaseOrderDetail.findAll", query = "SELECT p FROM PurchaseOrderDetail p"),
     @NamedQuery(name = "PurchaseOrderDetail.findByPurchaseOrderID", query = "SELECT p FROM PurchaseOrderDetail p WHERE p.purchaseOrderDetailPK.purchaseOrderID = :purchaseOrderID"),
@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PurchaseOrderDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @EmbeddedId
     protected PurchaseOrderDetailPK purchaseOrderDetailPK;
     @Basic(optional = false)

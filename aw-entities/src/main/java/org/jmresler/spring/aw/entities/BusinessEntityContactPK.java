@@ -1,6 +1,7 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -13,7 +14,8 @@ import javax.persistence.Embeddable;
 public class BusinessEntityContactPK implements Serializable {
 
 	private static final long serialVersionUID = 0L;
-    @Basic(optional = false)
+
+	@Basic(optional = false)
     @Column(name = "BusinessEntityID")
     private int businessEntityID;
     @Basic(optional = false)
@@ -86,7 +88,7 @@ public class BusinessEntityContactPK implements Serializable {
 
     @Override
     public String toString() {
-        return "org.jmresler.spring.aw.entities.BusinessEntityContactPK[ businessEntityID=" + businessEntityID + ", personID=" + personID + ", contactTypeID=" + contactTypeID + " ]";
+        return "org.jmresler.spring.aw.entities.BusinessEntityContactPK[ businessEntityID=" + businessEntityID + " ]";
     }
     
 }

@@ -2,6 +2,7 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -13,7 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "ProductModelIllustration", catalog = "AdventureWorks2017", schema = "Production")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "ProductModelIllustration.findAll", query = "SELECT p FROM ProductModelIllustration p"),
     @NamedQuery(name = "ProductModelIllustration.findByProductModelID", query = "SELECT p FROM ProductModelIllustration p WHERE p.productModelIllustrationPK.productModelID = :productModelID"),
@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ProductModelIllustration implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @EmbeddedId
     protected ProductModelIllustrationPK productModelIllustrationPK;
     @Basic(optional = false)

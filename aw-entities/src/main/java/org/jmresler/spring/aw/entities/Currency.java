@@ -3,6 +3,7 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,8 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "Currency", catalog = "AdventureWorks2017", schema = "Sales")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "Currency.findAll", query = "SELECT c FROM Currency c"),
     @NamedQuery(name = "Currency.findByCurrencyCode", query = "SELECT c FROM Currency c WHERE c.currencyCode = :currencyCode"),
@@ -33,6 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Currency implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -77,7 +77,6 @@ public class Currency implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
     public Collection<CurrencyRate> getCurrencyRateCollection() {
         return currencyRateCollection;
     }
@@ -86,7 +85,6 @@ public class Currency implements Serializable {
         this.currencyRateCollection = currencyRateCollection;
     }
 
-    @XmlTransient
     public Collection<CurrencyRate> getCurrencyRateCollection1() {
         return currencyRateCollection1;
     }
@@ -95,7 +93,6 @@ public class Currency implements Serializable {
         this.currencyRateCollection1 = currencyRateCollection1;
     }
 
-    @XmlTransient
     public Collection<CountryRegionCurrency> getCountryRegionCurrencyCollection() {
         return countryRegionCurrencyCollection;
     }

@@ -3,6 +3,7 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -24,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "ScrapReason", catalog = "AdventureWorks2017", schema = "Production")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "ScrapReason.findAll", query = "SELECT s FROM ScrapReason s"),
     @NamedQuery(name = "ScrapReason.findByScrapReasonID", query = "SELECT s FROM ScrapReason s WHERE s.scrapReasonID = :scrapReasonID"),
@@ -32,6 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class ScrapReason implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -72,7 +72,7 @@ public class ScrapReason implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    @XmlTransient
+
     public Collection<WorkOrder> getWorkOrderCollection() {
         return workOrderCollection;
     }

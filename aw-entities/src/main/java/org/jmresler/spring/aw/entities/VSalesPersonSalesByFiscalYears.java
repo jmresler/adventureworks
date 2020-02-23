@@ -2,6 +2,8 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -17,7 +18,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vSalesPersonSalesByFiscalYears", catalog = "AdventureWorks2017", schema = "Sales")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VSalesPersonSalesByFiscalYears.findAll", query = "SELECT v FROM VSalesPersonSalesByFiscalYears v"),
     @NamedQuery(name = "VSalesPersonSalesByFiscalYears.findBySalesPersonID", query = "SELECT v FROM VSalesPersonSalesByFiscalYears v WHERE v.salesPersonID = :salesPersonID"),
@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VSalesPersonSalesByFiscalYears implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "SalesPersonID")
     private Integer salesPersonID;
@@ -94,5 +95,44 @@ public class VSalesPersonSalesByFiscalYears implements Serializable {
     public void setA2(BigDecimal a2) {
         this.a2 = a2;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(a, a1, a2, fullName, jobTitle, salesPersonID);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VSalesPersonSalesByFiscalYears other = (VSalesPersonSalesByFiscalYears) obj;
+		return Objects.equals(a, other.a) && Objects.equals(a1, other.a1) && Objects.equals(a2, other.a2)
+				&& Objects.equals(fullName, other.fullName) && Objects.equals(jobTitle, other.jobTitle)
+				&& Objects.equals(salesPersonID, other.salesPersonID);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VSalesPersonSalesByFiscalYears [salesPersonID=")
+				.append(salesPersonID)
+				.append(", fullName=")
+				.append(fullName)
+				.append(", jobTitle=")
+				.append(jobTitle)
+				.append(", a=")
+				.append(a)
+				.append(", a1=")
+				.append(a1)
+				.append(", a2=")
+				.append(a2)
+				.append("]");
+		return builder.toString();
+	}
+    
     
 }

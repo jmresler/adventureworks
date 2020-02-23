@@ -2,6 +2,8 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -19,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vAdditionalContactInfo", catalog = "AdventureWorks2017", schema = "Person")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "VAdditionalContactInfo.findAll", query = "SELECT v FROM VAdditionalContactInfo v"),
     @NamedQuery(name = "VAdditionalContactInfo.findByBusinessEntityID", query = "SELECT v FROM VAdditionalContactInfo v WHERE v.businessEntityID = :businessEntityID"),
@@ -39,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VAdditionalContactInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @Basic(optional = false)
     @Column(name = "BusinessEntityID")
@@ -188,4 +190,49 @@ public class VAdditionalContactInfo implements Serializable {
         this.modifiedDate = modifiedDate;
     }
     
+    
+    
+    @Override
+	public int hashCode() {
+		return Objects.hash(businessEntityID, 
+							city, 
+							countryRegion, 
+							eMailAddress, 
+							eMailSpecialInstructions,
+							eMailTelephoneNumber, 
+							homeAddressSpecialInstructions, 
+							modifiedDate, 
+							postalCode, 
+							rowguid, 
+							stateProvince,
+							street, 
+							telephoneNumber, 
+							telephoneSpecialInstructions);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VAdditionalContactInfo other = (VAdditionalContactInfo) obj;
+		return businessEntityID == other.businessEntityID && Objects.equals(city, other.city)
+				&& Objects.equals(countryRegion, other.countryRegion)
+				&& Objects.equals(eMailAddress, other.eMailAddress)
+				&& Objects.equals(eMailSpecialInstructions, other.eMailSpecialInstructions)
+				&& Objects.equals(eMailTelephoneNumber, other.eMailTelephoneNumber)
+				&& Objects.equals(homeAddressSpecialInstructions, other.homeAddressSpecialInstructions)
+				&& Objects.equals(modifiedDate, other.modifiedDate) && Objects.equals(postalCode, other.postalCode)
+				&& Objects.equals(rowguid, other.rowguid) && Objects.equals(stateProvince, other.stateProvince)
+				&& Objects.equals(street, other.street) && Objects.equals(telephoneNumber, other.telephoneNumber)
+				&& Objects.equals(telephoneSpecialInstructions, other.telephoneSpecialInstructions);
+	}
+
+	@Override
+    public String toString() {
+    	return "[org.jmresler.spring.aw.entities.VAddtionalContactInfo[ businessEntityID = " + businessEntityID + "]";
+    }
 }

@@ -1,6 +1,8 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -16,7 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "vVendorWithContacts", catalog = "AdventureWorks2017", schema = "Purchasing")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "VVendorWithContacts.findAll", query = "SELECT v FROM VVendorWithContacts v"),
     @NamedQuery(name = "VVendorWithContacts.findByBusinessEntityID", query = "SELECT v FROM VVendorWithContacts v WHERE v.businessEntityID = :businessEntityID"),
@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VVendorWithContacts implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @Basic(optional = false)
     @Column(name = "BusinessEntityID")
@@ -83,5 +84,41 @@ public class VVendorWithContacts implements Serializable {
     public void setEmailPromotion(int emailPromotion) {
         this.emailPromotion = emailPromotion;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(businessEntityID, emailAddress, emailPromotion, suffix, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VVendorWithContacts other = (VVendorWithContacts) obj;
+		return businessEntityID == other.businessEntityID && Objects.equals(emailAddress, other.emailAddress)
+				&& emailPromotion == other.emailPromotion && Objects.equals(suffix, other.suffix)
+				&& Objects.equals(title, other.title);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("VVendorWithContacts [businessEntityID=")
+				.append(businessEntityID)
+				.append(", title=")
+				.append(title)
+				.append(", suffix=")
+				.append(suffix)
+				.append(", emailAddress=")
+				.append(emailAddress)
+				.append(", emailPromotion=")
+				.append(emailPromotion)
+				.append("]");
+		return builder.toString();
+	}
     
 }

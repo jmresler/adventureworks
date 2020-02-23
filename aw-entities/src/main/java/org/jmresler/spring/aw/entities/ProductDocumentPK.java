@@ -1,6 +1,7 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -14,6 +15,7 @@ import javax.persistence.Lob;
 public class ProductDocumentPK implements Serializable {
 
 	private static final long serialVersionUID = -709653329338590593L;
+
 	@Basic(optional = false)
     @Column(name = "ProductID")
     private int productID;
