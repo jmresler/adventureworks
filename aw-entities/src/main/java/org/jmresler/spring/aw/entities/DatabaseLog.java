@@ -38,26 +38,26 @@ public class DatabaseLog implements Serializable {
     private Integer databaseLogID;
     @Temporal(TemporalType.TIME)
     @Basic(optional = false)
-    @Column(name = "PostTime")
+    @Column(name = "PostTime", columnDefinition = "DATETIME NOT NULL")
     private Date postTime;
     @Basic(optional = false)
-    @Column(name = "DatabaseUser")
+    @Column(name = "DatabaseUser", columnDefinition = "SYSNAME(NVARCHAR(128)) NOT NULL")
     private String databaseUser;
     @Basic(optional = false)
-    @Column(name = "Event")
+    @Column(name = "Event", columnDefinition = "SYSNAME(NVARCHAR(128)) NOT NULL")
     private String event;
     @Basic(optional = true)
-    @Column(name = "'Schema'")
+    @Column(name = "Schema", columnDefinition = "SYSNAME(NVARCHAR(128)) NULL")
     private String schema;
     @Basic(optional = true)
-    @Column(name = "Object")
+    @Column(name = "Object", columnDefinition = "SYSNAME(NVARCHAR(128)) NULL")
     private String dbObject;
     @Lob
     @Basic(optional = false)
-    @Column(name = "TSQL")
+    @Column(name = "TSQL", columnDefinition = "NVARCHAR(MAX) NOT NULL")
     private String tSQL;
     @Basic(optional = true)
-    @Column(name = "XmlEvent")
+    @Column(name = "XmlEvent", columnDefinition = "XML(.)")
     private String xmlEvent;
 
     public DatabaseLog() {

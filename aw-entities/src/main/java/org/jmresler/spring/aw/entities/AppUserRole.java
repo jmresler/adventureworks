@@ -6,6 +6,7 @@ package org.jmresler.spring.aw.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -26,6 +27,7 @@ public class AppUserRole implements Serializable {
 	private static final long serialVersionUID = 7242105351313894460L;
 	
 	@Id
+	@Column(name = "UserId")
     private long appUserId;
     @Id
     private long userRoleId;

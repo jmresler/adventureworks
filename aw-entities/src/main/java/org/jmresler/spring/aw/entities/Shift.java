@@ -40,6 +40,7 @@ public class Shift implements Serializable {
     @Basic(optional = false)
     @Column(name = "ShiftID")
     private Short shiftID;
+    
     @Basic(optional = false)
     @Column(name = "StartTime")
     @Temporal(TemporalType.TIME)

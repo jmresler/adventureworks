@@ -1,0 +1,11 @@
+.idea/
+*.iml
+idea-gitignore.jar
+resources/templates.list
+resources/gitignore/*
+.gradle
+.DS_Store
+
+/verification
+/target/
+*.class

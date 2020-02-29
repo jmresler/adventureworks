@@ -20,17 +20,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonController {
 
 	@Autowired
-	protected PersonRepository pRepository;
+	protected PersonRepository repository;
 	
 	private static final Person p = new Person();
 	
 	@RequestMapping("/count")
 	public Long getPersonCount() {
-		return pRepository.count();
+		return repository.count();
 	}
 
+	@RequestMapping("/all-people")
+	public Iterable<Person> getAllPeople() {
+		return repository.findAll();
+	}
+	
 	@RequestMapping(path = "/by-bid", method = {RequestMethod.GET})
 	public Person getByBusinessID(final @RequestParam(required = true, name = "bid") Integer bid) {
-		return pRepository.findByBusinessEntityID(bid).orElse(p);
+		Person person = new Person();
+		person.setFirstName("John");
+		person.setLastName("Resler");
+		person.setBusinessEntityID(1);
+		return person;
 	}
 }

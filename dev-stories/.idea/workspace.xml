@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8edad945-b7c2-45b9-8bf7-8b0db762adf3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../aw-services/src/test/java/org/jmresler/spring/aw/repositories/AwBuildRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aw-services/src/test/java/org/jmresler/spring/aw/repositories/PersonRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_beust_jcommander_1_72.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_19_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_inject_guice_no_aop_4_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_testng_testng_7_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.m2e.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev-stories.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/jmresler/aw/stories/LoginStory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/awdillon/aw/security/LoginTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/awdillon/aw/security/LogoutTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/awdillon/aw/security/SessionTimeoutTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/testng.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/org.jmresler.aw/dev-stories/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/org.jmresler.aw/dev-stories/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/org/jmresler/aw/stories/App.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/org/jmresler/aw/stories/LoginStory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/testng.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/testng.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JenkinsFile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/createDDL.jdbc" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/createDDL.jdbc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/dropDDL.jdbc" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/dropDDL.jdbc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/AWBuildVersion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/AWBuildVersion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/AppUserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/AppUserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/BusinessEntityContact.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/BusinessEntityContact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/DatabaseLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/DatabaseLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/ErrorLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/ErrorLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Shift.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Shift.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/test/java/org/jmresler/spring/aw/entities/PersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/test/java/org/jmresler/spring/aw/entities/PersonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/test/resources/testngtestsuite.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/test/resources/testngtestsuite.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/repositories/AddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/repositories/AddressRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/repositories/PersonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/repositories/PersonRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/services/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/services/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/services/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/services/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/resources/templates/lib/helloworld.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/resources/templates/helloworld.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-services/src/test/java/org/jmresler/spring/aw/repositories/AddressRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/test/java/org/jmresler/spring/aw/repositories/AddressRepositoryTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1YV9iMibdFpfchJ2xt2s5QTFcQo" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8edad945-b7c2-45b9-8bf7-8b0db762adf3" name="Default Changelist" comment="" />
+      <created>1583017020898</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583017020898</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="697" y="233" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1583017042817">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="697" y="233" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583017042817" />
+  </component>
+</project>

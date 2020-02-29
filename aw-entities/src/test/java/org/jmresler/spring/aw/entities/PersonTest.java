@@ -28,58 +28,58 @@ public class PersonTest {
 	}
 
 	@Test
-	void testPersonFindAll() {
+	public void testPersonFindAll() {
 		Query query = em.createNamedQuery("Person.findByBusinessEntityID");
 		query.setParameter("businessEntityID", 1);
 		query.getResultList().forEach(person -> System.out.println(person));
 	}
 
 	@Test
-	void testBuilder() {
+	public void testBuilder() {
 	}
 
 	@Test
-	void testGetAddressID() {
+	public void testGetAddressID() {
 	}
 
 	@Test
-	void testGetAddressLine1() {
+	public void testGetAddressLine1() {
 	}
 
 	@Test
-	void testGetAddressLine2() {
+	public void testGetAddressLine2() {
 	}
 
 	@Test
-	void testGetCity() {
+	public void testGetCity() {
 	}
 
 	@Test
-	void testGetPostalCode() {
+	public void testGetPostalCode() {
 	}
 
 	@Test
-	void testGetSpatialLocation() {
+	public void testGetSpatialLocation() {
 	}
 
 	@Test
-	void testGetRowguid() {
+	public void testGetRowguid() {
 	}
 
 	@Test
-	void testGetModifiedDate() {
+	public void testGetModifiedDate() {
 	}
 
 	@Test
-	void testGetStateProvinceID() {
+	public void testGetStateProvinceID() {
 	}
 
 	@Test
-	void testGetBusinessEntityAddressCollection() {
+	public void testGetBusinessEntityAddressCollection() {
 	}
 
 	@Test
-	void testCanEqual() {
+	public void testCanEqual() {
 	}
 
 }

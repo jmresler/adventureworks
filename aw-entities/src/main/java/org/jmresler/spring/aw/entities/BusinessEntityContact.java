@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author John
@@ -42,12 +44,15 @@ public class BusinessEntityContact implements Serializable {
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    @JsonIgnore
     @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private BusinessEntity businessEntity;
+    @JsonIgnore
     @JoinColumn(name = "ContactTypeID", referencedColumnName = "ContactTypeID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private ContactType contactType;
+    @JsonIgnore
     @JoinColumn(name = "PersonID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Person person;

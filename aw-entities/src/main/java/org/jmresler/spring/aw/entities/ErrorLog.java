@@ -1,6 +1,7 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
@@ -35,12 +36,11 @@ public class ErrorLog implements Serializable {
     @Basic(optional = false)
     @Column(name = "ErrorLogID")
     private Integer errorLogID;
-    @Temporal(TemporalType.TIME)
     @Basic(optional = false)
     @Column(name = "ErrorTime")
-    private Date errorTime;
+    private Timestamp errorTime;
     @Basic(optional = false)
-    @Column(name = "UserName")
+    @Column(name = "UserName", columnDefinition = "SYSNAME(NVARCHAR(128)) NOT NULL")
     private String userName;
     @Basic(optional = false)
     @Column(name = "ErrorNumber")
@@ -52,13 +52,13 @@ public class ErrorLog implements Serializable {
     @Column(name = "ErrorState")
     private Integer errorState;
     @Basic(optional = true)
-    @Column(name = "ErrorProcedure")
+    @Column(name = "ErrorProcedure", columnDefinition = "NVARCHAR(126) NULL")
     private String errorProcedure;
     @Basic(optional = true)
     @Column(name = "ErrorLine")
     private Integer errorLine;    
     @Basic(optional = false)
-    @Column(name = "ErrorMessage")
+    @Column(name = "ErrorMessage", columnDefinition = "NVARCHAR(4000) NOT NULL")
     private String errorMessage;    
     
     public ErrorLog() {
@@ -69,7 +69,7 @@ public class ErrorLog implements Serializable {
     }
     
     
-    public ErrorLog(Integer errorLogID, Date ErrorTime, String userName, Integer errorNumber, Integer errorSeverity, Integer errorState, String errorProcedure, Integer errorLine, String errorMessage) {
+    public ErrorLog(Integer errorLogID, Timestamp ErrorTime, String userName, Integer errorNumber, Integer errorSeverity, Integer errorState, String errorProcedure, Integer errorLine, String errorMessage) {
         this.errorLogID = errorLogID;
         this.errorTime = ErrorTime;
         this.userName = userName;
@@ -89,11 +89,11 @@ public class ErrorLog implements Serializable {
         this.errorLogID = errorLogID;
     }
 
-    public Date getErrorTime() {
+    public Timestamp getErrorTime() {
         return errorTime;
     }
 
-    public void setErrorTime(Date ErrorTime) {
+    public void setErrorTime(Timestamp ErrorTime) {
         this.errorTime = ErrorTime;
     }
 

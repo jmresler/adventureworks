@@ -10,13 +10,21 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author johnm
  *
  */
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class AddressRepositoryTest {
 
+	@Autowired AddressRepository repository;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -58,7 +66,7 @@ public class AddressRepositoryTest {
 	 */
 	@Test
 	void testFindAll() {
-		fail("Not yet implemented");
+		System.err.println(repository.findById(1).get());
 	}
 
 	/**

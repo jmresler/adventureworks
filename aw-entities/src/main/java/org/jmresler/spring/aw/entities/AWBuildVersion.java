@@ -1,6 +1,7 @@
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
@@ -33,19 +34,17 @@ public class AWBuildVersion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "SystemInformationID")
+    @Column(name = "SystemInformationID", columnDefinition = "TINYINT(1) DEFAULT 0")
     private Short systemInformationID;
     @Basic(optional = false)
-    @Column(name = "[Database Version]")
+    @Column(name = "[Database Version]", columnDefinition = "NVARCHAR")
     private String databaseVersion;
-    @Temporal(TemporalType.TIME)
     @Basic(optional = false)
     @Column(name = "VersionDate")
-    private Date versionDate;
-    @Temporal(TemporalType.DATE)
+    private Timestamp versionDate;
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
-    private Date modifiedDate;
+    private Timestamp modifiedDate;
 
     public AWBuildVersion() {
     }
@@ -54,7 +53,7 @@ public class AWBuildVersion implements Serializable {
         this.systemInformationID = systemInformationID;
     }
 
-    public AWBuildVersion(Short systemInformationID, String databaseVersion, Date versionDate, Date modifiedDate) {
+    public AWBuildVersion(Short systemInformationID, String databaseVersion, Timestamp versionDate, Timestamp modifiedDate) {
         this.systemInformationID = systemInformationID;
         this.databaseVersion = databaseVersion;
         this.versionDate = versionDate;
@@ -77,19 +76,19 @@ public class AWBuildVersion implements Serializable {
         this.databaseVersion = databaseVersion;
     }
 
-    public Date getVersionDate() {
+    public Timestamp getVersionDate() {
         return versionDate;
     }
 
-    public void setVersionDate(Date versionDate) {
+    public void setVersionDate(Timestamp versionDate) {
         this.versionDate = versionDate;
     }
 
-    public Date getModifiedDate() {
+    public Timestamp getModifiedDate() {
         return modifiedDate;
     }
 
-    public void setModifiedDate(Date modifiedDate) {
+    public void setModifiedDate(Timestamp modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 

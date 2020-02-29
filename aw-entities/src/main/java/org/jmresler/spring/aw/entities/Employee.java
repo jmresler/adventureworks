@@ -46,7 +46,7 @@ public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 	
     @Lob
-    @Column(name = "OrganizationNode")
+    @Column(name = "OrganizationNode", columnDefinition = "HIERARCHYID")
     private byte[] organizationNode;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,25 +54,25 @@ public class Employee implements Serializable {
     @Column(name = "BusinessEntityID")
     private Integer businessEntityID;
     @Basic(optional = false)
-    @Column(name = "NationalIDNumber")
+    @Column(name = "NationalIDNumber", columnDefinition = "NVARCHAR(15) NOT NULL")
     private String nationalIDNumber;
     @Basic(optional = false)
-    @Column(name = "LoginID")
+    @Column(name = "LoginID", columnDefinition = "NVARCHAR(256) NOT NULL")
     private String loginID;
     @Column(name = "OrganizationLevel")
     private Short organizationLevel;
     @Basic(optional = false)
-    @Column(name = "JobTitle")
+    @Column(name = "JobTitle", columnDefinition = "NVARCHAR(50) NOT NULL")
     private String jobTitle;
     @Basic(optional = false)
     @Column(name = "BirthDate")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
     @Basic(optional = false)
-    @Column(name = "MaritalStatus")
+    @Column(name = "MaritalStatus", columnDefinition = "NCHAR(1) NOT NULL")
     private String maritalStatus;
     @Basic(optional = false)
-    @Column(name = "Gender")
+    @Column(name = "Gender", columnDefinition = "NCHAR(1) NOT NULL")
     private String gender;
     @Basic(optional = false)
     @Column(name = "HireDate")
@@ -85,7 +85,7 @@ public class Employee implements Serializable {
     @Column(name = "SickLeaveHours")
     private short sickLeaveHours;
     @Basic(optional = false)
-    @Column(name = "rowguid")
+    @Column(name = "rowguid", columnDefinition = "UNIQUEIDENTIFIER")
     private String rowguid;
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
