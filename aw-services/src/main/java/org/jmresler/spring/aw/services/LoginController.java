@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author John
  *
  */
-@RestController(value = "/access")
+@RestController
 public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -30,9 +30,8 @@ public class LoginController {
 	@RequestMapping(value = "/login", method =  {POST, GET})
 	public boolean login(@WebParam(name = "userName") String userName, @WebParam(name = "password") String password) {
 		boolean success = false;
-		appUserRepository.findByUserName(userName);
-		logger.info("userName: " + userName + " password: " + password);
-		System.err.println("userName: " + userName + " password: " + password);
+		AppUser user = appUserRepository.findByUserName(userName);
+		logger.info("user -> " + user);
 		return success;
 	}
 
@@ -44,7 +43,7 @@ public class LoginController {
 		return success;
 	}
 
-	@RequestMapping(value="/arbitrary", method = GET)
+	@RequestMapping(value="/arbitrary", produces = {"application/json"}, method = GET)
 	public Object arbitrary() {
 		return new Object();
 	}

@@ -116,7 +116,10 @@ public class AddressType implements Serializable {
 
     @Override
     public String toString() {
-        return "org.jmresler.spring.aw.entities.AddressType[ addressTypeID=" + addressTypeID + " ]";
+        return "AddressType{" + "addressTypeID=" + addressTypeID 
+                              + ", rowguid=" + rowguid 
+                              + ", modifiedDate=" + modifiedDate + '}';
     }
+
     
 }

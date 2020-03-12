@@ -2,64 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8edad945-b7c2-45b9-8bf7-8b0db762adf3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../aw-services/src/test/java/org/jmresler/spring/aw/repositories/AwBuildRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../aw-services/src/test/java/org/jmresler/spring/aw/repositories/PersonRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_beust_jcommander_1_72.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_19_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_inject_guice_no_aop_4_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_testng_testng_7_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_21.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.m2e.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev-stories.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/jmresler/aw/stories/LoginStory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/awdillon/aw/security/LoginTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/awdillon/aw/security/LogoutTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/awdillon/aw/security/SessionTimeoutTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/testng.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/org.jmresler.aw/dev-stories/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/org.jmresler.aw/dev-stories/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/org/jmresler/aw/stories/App.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/org/jmresler/aw/stories/LoginStory.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/testng.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/testng.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JenkinsFile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-entities/createDDL.jdbc" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/createDDL.jdbc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-entities/dropDDL.jdbc" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/dropDDL.jdbc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-entities/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/AWBuildVersion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/AWBuildVersion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/AppUserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/AppUserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/createDDL.jdbc" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/createDDL.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/dropDDL.jdbc" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/dropDDL.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/AddressType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/AddressType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/BusinessEntityContact.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/BusinessEntityContact.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/DatabaseLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/DatabaseLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/ErrorLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/ErrorLog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Shift.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/Shift.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-entities/src/test/java/org/jmresler/spring/aw/entities/PersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/test/java/org/jmresler/spring/aw/entities/PersonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/StateProvince.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/main/java/org/jmresler/spring/aw/entities/StateProvince.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/test/java/org/jmresler/spring/aw/entities/AddressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/test/java/org/jmresler/spring/aw/entities/AddressTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-entities/src/test/java/org/jmresler/spring/aw/entities/PersonTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../aw-entities/src/test/resources/testngtestsuite.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-entities/src/test/resources/testngtestsuite.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/repositories/AddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/repositories/AddressRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/repositories/PersonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/repositories/PersonRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/services/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/services/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/services/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/java/org/jmresler/spring/aw/services/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-services/src/main/resources/templates/lib/helloworld.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/main/resources/templates/helloworld.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aw-services/src/test/java/org/jmresler/spring/aw/repositories/AddressRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/test/java/org/jmresler/spring/aw/repositories/AddressRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aw-services/src/test/java/org/jmresler/spring/aw/services/PersonControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aw-services/src/test/java/org/jmresler/spring/aw/services/PersonControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/org.jmresler.aw/dev-stories/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/org.jmresler.aw/dev-stories/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/testng.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/testng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,5 +77,9 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="697" y="233" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583017042817" />
+    <state x="668" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1583206712089">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="668" y="369" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583206712089" />
   </component>
 </project>

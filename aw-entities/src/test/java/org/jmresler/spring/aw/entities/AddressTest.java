@@ -13,72 +13,102 @@ import org.testng.annotations.Test;
 
 public class AddressTest {
 
-	private static final Logger logger = Logger.getAnonymousLogger();
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("aw-entities-pu");
-	private EntityManager em = emf.createEntityManager();
+    private static final Logger logger = Logger.getAnonymousLogger();
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("aw-entities-pu");
+    private EntityManager em = emf.createEntityManager();
 
-	@BeforeClass
-	private void setup() {
+    @BeforeClass
+    private void setup() {
 
-	}
+    }
 
-	@AfterClass
-	private void tearDown() {
-	}
+    @AfterClass
+    private void tearDown() {
+    }
 
-	@Test
-	void testAddressInteger() {
-		Query query = em.createNamedQuery("Address.findByCity");
-		query.setParameter("city", "Cheltenham");
-		query.getResultList().forEach(result -> System.out.println("{" + result.toString() + "}" ));
-	}
+    @Test(enabled = false)
+    public void testAddressFindAll() {
+        Query query = em.createNamedQuery("Address.findAll");
+        query.getResultList().forEach(address -> {
+            System.out.println(address);
+        });
 
-	@Test
-	void testBuilder() {
-	}
+    }
 
-	@Test
-	void testGetAddressID() {
-	}
+    @Test
+    public void testAddressFindById() {
+        Query query = em.createNamedQuery("Address.findByAddressID");
+        query.setParameter("addressID", 1);
+        query.getResultList().forEach(address -> {
+            System.out.println(address);
+        });
+    }
 
-	@Test
-	void testGetAddressLine1() {
-	}
+    @Test
+    public void testfindByAddressLine1() {
+        Query query = em.createNamedQuery("Address.findByAddressLine1");
+        query.setParameter("addressLine1", "250 Race Court");
+        query.getResultList().forEach(address -> {
+            System.out.println(address);
+        });
+    }
 
-	@Test
-	void testGetAddressLine2() {
-	}
+    @Test
+    public void testAddAddress() {
 
-	@Test
-	void testGetCity() {
-	}
+    }
+    
+    @Test
+    public void saveAddress() {
+        
+    }
+    
+    @Test
+    public void testBuilder() {
+    }
 
-	@Test
-	void testGetPostalCode() {
-	}
+    @Test
+    public void testGetAddressID() {
+    }
 
-	@Test
-	void testGetSpatialLocation() {
-	}
+    @Test
+    public void testGetAddressLine1() {
+    }
 
-	@Test
-	void testGetRowguid() {
-	}
+    @Test
+    public void testGetAddressLine2() {
+    }
 
-	@Test
-	void testGetModifiedDate() {
-	}
+    @Test
+    public void testGetCity() {
+    }
 
-	@Test
-	void testGetStateProvinceID() {
-	}
+    @Test
+    public void testGetPostalCode() {
+    }
 
-	@Test
-	void testGetBusinessEntityAddressCollection() {
-	}
+    @Test
+    public void testGetSpatialLocation() {
+    }
 
-	@Test
-	void testCanEqual() {
-	}
+    @Test
+    public void testGetRowguid() {
+    }
+
+    @Test
+    public void testGetModifiedDate() {
+    }
+
+    @Test
+    public void testGetStateProvinceID() {
+    }
+
+    @Test
+    public void testGetBusinessEntityAddressCollection() {
+    }
+
+    @Test
+    public void testCanEqual() {
+    }
 
 }

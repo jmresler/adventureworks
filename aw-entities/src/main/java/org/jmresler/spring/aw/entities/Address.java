@@ -1,6 +1,8 @@
 package org.jmresler.spring.aw.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -22,7 +24,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  *
@@ -38,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
     @NamedQuery(name = "Address.findByAddressLine2", query = "SELECT a FROM Address a WHERE a.addressLine2 = :addressLine2"),
     @NamedQuery(name = "Address.findByCity", query = "SELECT a FROM Address a WHERE a.city = :city"),
     @NamedQuery(name = "Address.findByPostalCode", query = "SELECT a FROM Address a WHERE a.postalCode = :postalCode"),
-    @NamedQuery(name = "Address.findByRowguid", query = "SELECT a FROM Address a WHERE a.rowguid = :rowguid"),
     @NamedQuery(name = "Address.findByModifiedDate", query = "SELECT a FROM Address a WHERE a.modifiedDate = :modifiedDate")})
 public class Address implements Serializable {
 
@@ -76,7 +76,6 @@ public class Address implements Serializable {
     @JoinColumn(name = "StateProvinceID", referencedColumnName = "StateProvinceID")
     @ManyToOne(optional = false)
     private StateProvince stateProvinceID;
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.LAZY)
     private Collection<BusinessEntityAddress> businessEntityAddressCollection;
 
@@ -198,7 +197,19 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "org.jmresler.spring.aw.entities.Address[ addressID=" + addressID + " ]";
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("addressID -> ")
+               .append(this.addressID)
+                .append("\n addressLine1 -> ")
+                .append(this.addressLine1)
+                .append("\n addressLine2 -> ")
+                .append(this.addressLine2)
+                .append("\n city -> ")
+                .append(this.city)
+                .append("\n state -> ")
+                .append(this.stateProvinceID)
+                .append('\n');
+        return buffer.toString();
     }
     
 }

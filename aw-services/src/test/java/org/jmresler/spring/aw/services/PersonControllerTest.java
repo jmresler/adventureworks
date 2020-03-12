@@ -12,100 +12,95 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 class PersonControllerTest {
 
-	@Autowired
-	protected PersonRepository pRepository;
-	
-	protected static final Logger logger = Logger.getAnonymousLogger();
-	
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
+    @Autowired
+    protected PersonRepository pRepository;
 
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
+    protected static final Logger logger = Logger.getAnonymousLogger();
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
+    @BeforeAll
+    static void setUpBeforeClass() throws Exception {
+    }
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
+    @AfterAll
+    static void tearDownAfterClass() throws Exception {
+    }
 
-	@Test
-	void testGetIdByValue() {
-		System.out.println(pRepository.findByBusinessEntityID(1));
-	}
+    @BeforeEach
+    void setUp() throws Exception {
+    }
 
-	@Test
-	void testCountPeople() {
+    @AfterEach
+    void tearDown() throws Exception {
+    }
 
-	}
+    @Test
+    void testGetIdByValue() {
+        System.out.println(pRepository.findByBusinessEntityID(1));
+    }
 
-	@Test
-	void testListPeople() {
+    @Test
+    void testCountPeople() {
 
-	}
+    }
 
-	@Test
-	void testObject() {
+    @Test
+    void testListPeople() {
 
-	}
+    }
 
-	@Test
-	void testGetClass() {
+    @Test
+    void testObject() {
 
-	}
+    }
 
-	@Test
-	void testHashCode() {
+    @Test
+    void testGetClass() {
 
-	}
+    }
 
-	@Test
-	void testEquals() {
+    @Test
+    void testHashCode() {
 
-	}
+    }
 
-	@Test
-	void testClone() {
+    @Test
+    void testEquals() {
 
-	}
+    }
 
-	@Test
-	void testToString() {
+    @Test
+    void testClone() {
 
-	}
+    }
 
-	@Test
-	void testNotify() {
+    @Test
+    void testToString() {
 
-	}
+    }
 
-	@Test
-	void testNotifyAll() {
+    @Test
+    void testNotify() {
 
-	}
+    }
 
-	@Test
-	void testWaitLong() {
+    @Test
+    void testNotifyAll() {
 
-	}
+    }
 
-	@Test
-	void testWaitLongInt() {
+    @Test
+    void testWaitLong() {
 
-	}
+    }
 
-	@Test
-	void testWait() {
+    @Test
+    void testWaitLongInt() {
 
-	}
+    }
 
-	@Test
-	void testFinalize() {
+    @Test
+    void testWait() {
 
-	}
+    }
 
 }

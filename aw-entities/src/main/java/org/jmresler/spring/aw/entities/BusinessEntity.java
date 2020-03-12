@@ -1,5 +1,7 @@
 package org.jmresler.spring.aw.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -47,6 +49,7 @@ public class BusinessEntity implements Serializable {
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessEntity")
     private Collection<BusinessEntityContact> businessEntityContactCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessEntity")

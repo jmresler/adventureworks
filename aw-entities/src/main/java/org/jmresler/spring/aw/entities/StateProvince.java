@@ -155,7 +155,14 @@ public class StateProvince implements Serializable {
 
     @Override
     public String toString() {
-        return "org.jmresler.spring.aw.entities.StateProvince[ stateProvinceID=" + stateProvinceID + " ]";
+        return "StateProvince{stateProvinceID=" + stateProvinceID 
+                + ", stateProvinceCode=" + stateProvinceCode 
+                + ", territoryID=" + territoryID 
+                + ", rowguid=" + rowguid 
+                + ", modifiedDate=" + modifiedDate 
+                + ", addressCollection=" + addressCollection 
+                + ", countryRegionCode=" + countryRegionCode + '}';
     }
+
     
 }

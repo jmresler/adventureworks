@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BDD Test Suite">
+<suite name="BDD Test Suite"
+			allow-return-values="false"
+			configfailurepolicy="skip"
+			data-provider-thread-count="5"
+			guice-stage="DEVELOPMENT"
+			verbose="10">
+
+
 
 	<test name="Security Tests">
 		<parameter name="userid" value="tester456@gmail.com" />
 		<parameter name="password" value="test@123" />
 		<classes>
-			<class name="org.awdillon.aw.LoginTest" />
-			<class name="org.awdillon.aw.LogoutTest" />
-			<class name="org.awdillon.aw.SessionTimeoutTest"/>
+			<class name="org.awdillon.aw.security.LoginTest" />
+			<class name="org.awdillon.aw.security.LogoutTest" />
+			<class name="org.awdillon.aw.security.SessionTimeoutTest"/>
 		</classes>
 	</test>
 
