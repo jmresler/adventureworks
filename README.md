@@ -2,9 +2,10 @@
 Combination of Spring Boot, React and the SQL Server AdventureWorks2017 database (data model)
 
 The parent project is broken down into three seperate child projects,
-	* aw-entities
-	* aw-services
-	* aw-ui
+
+1. aw-entities
+2. aw-services
+3. aw-ui
 	
 
 The projects are all maven based, however the aw-ui does not have the npm plugin setup yet and is not hooked into the aw-services project and so can be run in standalone mode using npm start. This will not however provide any connected functionality with 
