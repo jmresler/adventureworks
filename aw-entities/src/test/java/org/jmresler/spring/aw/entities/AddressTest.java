@@ -1,6 +1,10 @@
 package org.jmresler.spring.aw.entities;
 
-import java.util.logging.Logger;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,7 +17,6 @@ import org.testng.annotations.Test;
 
 public class AddressTest {
 
-    private static final Logger logger = Logger.getAnonymousLogger();
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("aw-entities-pu");
     private EntityManager em = emf.createEntityManager();
 
@@ -35,7 +38,7 @@ public class AddressTest {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void testAddressFindById() {
         Query query = em.createNamedQuery("Address.findByAddressID");
         query.setParameter("addressID", 1);
@@ -44,7 +47,7 @@ public class AddressTest {
         });
     }
 
-    @Test
+    @Test(enabled = false)
     public void testfindByAddressLine1() {
         Query query = em.createNamedQuery("Address.findByAddressLine1");
         query.setParameter("addressLine1", "250 Race Court");
@@ -55,7 +58,19 @@ public class AddressTest {
 
     @Test
     public void testAddAddress() {
-
+    	Address address = new Address();
+    	address.setAddressLine1("6130 Alma Road");
+    	address.setCity("McKinney");
+    	address.setPostalCode("75070");
+    	address.setBusinessEntityAddressCollection(Collections.emptyList());
+    	address.setModifiedDate(new Date());
+    	address.setRowguid(UUID.randomUUID().toString());
+    	StateProvince sp = new StateProvince(1);
+    	sp.setAddressCollection(Arrays.asList(address));
+    	address.setStateProvinceID(sp);
+    	em.getTransaction().begin();
+    	em.persist(address);
+    	em.getTransaction().commit();
     }
     
     @Test

@@ -13,7 +13,7 @@
     <test name="Regression1">
         <classes>
             <class name="org.jmresler.spring.aw.entities.AddressTest" />
-            <class name="org.jmresler.spring.aw.entities.PersonTest" />
+            <!-- class name="org.jmresler.spring.aw.entities.PersonTest" /  -->
         </classes>
     </test>
 </suite>
