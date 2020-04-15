@@ -1,6 +1,5 @@
 package org.jmresler.spring.aw.repositories;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.jmresler.spring.aw.entities.BillOfMaterials;
@@ -10,7 +9,7 @@ public interface BillOfMaterialsRepository extends CrudRepository<BillOfMaterial
 	
 	Optional<BillOfMaterials> findByBillOfMaterialsID(Integer id);
 	
-	List<BillOfMaterials> findAllBillOfMaterials();
+	Optional<BillOfMaterials> findByProductAssemblyID(Integer id);
 	
 	
 

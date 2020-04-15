@@ -1,6 +1,6 @@
 package org.jmresler.spring.aw.entities;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -38,26 +38,39 @@ public class BillOfMaterialsTest {
 	@Test
 	public void testFindAll() {
         Query query = em.createNamedQuery("BillOfMaterials.findAll");
-        query.getResultList().forEach(bom -> {
-            System.out.println(bom);
-        });
-
+        int numResults = query.getResultList().size();
+        assertTrue(numResults == 2679);
 	}
 
 	@Test
 	public void testGetBillOfMaterialsID() {
+		BillOfMaterials bom = em.find(BillOfMaterials.class, 1);
+		assertTrue(bom.toString().contains("[ billOfMaterialsID=1 ]"));
 	}
 
 	@Test
 	public void testSetBillOfMaterialsID() {
+		/*
+		 * ID's are auto generated so this method would fail
+		 */
 	}
 
 	@Test
 	public void testGetBOMLevel() {
+		Query query = em.createNamedQuery("BillOfMaterials.findByBOMLevel");
+		query.setParameter("bOMLevel", 3);
+		assertTrue(query.getResultList().size() == 31);
+		query.setParameter("bOMLevel", 2);
+		assertTrue(query.getResultList().size() == 993);		
+		query.setParameter("bOMLevel", 1);
+		assertTrue(query.getResultList().size() == 1548);		
+		query.setParameter("bOMLevel", 0);
+		assertTrue(query.getResultList().size() == 103);		
 	}
 
 	@Test
 	public void testGetPerAssemblyQty() {
+		
 	}
 
 	@Test
