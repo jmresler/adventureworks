@@ -70,7 +70,11 @@ public class BillOfMaterialsTest {
 
 	@Test
 	public void testGetPerAssemblyQty() {
-		
+		Query query = em.createNamedQuery("BillOfMaterials.findByPerAssemblyQty");
+		query.setParameter("perAssemblyQty", 1);
+		query.getResultList().forEach(result -> {
+			System.out.println(result);
+		});
 	}
 
 	@Test

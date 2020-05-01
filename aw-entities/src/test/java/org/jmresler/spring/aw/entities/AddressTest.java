@@ -100,7 +100,7 @@ public class AddressTest {
     	em.getTransaction().commit();
     }
     
-    @Test
+    @Test(enabled = false)
     public void saveAddress() {
         Query query = em.createNamedQuery("Address.findByAddressLine1");
         query.setParameter("addressLine1", "250 Race Court");
