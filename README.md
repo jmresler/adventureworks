@@ -7,7 +7,7 @@ The parent project is broken down into three seperate child projects,
 2. aw-services
 3. aw-ui
 	
-
+	
 The projects are all maven based, however the aw-ui does not have the npm plugin setup yet and is not hooked into the aw-services project and so can be run in standalone mode using npm start. This will not however provide any connected functionality with 
 aw-services.
 
@@ -42,6 +42,25 @@ The application is intended to be built using Jenkins and I use the 'Blue Ocean'
 This is what the functionality of the JenkinsFile is for. It is required for Blue Ocean and can be used
 in Jenkins on its own also.
 
+# Looking For Contributors	
+
 Feel free to fork the project and meddle with it. Suggest features/changes/functionality completion :-).
+
+
+  Copyright 2020 ISV
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ 
+
 
 - JMR
