@@ -25,6 +25,7 @@
 		<class>org.jmresler.spring.aw.entities.ContactType</class>
 		<class>org.jmresler.spring.aw.entities.StateProvince</class>
 		<class>org.jmresler.spring.aw.entities.Person</class>
+		<class>org.jmresler.spring.aw.entities.MessageOfTheDay</class>
 		<class>org.jmresler.spring.aw.entities.BusinessEntityAddress</class>
 		<class>org.jmresler.spring.aw.entities.AddressType</class>
 		<class>org.jmresler.spring.aw.entities.VStateProvinceCountryRegion</class>
@@ -100,15 +101,24 @@
 		<class>org.jmresler.spring.aw.entities.ErrorLog</class>
 		<class>org.jmresler.spring.aw.entities.AppUser</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url"	value="jdbc:sqlserver://localhost\SQLEXPRESS:1433;databaseName=AdventureWorks2017" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:sqlserver://localhost\SQLEXPRESS:1433;databaseName=AdventureWorks2017" />
 			<property name="javax.persistence.jdbc.user" value="awadmin" />
-			<property name="javax.persistence.jdbc.driver"	value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-			<property name="javax.persistence.jdbc.password" value="password" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<property name="javax.persistence.jdbc.password"
+				value="password" />
 			<property name="eclipselink.logging.level" value="OFF" />
-			<property name="javax.persistence.schema-generation.scripts.action" value="create"/>
-			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
-			<property name="eclipselink.ddl-generation.output-mode" value="sql-script"/>
+			<property
+				name="javax.persistence.schema-generation.scripts.action"
+				value="create" />
+			<property
+				name="javax.persistence.schema-generation.create-source"
+				value="metadata-then-script" />
+			<property name="eclipselink.ddl-generation"
+				value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode"
+				value="sql-script" />
 		</properties>
 	</persistence-unit>
 </persistence>

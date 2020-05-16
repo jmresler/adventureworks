@@ -1,6 +1,7 @@
 package org.jmresler.spring.aw.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jmresler.spring.aw.entities.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,5 +19,7 @@ public interface AddressRepository extends JpaRepository<Address, Integer> {
 	List<Address> findByCity(String city);
 	
 	List<Address> findByPostalCode(String postalCode);
+	
+	Optional<Address> findByAddressID(Integer addressID);
 	
 }
