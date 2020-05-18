@@ -25,7 +25,6 @@
 		<class>org.jmresler.spring.aw.entities.ContactType</class>
 		<class>org.jmresler.spring.aw.entities.StateProvince</class>
 		<class>org.jmresler.spring.aw.entities.Person</class>
-		<class>org.jmresler.spring.aw.entities.MessageOfTheDay</class>
 		<class>org.jmresler.spring.aw.entities.BusinessEntityAddress</class>
 		<class>org.jmresler.spring.aw.entities.AddressType</class>
 		<class>org.jmresler.spring.aw.entities.VStateProvinceCountryRegion</class>
