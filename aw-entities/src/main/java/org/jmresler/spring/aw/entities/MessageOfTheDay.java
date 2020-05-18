@@ -1,5 +1,6 @@
 package org.jmresler.spring.aw.entities;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -9,13 +10,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(catalog = "System", name = "MOTD")
-public class MessageOfTheDay {
+@NamedQueries({
+    @NamedQuery(name = "MessageOfTheDay.findAll", query = "SELECT m FROM MessageOfTheDay m"),
+    @NamedQuery(name = "MessageOfTheDay.findByID", query = "SELECT m FROM MessageOfTheDay m WHERE m.id = :id"),
+    @NamedQuery(name = "MessageOfTheDay.findByMessage", query = "SELECT m FROM MessageOfTheDay m WHERE m.message = :message"),
+    @NamedQuery(name = "MessageOfTheDay.findByStartDate", query = "SELECT m FROM MessageOfTheDay m WHERE m.startDate = :startDate"),
+    @NamedQuery(name = "MessageOfTheDay.findByEndDate", query = "SELECT m FROM MessageOfTheDay m WHERE m.endDate = :endDate"),
+    @NamedQuery(name = "MessageOfTheDay.findByLastUpdate", query = "SELECT m FROM MessageOfTheDay m WHERE m.lastUpdate = :lastUpdate")})
+public class MessageOfTheDay implements Serializable {
+
+	private static final long serialVersionUID = 3997429174866783670L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
