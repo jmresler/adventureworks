@@ -22,12 +22,12 @@
  		Upon submitting the credentials, the UI should indicate a user credentials
  		are invalid under the following circumstances
  		
- 			-- If my user name contains any of the following regular expression characters
-  				: (<white space> | % | ^ | # | ! | * | () | ` | ~ | $ | + | " | ' | : | ; < | > | ? | | / | , | \)  
- 				The UI should reject the login and display a message
+ 		-- If my user name contains any of the following regular expression characters
+  			: (<white space> | % | ^ | # | ! | * | () | ` | ~ | $ | + | " | ' | : | ; < | > | ? | | / | , | \)  
+ 			The UI should reject the login and display a message
  						
- 			-- If my user name contains any of the following regular expression characters
- 			 	: (<white space> | % | ^ | # | ! | * | () | ` | ~ | $ | + | ; | < | > | ? | | / | , | \)
+ 		-- If my user name contains any of the following regular expression characters
+ 		 	: (<white space> | % | ^ | # | ! | * | () | ` | ~ | $ | + | ; | < | > | ? | | / | , | \)
  				The UI should reject the login and display a message
  				
  		
@@ -70,8 +70,8 @@ A task can be in the following states:
         	
         	<dependency>
         		<groupId>org.awdillon</groupId>
-				<artifactId>aw-security</artifactId>
-				<version>1.0-SNAPSHOT</version>
+			<artifactId>aw-security</artifactId>
+			<version>1.0-SNAPSHOT</version>
         	</dependency>
 
 ```
