@@ -11,11 +11,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 
-import org.jmresler.spring.aw.entities.AppUser;
-import org.jmresler.spring.aw.repositories.AppUserRepository;
 import org.keycloak.KeycloakSecurityContext;
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -70,15 +67,5 @@ public class LoginController {
 	 */
 	private KeycloakSecurityContext getKeycloakSecurityContext() {
 		return (KeycloakSecurityContext) request.getAttribute(KeycloakSecurityContext.class.getName());
-	}
-
-	/**
-	 * 
-	 * @param password
-	 * @param userPassword
-	 * @return
-	 */
-	private boolean passwordMatches(String password, String userPassword) {
-		return BCrypt.checkpw(password, userPassword);
 	}
 }

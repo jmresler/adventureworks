@@ -29,7 +29,10 @@ aw-entities/.project
 aw-entities/.settings/org.eclipse.core.resources.prefs
 aw-entities/.settings/org.eclipse.jdt.core.prefs
 aw-entities/.settings/org.eclipse.m2e.core.prefs
+aw-entities/createDDL.jdbc
+aw-entities/dropDDL.jdbc
 /aw-ui/nbproject/private/
+
 
 Servers/*
 RemoteSystemsTempFiles/*

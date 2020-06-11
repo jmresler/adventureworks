@@ -347,92 +347,6 @@ GO
 
 -------------------------------------------------------------------------------
 
-USE [AdventureWorks2017]
-GO
-
-/****** Object:  Table [HumanResources].[AppUser]    Script Date: 12/12/2019 6:45:56 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [HumanResources].[AppUser](
-	[ID] [bigint] NOT NULL,
-	[UserName] [varchar](250) NOT NULL,
-	[Password] [varchar](250) NOT NULL,
-	[LoginAttempts] [int] NOT NULL,
-	[LoginHint1] [varchar](1024) NOT NULL,
-	[LoginHintAnswer1] [varchar](1024) NOT NULL,
-	[LoginHint2] [varchar](1024) NOT NULL,
-	[LoginHintAnswer2] [varchar](1024) NOT NULL,
-	[LoginHint3] [varchar](1024) NOT NULL,
-	[LoginHintAnswer3] [varchar](1024) NOT NULL,
-	[IsActive] [bit] NOT NULL,
-	[LastUpdate] [datetime] NOT NULL,
-	[AppUserIdFK] [bigint] NOT NULL,
- CONSTRAINT [PK_AppUser] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
--------------------------------------------------------------------------------
-
-CREATE TABLE [HumanResources].[AppUserRole](
-	[UserId] [bigint] NOT NULL,
-	[UserRoleId] [bigint] NOT NULL,
- CONSTRAINT [PK_AppUserRole] PRIMARY KEY CLUSTERED 
-(
-	[UserId] ASC,
-	[UserRoleId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
-ALTER TABLE [HumanResources].[AppUserRole]  WITH CHECK ADD  CONSTRAINT [FK_AppUserRole_AppUser] FOREIGN KEY([UserId])
-REFERENCES [HumanResources].[AppUser] ([ID])
-GO
-
-ALTER TABLE [HumanResources].[AppUserRole] CHECK CONSTRAINT [FK_AppUserRole_AppUser]
-GO
-
-ALTER TABLE [HumanResources].[AppUserRole]  WITH CHECK ADD  CONSTRAINT [FK_AppUserRole_UserRole] FOREIGN KEY([UserRoleId])
-REFERENCES [HumanResources].[UserRole] ([ID])
-GO
-
-ALTER TABLE [HumanResources].[AppUserRole] CHECK CONSTRAINT [FK_AppUserRole_UserRole]
-GO
--------------------------------------------------------------------------------
-
-CREATE TABLE [HumanResources].[AppUserRole](
-	[UserId] [bigint] NOT NULL,
-	[UserRoleId] [bigint] NOT NULL,
- CONSTRAINT [PK_AppUserRole] PRIMARY KEY CLUSTERED 
-(
-	[UserId] ASC,
-	[UserRoleId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
-ALTER TABLE [HumanResources].[AppUserRole]  WITH CHECK ADD  CONSTRAINT [FK_AppUserRole_AppUser] FOREIGN KEY([UserId])
-REFERENCES [HumanResources].[AppUser] ([ID])
-GO
-
-ALTER TABLE [HumanResources].[AppUserRole] CHECK CONSTRAINT [FK_AppUserRole_AppUser]
-GO
-
-ALTER TABLE [HumanResources].[AppUserRole]  WITH CHECK ADD  CONSTRAINT [FK_AppUserRole_UserRole] FOREIGN KEY([UserRoleId])
-REFERENCES [HumanResources].[UserRole] ([ID])
-GO
-
-ALTER TABLE [HumanResources].[AppUserRole] CHECK CONSTRAINT [FK_AppUserRole_UserRole]
-GO
-
--------------------------------------------------------------------------------
-
 CREATE TABLE [HumanResources].[Department](
 	[DepartmentID] [smallint] IDENTITY(1,1) NOT NULL,
 	[Name] [dbo].[Name] NOT NULL,
@@ -897,19 +811,6 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Work shift lookup table.' , @level0type=N'SCHEMA',@level0name=N'HumanResources', @level1type=N'TABLE',@level1name=N'Shift'
 GO
 
--------------------------------------------------------------------------------
-
-CREATE TABLE [HumanResources].[UserRole](
-	[ID] [bigint] NOT NULL,
-	[RoleName] [varchar](250) NOT NULL,
- CONSTRAINT [PK_UserRoles] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
--------------------------------------------------------------------------------
 
 USE [AdventureWorks2017]
 GO
