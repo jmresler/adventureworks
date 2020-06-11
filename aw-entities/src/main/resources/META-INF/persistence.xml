@@ -98,7 +98,6 @@
 		<class>org.jmresler.spring.aw.entities.AWBuildVersion</class>
 		<class>org.jmresler.spring.aw.entities.DatabaseLog</class>
 		<class>org.jmresler.spring.aw.entities.ErrorLog</class>
-		<class>org.jmresler.spring.aw.entities.AppUser</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url"	value="jdbc:sqlserver://localhost\SQLEXPRESS:1433;databaseName=AdventureWorks2017" />
 			<property name="javax.persistence.jdbc.user" value="awadmin" />

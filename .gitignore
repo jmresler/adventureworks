@@ -19,6 +19,8 @@
 *.tar.gz
 *.rar
 
+
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /.metadata/
@@ -28,3 +30,5 @@ aw-entities/.settings/org.eclipse.core.resources.prefs
 aw-entities/.settings/org.eclipse.jdt.core.prefs
 aw-entities/.settings/org.eclipse.m2e.core.prefs
 /aw-ui/nbproject/private/
+
+Servers/*

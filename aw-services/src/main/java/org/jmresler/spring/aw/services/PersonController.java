@@ -3,8 +3,11 @@
  */
 package org.jmresler.spring.aw.services;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.jmresler.spring.aw.entities.Person;
 import org.jmresler.spring.aw.repositories.PersonRepository;
+import org.keycloak.KeycloakSecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,10 +22,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/person")
 public class PersonController {
 
+	private static final Person p = new Person();
+
 	@Autowired
 	protected PersonRepository repository;
+	private HttpServletRequest request;
 	
-	private static final Person p = new Person();
+	/**
+	 * 
+	 * @param request
+	 */
+	public PersonController(HttpServletRequest request) {
+		this.request = request;
+	}
 	
 	@RequestMapping("/count")
 	public Long getPersonCount() {
@@ -41,5 +53,9 @@ public class PersonController {
 		person.setLastName("Resler");
 		person.setBusinessEntityID(1);
 		return person;
+	}
+	
+	private KeycloakSecurityContext getKeycloakSecurityContext() {
+		return (KeycloakSecurityContext) request.getAttribute(KeycloakSecurityContext.class.getName());
 	}
 }

@@ -1,6 +1,5 @@
 package org.jmresler.spring.aw.services;
 
-import java.util.logging.Logger;
 
 import org.jmresler.spring.aw.repositories.PersonRepository;
 import org.junit.jupiter.api.AfterAll;
@@ -10,13 +9,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 class PersonControllerTest {
 
-    @Autowired
-    protected PersonRepository pRepository;
-
-    protected static final Logger logger = Logger.getAnonymousLogger();
-
+    @Autowired protected PersonRepository pRepository;
+    
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
     }
@@ -35,7 +34,7 @@ class PersonControllerTest {
 
     @Test
     void testGetIdByValue() {
-        System.out.println(pRepository.findByBusinessEntityID(1));
+
     }
 
     @Test
@@ -47,60 +46,4 @@ class PersonControllerTest {
     void testListPeople() {
 
     }
-
-    @Test
-    void testObject() {
-
-    }
-
-    @Test
-    void testGetClass() {
-
-    }
-
-    @Test
-    void testHashCode() {
-
-    }
-
-    @Test
-    void testEquals() {
-
-    }
-
-    @Test
-    void testClone() {
-
-    }
-
-    @Test
-    void testToString() {
-
-    }
-
-    @Test
-    void testNotify() {
-
-    }
-
-    @Test
-    void testNotifyAll() {
-
-    }
-
-    @Test
-    void testWaitLong() {
-
-    }
-
-    @Test
-    void testWaitLongInt() {
-
-    }
-
-    @Test
-    void testWait() {
-
-    }
-
 }
