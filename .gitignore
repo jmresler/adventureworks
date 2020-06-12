@@ -26,22 +26,45 @@ hs_err_pid*
 /.metadata/
 aw-entities/.classpath
 aw-entities/.project
-aw-entities/.settings/org.eclipse.core.resources.prefs
-aw-entities/.settings/org.eclipse.jdt.core.prefs
-aw-entities/.settings/org.eclipse.m2e.core.prefs
+aw-entities/.settings/*
 aw-entities/createDDL.jdbc
 aw-entities/dropDDL.jdbc
 aw-entities/*.iml
+aw-entities/target/*
+
 /aw-ui/nbproject/private/
+
 
 aw-services/*.iml
 aw-services/.classpath
 aw-services/.project
-aw-services/.settings/org.eclipse.core.resources.prefs
-aw-services/.settings/org.eclipse.jdt.core.prefs
-aw-services/.settings/org.eclipse.m2e.core.prefs
+aw-services/.settings/*
+aw-services/.idea/*
+aw-services/target/*
 
 
+aw-sales-services/*.iml
+aw-sales-services/.classpath
+aw-sales-services/.project
+aw-sales-services/.settings/*
+aw-sales-services/.idea/*
+aw-sales-services/target/*
+
+
+aw-search-services/*.iml
+aw-search-services/.classpath
+aw-search-services/.project
+aw-search-services/.settings/*
+aw-search-services/.idea/*
+aw-search-services/target/*
+
+
+dev-stories/*.iml
+dev-stories/.classpath
+dev-stories/.project
+dev-stories/.settings/*
+dev-stories/.idea/*
+dev-stories/target/*
 
 Servers/*
 RemoteSystemsTempFiles/*
