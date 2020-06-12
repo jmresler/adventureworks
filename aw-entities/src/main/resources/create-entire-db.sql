@@ -1272,6 +1272,10 @@ CREATE TABLE [Person].[Password](
 	[PasswordSalt] [varchar](10) NOT NULL,
 	[rowguid] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
 	[ModifiedDate] [datetime] NOT NULL,
+	[PreviousPassword1] [nvarchar](128) NULL,
+	[PreviousPassword2] [nvarchar](128) NULL,
+	[PreviousPassword3] [nvarchar](128) NULL,
+	[LoginAttempts] [int] NULL,
  CONSTRAINT [PK_Password_BusinessEntityID] PRIMARY KEY CLUSTERED 
 (
 	[BusinessEntityID] ASC
@@ -1335,6 +1339,7 @@ CREATE TABLE [Person].[Person](
 	[Demographics] [xml](CONTENT [Person].[IndividualSurveySchemaCollection]) NULL,
 	[rowguid] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
 	[ModifiedDate] [datetime] NOT NULL,
+	[UserName] [nvarchar](150) NULL,
  CONSTRAINT [PK_Person_BusinessEntityID] PRIMARY KEY CLUSTERED 
 (
 	[BusinessEntityID] ASC
