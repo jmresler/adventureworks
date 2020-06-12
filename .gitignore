@@ -31,7 +31,16 @@ aw-entities/.settings/org.eclipse.jdt.core.prefs
 aw-entities/.settings/org.eclipse.m2e.core.prefs
 aw-entities/createDDL.jdbc
 aw-entities/dropDDL.jdbc
+aw-entities/*.iml
 /aw-ui/nbproject/private/
+
+aw-services/*.iml
+aw-services/.classpath
+aw-services/.project
+aw-services/.settings/org.eclipse.core.resources.prefs
+aw-services/.settings/org.eclipse.jdt.core.prefs
+aw-services/.settings/org.eclipse.m2e.core.prefs
+
 
 
 Servers/*
