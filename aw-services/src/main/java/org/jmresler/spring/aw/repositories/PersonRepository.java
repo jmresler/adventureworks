@@ -17,6 +17,11 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
 	 */
 	Optional<Person> findByBusinessEntityID(@Param(value = "businessEntityID") int bid);
 	
-	
+	/**
+	 * 
+	 * @param userName
+	 * @return
+	 */
+	Optional<Person> findByUserName(String userName);
 
 }

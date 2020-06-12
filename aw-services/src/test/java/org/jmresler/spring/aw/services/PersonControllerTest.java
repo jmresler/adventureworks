@@ -17,33 +17,33 @@ class PersonControllerTest {
     @Autowired protected PersonRepository pRepository;
     
     @BeforeAll
-    static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() throws Exception {
     }
 
     @AfterAll
-    static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() throws Exception {
     }
 
     @BeforeEach
-    void setUp() throws Exception {
+    public void setUp() throws Exception {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
     }
 
     @Test
-    void testGetIdByValue() {
-
-    }
-
-    @Test
-    void testCountPeople() {
+    public void testGetIdByValue() {
 
     }
 
     @Test
-    void testListPeople() {
+    public void testCountPeople() {
+
+    }
+
+    @Test
+    public void testListPeople() {
 
     }
 }

@@ -2,6 +2,7 @@ package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -56,6 +57,18 @@ public class Password implements Serializable {
     @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Person person;
+    @Basic
+    @Column(name = "PreviousPassword1")
+    private String previousPassword1;
+    @Basic
+    @Column(name = "PreviousPassword2")
+    private String previousPassword2;
+    @Basic
+    @Column(name = "PreviousPassword3")
+    private String previousPassword3;
+    @Basic
+    @Column(name = "LoginAttempts")
+    private int loginAttempts;
 
     public Password() {
     }
@@ -120,29 +133,83 @@ public class Password implements Serializable {
         this.person = person;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (businessEntityID != null ? businessEntityID.hashCode() : 0);
-        return hash;
-    }
+    public String getPreviousPassword1() {
+		return previousPassword1;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Password)) {
-            return false;
-        }
-        Password other = (Password) object;
-        if ((this.businessEntityID == null && other.businessEntityID != null) || (this.businessEntityID != null && !this.businessEntityID.equals(other.businessEntityID))) {
-            return false;
-        }
-        return true;
-    }
+	public void setPreviousPassword1(String previousPassword1) {
+		this.previousPassword1 = previousPassword1;
+	}
 
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.Password[ businessEntityID=" + businessEntityID + " ]";
-    }
-    
+	public String getPreviousPassword2() {
+		return previousPassword2;
+	}
+
+	public void setPreviousPassword2(String previousPassword2) {
+		this.previousPassword2 = previousPassword2;
+	}
+
+	public String getPreviousPassword3() {
+		return previousPassword3;
+	}
+
+	public void setPreviousPassword3(String previousPassword3) {
+		this.previousPassword3 = previousPassword3;
+	}
+
+	public int getLoginAttempts() {
+		return loginAttempts;
+	}
+
+	public void setLoginAttempts(int loginAttempts) {
+		this.loginAttempts = loginAttempts;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(businessEntityID, 
+							loginAttempts, 
+							modifiedDate, 
+							passwordHash, 
+							passwordSalt, 
+							person,
+							previousPassword1, 
+							previousPassword2, 
+							previousPassword3, 
+							rowguid);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Password))
+			return false;
+		Password other = (Password) obj;
+		return Objects.equals(businessEntityID, other.businessEntityID) 
+				&& loginAttempts == other.loginAttempts
+				&& Objects.equals(modifiedDate, other.modifiedDate) 
+				&& Objects.equals(passwordHash, other.passwordHash)
+				&& Objects.equals(passwordSalt, other.passwordSalt) 
+				&& Objects.equals(person, other.person)
+				&& Objects.equals(previousPassword1, other.previousPassword1)
+				&& Objects.equals(previousPassword2, other.previousPassword2)
+				&& Objects.equals(previousPassword3, other.previousPassword3) 
+				&& Objects.equals(rowguid, other.rowguid);
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Password [businessEntityID=" + businessEntityID 
+				+ ", passwordHash=" + passwordHash 
+				+ ", passwordSalt=" + passwordSalt 
+				+ ", rowguid=" + rowguid 
+				+ ", modifiedDate=" + modifiedDate 
+				+ ", person=" + person
+				+ ", previousPassword1=" + previousPassword1 
+				+ ", previousPassword2=" + previousPassword2
+				+ ", previousPassword3=" + previousPassword3 
+				+ ", loginAttempts=" + loginAttempts + "]";
+	}
 }

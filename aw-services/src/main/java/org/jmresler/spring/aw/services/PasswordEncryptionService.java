@@ -9,7 +9,7 @@ import java.util.Arrays;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * This code is from the article 
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  * @author Jerry Orr
  *
  */
-@Component
+@Service
 public class PasswordEncryptionService {
 
 	

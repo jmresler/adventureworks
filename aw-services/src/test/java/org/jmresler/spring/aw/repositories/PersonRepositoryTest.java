@@ -3,8 +3,6 @@
  */
 package org.jmresler.spring.aw.repositories;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -60,12 +56,6 @@ public class PersonRepositoryTest {
 	 */
 	@Test
 	public void testFindByBusinessEntityID() {
-		final int[] count = {0};
-		System.err.println(">testFindByBusinessEntityID()");
-		repository.findAll().forEach(each -> {
-			System.err.println("[" + count[0]++ + "] > " + each);
-		});
-		System.err.println("<testFindByBusinessEntityID()");
 	}
 
 	/**
@@ -73,15 +63,17 @@ public class PersonRepositoryTest {
 	 */
 	@Test
 	public void testFindAllSort() {
-		Sort sort = Sort.by(Direction.DESC, "LastName");
 	}
 
+	@Test
+	public void testFindByUserName() {
+	}
+	
 	/**
 	 * Test method for {@link org.springframework.data.repository.PagingAndSortingRepository#findAll(org.springframework.data.domain.Pageable)}.
 	 */
 	@Test
 	public void testFindAllPageable() {
-		fail("Not yet implemented");
 	}
 
 }

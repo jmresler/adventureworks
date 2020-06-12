@@ -1,3 +1,4 @@
+
 package org.jmresler.spring.aw.entities;
 
 import java.io.Serializable;
@@ -52,6 +53,9 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "BusinessEntityID")
     private Integer businessEntityID;
+    @Basic(optional = false)
+    @Column(name = "UserName")
+    private String userName;
     @Basic(optional = false)
     @Column(name = "PersonType")
     private String personType;
@@ -129,7 +133,8 @@ public class Person implements Serializable {
      * @param businessEntity
      * @param password 
      */
-    public Person(Integer businessEntityID, 
+    public Person(Integer businessEntityID,
+    			  String userName,
                   String personType, 
                   Boolean nameStyle, 
                   String title, 
@@ -148,6 +153,7 @@ public class Person implements Serializable {
                   BusinessEntity businessEntity, 
                   Password password) {
         this.businessEntityID = businessEntityID;
+        this.userName = userName;
         this.personType = personType;
         this.nameStyle = nameStyle;
         this.title = title;
@@ -167,6 +173,14 @@ public class Person implements Serializable {
         this.password = password;
     }
 
+    
+    public String getUserName() {
+    	return userName;
+    }
+    
+    public void setUserName(String userName) {
+    	this.userName = userName;
+    }
 
     public Boolean getNameStyle() {
         return nameStyle;
@@ -319,7 +333,7 @@ public class Person implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(additionalContactInfo, businessEntity, businessEntityID, demographics, emailPromotion,
+        return Objects.hash(additionalContactInfo, businessEntity, userName, businessEntityID, demographics, emailPromotion,
                 firstName, lastName, middleName, modifiedDate, nameStyle, password, personType, rowguid, suffix, title);
     }
 
@@ -337,6 +351,7 @@ public class Person implements Serializable {
         Person other = (Person) obj;
         return Objects.equals(additionalContactInfo, other.additionalContactInfo)
                 && Objects.equals(businessEntity, other.businessEntity)
+                && Objects.equals(userName, other.userName)
                 && Objects.equals(businessEntityID, other.businessEntityID)
                 && Objects.equals(demographics, other.demographics) && emailPromotion == other.emailPromotion
                 && Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)

@@ -18,6 +18,7 @@
 		<class>org.jmresler.spring.aw.entities.VEmployeeDepartmentHistory</class>
 		<class>org.jmresler.spring.aw.entities.Department</class>
 		<class>org.jmresler.spring.aw.entities.Employee</class>
+		<class>org.jmresler.spring.aw.entities.CommonPasswords</class>
 		<class>org.jmresler.spring.aw.entities.BusinessEntity</class>
 		<class>org.jmresler.spring.aw.entities.BusinessEntityContact</class>
 		<class>org.jmresler.spring.aw.entities.EmailAddress</class>

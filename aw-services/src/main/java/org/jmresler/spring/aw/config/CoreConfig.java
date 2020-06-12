@@ -21,9 +21,15 @@ public class CoreConfig extends WebMvcConfigurerAdapter {
 	
 	@Autowired private ExecutorService executorService;
 	
+	/**
+	 * 
+	 */
 	public CoreConfig() {}
 
-	
+	/**
+	 * 
+	 * @return
+	 */
 	@Bean
 	public ExecutorService setupExecutor() {
 		final int coreThreads = 4;
