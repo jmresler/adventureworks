@@ -66,7 +66,7 @@ dev-stories/.settings/*
 dev-stories/.idea/*
 dev-stories/target/*
 
-test-app/*
+/test-app/*
 
-Servers/**
-RemoteSystemsTempFiles/*
+/Servers/*
+/RemoteSystemsTempFiles/*
