@@ -18,13 +18,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "AddressType", catalog = "AdventureWorks2017", schema = "Person")
-
 @NamedQueries({
     @NamedQuery(name = "AddressType.findAll", query = "SELECT a FROM AddressType a"),
     @NamedQuery(name = "AddressType.findByAddressTypeID", query = "SELECT a FROM AddressType a WHERE a.addressTypeID = :addressTypeID"),
@@ -49,77 +55,8 @@ public class AddressType implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "addressType")
     private Collection<BusinessEntityAddress> businessEntityAddressCollection;
 
-    public AddressType() {
-    }
-
-    public AddressType(Integer addressTypeID) {
-        this.addressTypeID = addressTypeID;
-    }
-
-    public AddressType(Integer addressTypeID, String rowguid, Date modifiedDate) {
-        this.addressTypeID = addressTypeID;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getAddressTypeID() {
-        return addressTypeID;
-    }
-
-    public void setAddressTypeID(Integer addressTypeID) {
-        this.addressTypeID = addressTypeID;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<BusinessEntityAddress> getBusinessEntityAddressCollection() {
-        return businessEntityAddressCollection;
-    }
-
-    public void setBusinessEntityAddressCollection(Collection<BusinessEntityAddress> businessEntityAddressCollection) {
-        this.businessEntityAddressCollection = businessEntityAddressCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (addressTypeID != null ? addressTypeID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AddressType)) {
-            return false;
-        }
-        AddressType other = (AddressType) object;
-        if ((this.addressTypeID == null && other.addressTypeID != null) || (this.addressTypeID != null && !this.addressTypeID.equals(other.addressTypeID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "AddressType{" + "addressTypeID=" + addressTypeID 
-                              + ", rowguid=" + rowguid 
-                              + ", modifiedDate=" + modifiedDate + '}';
-    }
-
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

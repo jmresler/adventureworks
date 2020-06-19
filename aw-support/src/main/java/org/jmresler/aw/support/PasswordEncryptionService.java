@@ -1,4 +1,4 @@
-package org.jmresler.spring.aw.services;
+package org.jmresler.aw.support;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -9,8 +9,6 @@ import java.util.Arrays;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-import org.springframework.stereotype.Service;
-
 /**
  * This code is from the article 
  * <a href="https://www.javacodegeeks.com/2012/05/secure-password-storage-donts-dos-and.html">
@@ -20,7 +18,6 @@ import org.springframework.stereotype.Service;
  * @author Jerry Orr
  *
  */
-@Service
 public class PasswordEncryptionService {
 
 	

@@ -9,7 +9,7 @@ public class LogoutTest {
 
     @DataProvider
     protected Object[][] getData() {
-        return null;
+        return new Object[][] {};
     }
 
     @BeforeTest

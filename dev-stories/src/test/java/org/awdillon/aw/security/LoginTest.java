@@ -9,7 +9,7 @@ public class LoginTest {
 
     @DataProvider
     protected Object[][] getData() {
-        return null;
+        return new Object[][] {};
     }
 
     @BeforeTest

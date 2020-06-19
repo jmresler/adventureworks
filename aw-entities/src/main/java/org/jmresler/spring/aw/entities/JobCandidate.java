@@ -17,13 +17,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "JobCandidate", catalog = "AdventureWorks2017", schema = "HumanResources")
-
 @NamedQueries({
     @NamedQuery(name = "JobCandidate.findAll", query = "SELECT j FROM JobCandidate j"),
     @NamedQuery(name = "JobCandidate.findByJobCandidateID", query = "SELECT j FROM JobCandidate j WHERE j.jobCandidateID = :jobCandidateID"),
@@ -48,73 +54,8 @@ public class JobCandidate implements Serializable {
     @ManyToOne
     private Employee businessEntityID;
 
-    public JobCandidate() {
-    }
-
-    public JobCandidate(Integer jobCandidateID) {
-        this.jobCandidateID = jobCandidateID;
-    }
-
-    public JobCandidate(Integer jobCandidateID, Date modifiedDate) {
-        this.jobCandidateID = jobCandidateID;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getJobCandidateID() {
-        return jobCandidateID;
-    }
-
-    public void setJobCandidateID(Integer jobCandidateID) {
-        this.jobCandidateID = jobCandidateID;
-    }
-
-    public String getResume() {
-        return resume;
-    }
-
-    public void setResume(String resume) {
-        this.resume = resume;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Employee getBusinessEntityID() {
-        return businessEntityID;
-    }
-
-    public void setBusinessEntityID(Employee businessEntityID) {
-        this.businessEntityID = businessEntityID;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (jobCandidateID != null ? jobCandidateID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof JobCandidate)) {
-            return false;
-        }
-        JobCandidate other = (JobCandidate) object;
-        if ((this.jobCandidateID == null && other.jobCandidateID != null) || (this.jobCandidateID != null && !this.jobCandidateID.equals(other.jobCandidateID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.JobCandidate[ jobCandidateID=" + jobCandidateID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

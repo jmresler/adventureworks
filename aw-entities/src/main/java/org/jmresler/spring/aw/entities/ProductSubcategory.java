@@ -19,10 +19,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "ProductSubcategory", catalog = "AdventureWorks2017", schema = "Production")
 
@@ -53,82 +60,8 @@ public class ProductSubcategory implements Serializable {
     @ManyToOne(optional = false)
     private ProductCategory productCategoryID;
 
-    public ProductSubcategory() {
-    }
-
-    public ProductSubcategory(Integer productSubcategoryID) {
-        this.productSubcategoryID = productSubcategoryID;
-    }
-
-    public ProductSubcategory(Integer productSubcategoryID, String rowguid, Date modifiedDate) {
-        this.productSubcategoryID = productSubcategoryID;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getProductSubcategoryID() {
-        return productSubcategoryID;
-    }
-
-    public void setProductSubcategoryID(Integer productSubcategoryID) {
-        this.productSubcategoryID = productSubcategoryID;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<Product> getProductCollection() {
-        return productCollection;
-    }
-
-    public void setProductCollection(Collection<Product> productCollection) {
-        this.productCollection = productCollection;
-    }
-
-    public ProductCategory getProductCategoryID() {
-        return productCategoryID;
-    }
-
-    public void setProductCategoryID(ProductCategory productCategoryID) {
-        this.productCategoryID = productCategoryID;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (productSubcategoryID != null ? productSubcategoryID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductSubcategory)) {
-            return false;
-        }
-        ProductSubcategory other = (ProductSubcategory) object;
-        if ((this.productSubcategoryID == null && other.productSubcategoryID != null) || (this.productSubcategoryID != null && !this.productSubcategoryID.equals(other.productSubcategoryID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.ProductSubcategory[ productSubcategoryID=" + productSubcategoryID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

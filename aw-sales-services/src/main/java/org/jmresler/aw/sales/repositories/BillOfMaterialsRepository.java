@@ -9,6 +9,4 @@ public interface BillOfMaterialsRepository extends CrudRepository<BillOfMaterial
 
     Optional<BillOfMaterials> findByBillOfMaterialsID(Integer billOfMaterialsID);
 
-    Optional<BillOfMaterials> findByProductAssemblyID(Integer productAssemblyID);
-
 }

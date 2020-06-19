@@ -18,13 +18,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "UnitMeasure", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "UnitMeasure.findAll", query = "SELECT u FROM UnitMeasure u"),
     @NamedQuery(name = "UnitMeasure.findByUnitMeasureCode", query = "SELECT u FROM UnitMeasure u WHERE u.unitMeasureCode = :unitMeasureCode"),
@@ -49,81 +55,8 @@ public class UnitMeasure implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unitMeasureCode")
     private Collection<BillOfMaterials> billOfMaterialsCollection;
 
-    public UnitMeasure() {
-    }
-
-    public UnitMeasure(String unitMeasureCode) {
-        this.unitMeasureCode = unitMeasureCode;
-    }
-
-    public UnitMeasure(String unitMeasureCode, Date modifiedDate) {
-        this.unitMeasureCode = unitMeasureCode;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public String getUnitMeasureCode() {
-        return unitMeasureCode;
-    }
-
-    public void setUnitMeasureCode(String unitMeasureCode) {
-        this.unitMeasureCode = unitMeasureCode;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<Product> getProductCollection() {
-        return productCollection;
-    }
-
-    public void setProductCollection(Collection<Product> productCollection) {
-        this.productCollection = productCollection;
-    }
-
-    public Collection<Product> getProductCollection1() {
-        return productCollection1;
-    }
-
-    public void setProductCollection1(Collection<Product> productCollection1) {
-        this.productCollection1 = productCollection1;
-    }
-
-    public Collection<BillOfMaterials> getBillOfMaterialsCollection() {
-        return billOfMaterialsCollection;
-    }
-
-    public void setBillOfMaterialsCollection(Collection<BillOfMaterials> billOfMaterialsCollection) {
-        this.billOfMaterialsCollection = billOfMaterialsCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (unitMeasureCode != null ? unitMeasureCode.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitMeasure)) {
-            return false;
-        }
-        UnitMeasure other = (UnitMeasure) object;
-        if ((this.unitMeasureCode == null && other.unitMeasureCode != null) || (this.unitMeasureCode != null && !this.unitMeasureCode.equals(other.unitMeasureCode))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.UnitMeasure[ unitMeasureCode=" + unitMeasureCode + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + unitMeasureCode + "]"; 
+	}
 }

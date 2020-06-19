@@ -19,13 +19,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "ShipMethod", catalog = "AdventureWorks2017", schema = "Purchasing")
-
 @NamedQueries({
     @NamedQuery(name = "ShipMethod.findAll", query = "SELECT s FROM ShipMethod s"),
     @NamedQuery(name = "ShipMethod.findByShipMethodID", query = "SELECT s FROM ShipMethod s WHERE s.shipMethodID = :shipMethodID"),
@@ -58,92 +64,8 @@ public class ShipMethod implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shipMethodID")
     private Collection<PurchaseOrderHeader> purchaseOrderHeaderCollection;
 
-    public ShipMethod() {
-    }
-
-    public ShipMethod(Integer shipMethodID) {
-        this.shipMethodID = shipMethodID;
-    }
-
-    public ShipMethod(Integer shipMethodID, BigDecimal shipBase, BigDecimal shipRate, String rowguid, Date modifiedDate) {
-        this.shipMethodID = shipMethodID;
-        this.shipBase = shipBase;
-        this.shipRate = shipRate;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getShipMethodID() {
-        return shipMethodID;
-    }
-
-    public void setShipMethodID(Integer shipMethodID) {
-        this.shipMethodID = shipMethodID;
-    }
-
-    public BigDecimal getShipBase() {
-        return shipBase;
-    }
-
-    public void setShipBase(BigDecimal shipBase) {
-        this.shipBase = shipBase;
-    }
-
-    public BigDecimal getShipRate() {
-        return shipRate;
-    }
-
-    public void setShipRate(BigDecimal shipRate) {
-        this.shipRate = shipRate;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<PurchaseOrderHeader> getPurchaseOrderHeaderCollection() {
-        return purchaseOrderHeaderCollection;
-    }
-
-    public void setPurchaseOrderHeaderCollection(Collection<PurchaseOrderHeader> purchaseOrderHeaderCollection) {
-        this.purchaseOrderHeaderCollection = purchaseOrderHeaderCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (shipMethodID != null ? shipMethodID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ShipMethod)) {
-            return false;
-        }
-        ShipMethod other = (ShipMethod) object;
-        if ((this.shipMethodID == null && other.shipMethodID != null) || (this.shipMethodID != null && !this.shipMethodID.equals(other.shipMethodID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.ShipMethod[ shipMethodID=" + shipMethodID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

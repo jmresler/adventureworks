@@ -1,8 +1,6 @@
 package org.jmresler.spring.aw.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -24,11 +22,20 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Address", catalog = "AdventureWorks2017", schema = "Person")
 
@@ -79,137 +86,9 @@ public class Address implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.LAZY)
     private Collection<BusinessEntityAddress> businessEntityAddressCollection;
 
-    public Address() {
-    }
 
-    public Address(Integer addressID) {
-        this.addressID = addressID;
-    }
-
-    public Address(Integer addressID, String addressLine1, String city, String postalCode, String rowguid, Date modifiedDate) {
-        this.addressID = addressID;
-        this.addressLine1 = addressLine1;
-        this.city = city;
-        this.postalCode = postalCode;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getAddressID() {
-        return addressID;
-    }
-
-    public void setAddressID(Integer addressID) {
-        this.addressID = addressID;
-    }
-
-    public String getAddressLine1() {
-        return addressLine1;
-    }
-
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
-    }
-
-    public String getAddressLine2() {
-        return addressLine2;
-    }
-
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public byte[] getSpatialLocation() {
-        return spatialLocation;
-    }
-
-    public void setSpatialLocation(byte[] spatialLocation) {
-        this.spatialLocation = spatialLocation;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public StateProvince getStateProvinceID() {
-        return stateProvinceID;
-    }
-
-    public void setStateProvinceID(StateProvince stateProvinceID) {
-        this.stateProvinceID = stateProvinceID;
-    }
-
-    public Collection<BusinessEntityAddress> getBusinessEntityAddressCollection() {
-        return businessEntityAddressCollection;
-    }
-
-    public void setBusinessEntityAddressCollection(Collection<BusinessEntityAddress> businessEntityAddressCollection) {
-        this.businessEntityAddressCollection = businessEntityAddressCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (addressID != null ? addressID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Address)) {
-            return false;
-        }
-        Address other = (Address) object;
-        if ((this.addressID == null && other.addressID != null) || (this.addressID != null && !this.addressID.equals(other.addressID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder buffer = new StringBuilder();
-        buffer.append("addressID -> ")
-               .append(this.addressID)
-                .append("\n addressLine1 -> ")
-                .append(this.addressLine1)
-                .append("\n addressLine2 -> ")
-                .append(this.addressLine2)
-                .append("\n city -> ")
-                .append(this.city)
-                .append("\n state -> ")
-                .append(this.stateProvinceID)
-                .append('\n');
-        return buffer.toString();
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

@@ -18,13 +18,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "CreditCard", catalog = "AdventureWorks2017", schema = "Sales")
-
 @NamedQueries({
     @NamedQuery(name = "CreditCard.findAll", query = "SELECT c FROM CreditCard c"),
     @NamedQuery(name = "CreditCard.findByCreditCardID", query = "SELECT c FROM CreditCard c WHERE c.creditCardID = :creditCardID"),
@@ -63,109 +69,8 @@ public class CreditCard implements Serializable {
     @OneToMany(mappedBy = "creditCardID")
     private Collection<SalesOrderHeader> salesOrderHeaderCollection;
 
-    public CreditCard() {
-    }
-
-    public CreditCard(Integer creditCardID) {
-        this.creditCardID = creditCardID;
-    }
-
-    public CreditCard(Integer creditCardID, String cardType, String cardNumber, short expMonth, short expYear, Date modifiedDate) {
-        this.creditCardID = creditCardID;
-        this.cardType = cardType;
-        this.cardNumber = cardNumber;
-        this.expMonth = expMonth;
-        this.expYear = expYear;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getCreditCardID() {
-        return creditCardID;
-    }
-
-    public void setCreditCardID(Integer creditCardID) {
-        this.creditCardID = creditCardID;
-    }
-
-    public String getCardType() {
-        return cardType;
-    }
-
-    public void setCardType(String cardType) {
-        this.cardType = cardType;
-    }
-
-    public String getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
-
-    public short getExpMonth() {
-        return expMonth;
-    }
-
-    public void setExpMonth(short expMonth) {
-        this.expMonth = expMonth;
-    }
-
-    public short getExpYear() {
-        return expYear;
-    }
-
-    public void setExpYear(short expYear) {
-        this.expYear = expYear;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<PersonCreditCard> getPersonCreditCardCollection() {
-        return personCreditCardCollection;
-    }
-
-    public void setPersonCreditCardCollection(Collection<PersonCreditCard> personCreditCardCollection) {
-        this.personCreditCardCollection = personCreditCardCollection;
-    }
-
-    public Collection<SalesOrderHeader> getSalesOrderHeaderCollection() {
-        return salesOrderHeaderCollection;
-    }
-
-    public void setSalesOrderHeaderCollection(Collection<SalesOrderHeader> salesOrderHeaderCollection) {
-        this.salesOrderHeaderCollection = salesOrderHeaderCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (creditCardID != null ? creditCardID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CreditCard)) {
-            return false;
-        }
-        CreditCard other = (CreditCard) object;
-        if ((this.creditCardID == null && other.creditCardID != null) || (this.creditCardID != null && !this.creditCardID.equals(other.creditCardID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.CreditCard[ creditCardID=" + creditCardID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

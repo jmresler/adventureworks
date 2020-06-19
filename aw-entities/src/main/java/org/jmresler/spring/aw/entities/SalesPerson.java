@@ -21,14 +21,20 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "SalesPerson", catalog = "AdventureWorks2017", schema = "Sales")
-
 @NamedQueries({
     @NamedQuery(name = "SalesPerson.findAll", query = "SELECT s FROM SalesPerson s"),
     @NamedQuery(name = "SalesPerson.findByBusinessEntityID", query = "SELECT s FROM SalesPerson s WHERE s.businessEntityID = :businessEntityID"),
@@ -81,150 +87,8 @@ public class SalesPerson implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "salesPerson")
     private Collection<SalesPersonQuotaHistory> salesPersonQuotaHistoryCollection;
 
-    public SalesPerson() {
-    }
-
-    public SalesPerson(Integer businessEntityID) {
-        this.businessEntityID = businessEntityID;
-    }
-
-    public SalesPerson(Integer businessEntityID, BigDecimal bonus, BigDecimal commissionPct, BigDecimal salesYTD, BigDecimal salesLastYear, String rowguid, Date modifiedDate) {
-        this.businessEntityID = businessEntityID;
-        this.bonus = bonus;
-        this.commissionPct = commissionPct;
-        this.salesYTD = salesYTD;
-        this.salesLastYear = salesLastYear;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getBusinessEntityID() {
-        return businessEntityID;
-    }
-
-    public void setBusinessEntityID(Integer businessEntityID) {
-        this.businessEntityID = businessEntityID;
-    }
-
-    public BigDecimal getSalesQuota() {
-        return salesQuota;
-    }
-
-    public void setSalesQuota(BigDecimal salesQuota) {
-        this.salesQuota = salesQuota;
-    }
-
-    public BigDecimal getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(BigDecimal bonus) {
-        this.bonus = bonus;
-    }
-
-    public BigDecimal getCommissionPct() {
-        return commissionPct;
-    }
-
-    public void setCommissionPct(BigDecimal commissionPct) {
-        this.commissionPct = commissionPct;
-    }
-
-    public BigDecimal getSalesYTD() {
-        return salesYTD;
-    }
-
-    public void setSalesYTD(BigDecimal salesYTD) {
-        this.salesYTD = salesYTD;
-    }
-
-    public BigDecimal getSalesLastYear() {
-        return salesLastYear;
-    }
-
-    public void setSalesLastYear(BigDecimal salesLastYear) {
-        this.salesLastYear = salesLastYear;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public SalesTerritory getTerritoryID() {
-        return territoryID;
-    }
-
-    public void setTerritoryID(SalesTerritory territoryID) {
-        this.territoryID = territoryID;
-    }
-
-    public Collection<Store> getStoreCollection() {
-        return storeCollection;
-    }
-
-    public void setStoreCollection(Collection<Store> storeCollection) {
-        this.storeCollection = storeCollection;
-    }
-
-    public Collection<SalesTerritoryHistory> getSalesTerritoryHistoryCollection() {
-        return salesTerritoryHistoryCollection;
-    }
-
-    public void setSalesTerritoryHistoryCollection(Collection<SalesTerritoryHistory> salesTerritoryHistoryCollection) {
-        this.salesTerritoryHistoryCollection = salesTerritoryHistoryCollection;
-    }
-
-    public Collection<SalesOrderHeader> getSalesOrderHeaderCollection() {
-        return salesOrderHeaderCollection;
-    }
-
-    public void setSalesOrderHeaderCollection(Collection<SalesOrderHeader> salesOrderHeaderCollection) {
-        this.salesOrderHeaderCollection = salesOrderHeaderCollection;
-    }
-
-    public Collection<SalesPersonQuotaHistory> getSalesPersonQuotaHistoryCollection() {
-        return salesPersonQuotaHistoryCollection;
-    }
-
-    public void setSalesPersonQuotaHistoryCollection(Collection<SalesPersonQuotaHistory> salesPersonQuotaHistoryCollection) {
-        this.salesPersonQuotaHistoryCollection = salesPersonQuotaHistoryCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (businessEntityID != null ? businessEntityID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SalesPerson)) {
-            return false;
-        }
-        SalesPerson other = (SalesPerson) object;
-        if ((this.businessEntityID == null && other.businessEntityID != null) || (this.businessEntityID != null && !this.businessEntityID.equals(other.businessEntityID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.SalesPerson[ businessEntityID=" + businessEntityID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

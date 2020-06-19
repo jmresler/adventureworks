@@ -6,10 +6,17 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Embeddable
 public class SalesOrderHeaderSalesReasonPK implements Serializable {
 
@@ -22,57 +29,8 @@ public class SalesOrderHeaderSalesReasonPK implements Serializable {
     @Column(name = "SalesReasonID")
     private int salesReasonID;
 
-    public SalesOrderHeaderSalesReasonPK() {
-    }
-
-    public SalesOrderHeaderSalesReasonPK(int salesOrderID, int salesReasonID) {
-        this.salesOrderID = salesOrderID;
-        this.salesReasonID = salesReasonID;
-    }
-
-    public int getSalesOrderID() {
-        return salesOrderID;
-    }
-
-    public void setSalesOrderID(int salesOrderID) {
-        this.salesOrderID = salesOrderID;
-    }
-
-    public int getSalesReasonID() {
-        return salesReasonID;
-    }
-
-    public void setSalesReasonID(int salesReasonID) {
-        this.salesReasonID = salesReasonID;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (int) salesOrderID;
-        hash += (int) salesReasonID;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SalesOrderHeaderSalesReasonPK)) {
-            return false;
-        }
-        SalesOrderHeaderSalesReasonPK other = (SalesOrderHeaderSalesReasonPK) object;
-        if (this.salesOrderID != other.salesOrderID) {
-            return false;
-        }
-        if (this.salesReasonID != other.salesReasonID) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.SalesOrderHeaderSalesReasonPK[ salesOrderID=" + salesOrderID + ", salesReasonID=" + salesReasonID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

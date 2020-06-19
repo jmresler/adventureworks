@@ -18,13 +18,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Shift", catalog = "AdventureWorks2017", schema = "HumanResources")
-
 @NamedQueries({
     @NamedQuery(name = "Shift.findAll", query = "SELECT s FROM Shift s"),
     @NamedQuery(name = "Shift.findByShiftID", query = "SELECT s FROM Shift s WHERE s.shiftID = :shiftID"),
@@ -56,83 +62,8 @@ public class Shift implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shift")
     private Collection<EmployeeDepartmentHistory> employeeDepartmentHistoryCollection;
 
-    public Shift() {
-    }
-
-    public Shift(Short shiftID) {
-        this.shiftID = shiftID;
-    }
-
-    public Shift(Short shiftID, Date startTime, Date endTime, Date modifiedDate) {
-        this.shiftID = shiftID;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Short getShiftID() {
-        return shiftID;
-    }
-
-    public void setShiftID(Short shiftID) {
-        this.shiftID = shiftID;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<EmployeeDepartmentHistory> getEmployeeDepartmentHistoryCollection() {
-        return employeeDepartmentHistoryCollection;
-    }
-
-    public void setEmployeeDepartmentHistoryCollection(Collection<EmployeeDepartmentHistory> employeeDepartmentHistoryCollection) {
-        this.employeeDepartmentHistoryCollection = employeeDepartmentHistoryCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (shiftID != null ? shiftID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Shift)) {
-            return false;
-        }
-        Shift other = (Shift) object;
-        if ((this.shiftID == null && other.shiftID != null) || (this.shiftID != null && !this.shiftID.equals(other.shiftID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.Shift[ shiftID=" + shiftID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

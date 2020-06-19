@@ -18,13 +18,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Illustration", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "Illustration.findAll", query = "SELECT i FROM Illustration i"),
     @NamedQuery(name = "Illustration.findByIllustrationID", query = "SELECT i FROM Illustration i WHERE i.illustrationID = :illustrationID"),
@@ -48,73 +54,8 @@ public class Illustration implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "illustration")
     private Collection<ProductModelIllustration> productModelIllustrationCollection;
 
-    public Illustration() {
-    }
-
-    public Illustration(Integer illustrationID) {
-        this.illustrationID = illustrationID;
-    }
-
-    public Illustration(Integer illustrationID, Date modifiedDate) {
-        this.illustrationID = illustrationID;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getIllustrationID() {
-        return illustrationID;
-    }
-
-    public void setIllustrationID(Integer illustrationID) {
-        this.illustrationID = illustrationID;
-    }
-
-    public String getDiagram() {
-        return diagram;
-    }
-
-    public void setDiagram(String diagram) {
-        this.diagram = diagram;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<ProductModelIllustration> getProductModelIllustrationCollection() {
-        return productModelIllustrationCollection;
-    }
-
-    public void setProductModelIllustrationCollection(Collection<ProductModelIllustration> productModelIllustrationCollection) {
-        this.productModelIllustrationCollection = productModelIllustrationCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (illustrationID != null ? illustrationID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Illustration)) {
-            return false;
-        }
-        Illustration other = (Illustration) object;
-        if ((this.illustrationID == null && other.illustrationID != null) || (this.illustrationID != null && !this.illustrationID.equals(other.illustrationID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.Illustration[ illustrationID=" + illustrationID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

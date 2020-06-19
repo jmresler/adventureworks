@@ -19,14 +19,20 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "SpecialOffer", catalog = "AdventureWorks2017", schema = "Sales")
-
 @NamedQueries({
     @NamedQuery(name = "SpecialOffer.findAll", query = "SELECT s FROM SpecialOffer s"),
     @NamedQuery(name = "SpecialOffer.findBySpecialOfferID", query = "SELECT s FROM SpecialOffer s WHERE s.specialOfferID = :specialOfferID"),
@@ -84,146 +90,8 @@ public class SpecialOffer implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "specialOffer")
     private Collection<SpecialOfferProduct> specialOfferProductCollection;
 
-    public SpecialOffer() {
-    }
-
-    public SpecialOffer(Integer specialOfferID) {
-        this.specialOfferID = specialOfferID;
-    }
-
-    public SpecialOffer(Integer specialOfferID, String description, BigDecimal discountPct, String type, String category, Date startDate, Date endDate, int minQty, String rowguid, Date modifiedDate) {
-        this.specialOfferID = specialOfferID;
-        this.description = description;
-        this.discountPct = discountPct;
-        this.type = type;
-        this.category = category;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.minQty = minQty;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getSpecialOfferID() {
-        return specialOfferID;
-    }
-
-    public void setSpecialOfferID(Integer specialOfferID) {
-        this.specialOfferID = specialOfferID;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getDiscountPct() {
-        return discountPct;
-    }
-
-    public void setDiscountPct(BigDecimal discountPct) {
-        this.discountPct = discountPct;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public int getMinQty() {
-        return minQty;
-    }
-
-    public void setMinQty(int minQty) {
-        this.minQty = minQty;
-    }
-
-    public Integer getMaxQty() {
-        return maxQty;
-    }
-
-    public void setMaxQty(Integer maxQty) {
-        this.maxQty = maxQty;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-
-    public Collection<SpecialOfferProduct> getSpecialOfferProductCollection() {
-        return specialOfferProductCollection;
-    }
-
-    public void setSpecialOfferProductCollection(Collection<SpecialOfferProduct> specialOfferProductCollection) {
-        this.specialOfferProductCollection = specialOfferProductCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (specialOfferID != null ? specialOfferID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SpecialOffer)) {
-            return false;
-        }
-        SpecialOffer other = (SpecialOffer) object;
-        if ((this.specialOfferID == null && other.specialOfferID != null) || (this.specialOfferID != null && !this.specialOfferID.equals(other.specialOfferID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.SpecialOffer[ specialOfferID=" + specialOfferID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

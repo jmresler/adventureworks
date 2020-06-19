@@ -9,10 +9,19 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 /**
  * @author johnm
  *
  */
+@NoArgsConstructor
+@Getter
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @NamedQueries(value = 
 	{@NamedQuery(name = "CommonPasswords.findAll", query = "SELECT p From CommonPasswords p"),
@@ -23,31 +32,9 @@ public class CommonPasswords {
 	@Id
 	private String password;
 
-	/**
-	 * 
-	 */
-	public CommonPasswords() {
-	}
-	
-	/**
-	 * 
-	 * @param password
-	 */
-	public CommonPasswords(String password) {
-		this.password = password;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String getCommonPassword() {
-		return password;
-	}
-	
 	
 	@Override
 	public String toString() {
-		return "CommonPasswords{password:" + password + "}";
+		return getClass().getName() + "[" + -1 + "]"; 
 	}
 }

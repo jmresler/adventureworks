@@ -9,10 +9,17 @@ import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Embeddable
 public class ProductCostHistoryPK implements Serializable {
 
@@ -26,57 +33,8 @@ public class ProductCostHistoryPK implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
 
-    public ProductCostHistoryPK() {
-    }
-
-    public ProductCostHistoryPK(int productID, Date startDate) {
-        this.productID = productID;
-        this.startDate = startDate;
-    }
-
-    public int getProductID() {
-        return productID;
-    }
-
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (int) productID;
-        hash += (startDate != null ? startDate.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductCostHistoryPK)) {
-            return false;
-        }
-        ProductCostHistoryPK other = (ProductCostHistoryPK) object;
-        if (this.productID != other.productID) {
-            return false;
-        }
-        if ((this.startDate == null && other.startDate != null) || (this.startDate != null && !this.startDate.equals(other.startDate))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.ProductCostHistoryPK[ productID=" + productID + ", startDate=" + startDate + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

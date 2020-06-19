@@ -15,13 +15,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "ProductProductPhoto", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "ProductProductPhoto.findAll", query = "SELECT p FROM ProductProductPhoto p"),
     @NamedQuery(name = "ProductProductPhoto.findByProductID", query = "SELECT p FROM ProductProductPhoto p WHERE p.productProductPhotoPK.productID = :productID"),
@@ -44,77 +50,8 @@ public class ProductProductPhoto implements Serializable {
     @ManyToOne(optional = false)
     private ProductPhoto productPhoto;
 
-    public ProductProductPhoto() {
-    }
-
-    public ProductProductPhoto(ProductProductPhotoPK productProductPhotoPK) {
-        this.productProductPhotoPK = productProductPhotoPK;
-    }
-
-    public ProductProductPhoto(ProductProductPhotoPK productProductPhotoPK, Date modifiedDate) {
-        this.productProductPhotoPK = productProductPhotoPK;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public ProductProductPhoto(int productID, int productPhotoID) {
-        this.productProductPhotoPK = new ProductProductPhotoPK(productID, productPhotoID);
-    }
-
-    public ProductProductPhotoPK getProductProductPhotoPK() {
-        return productProductPhotoPK;
-    }
-
-    public void setProductProductPhotoPK(ProductProductPhotoPK productProductPhotoPK) {
-        this.productProductPhotoPK = productProductPhotoPK;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public ProductPhoto getProductPhoto() {
-        return productPhoto;
-    }
-
-    public void setProductPhoto(ProductPhoto productPhoto) {
-        this.productPhoto = productPhoto;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (productProductPhotoPK != null ? productProductPhotoPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductProductPhoto)) {
-            return false;
-        }
-        ProductProductPhoto other = (ProductProductPhoto) object;
-        if ((this.productProductPhotoPK == null && other.productProductPhotoPK != null) || (this.productProductPhotoPK != null && !this.productProductPhotoPK.equals(other.productProductPhotoPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.ProductProductPhoto[ productProductPhotoPK=" + productProductPhotoPK + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

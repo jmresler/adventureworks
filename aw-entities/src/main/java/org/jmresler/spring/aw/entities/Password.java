@@ -18,10 +18,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Password", catalog = "AdventureWorks2017", schema = "Person")
 
@@ -70,146 +77,8 @@ public class Password implements Serializable {
     @Column(name = "LoginAttempts")
     private int loginAttempts;
 
-    public Password() {
-    }
-
-    public Password(Integer businessEntityID) {
-        this.businessEntityID = businessEntityID;
-    }
-
-    public Password(Integer businessEntityID, String passwordHash, String passwordSalt, String rowguid, Date modifiedDate) {
-        this.businessEntityID = businessEntityID;
-        this.passwordHash = passwordHash;
-        this.passwordSalt = passwordSalt;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getBusinessEntityID() {
-        return businessEntityID;
-    }
-
-    public void setBusinessEntityID(Integer businessEntityID) {
-        this.businessEntityID = businessEntityID;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    public String getPasswordSalt() {
-        return passwordSalt;
-    }
-
-    public void setPasswordSalt(String passwordSalt) {
-        this.passwordSalt = passwordSalt;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
-    public String getPreviousPassword1() {
-		return previousPassword1;
-	}
-
-	public void setPreviousPassword1(String previousPassword1) {
-		this.previousPassword1 = previousPassword1;
-	}
-
-	public String getPreviousPassword2() {
-		return previousPassword2;
-	}
-
-	public void setPreviousPassword2(String previousPassword2) {
-		this.previousPassword2 = previousPassword2;
-	}
-
-	public String getPreviousPassword3() {
-		return previousPassword3;
-	}
-
-	public void setPreviousPassword3(String previousPassword3) {
-		this.previousPassword3 = previousPassword3;
-	}
-
-	public int getLoginAttempts() {
-		return loginAttempts;
-	}
-
-	public void setLoginAttempts(int loginAttempts) {
-		this.loginAttempts = loginAttempts;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(businessEntityID, 
-							loginAttempts, 
-							modifiedDate, 
-							passwordHash, 
-							passwordSalt, 
-							person,
-							previousPassword1, 
-							previousPassword2, 
-							previousPassword3, 
-							rowguid);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!(obj instanceof Password))
-			return false;
-		Password other = (Password) obj;
-		return Objects.equals(businessEntityID, other.businessEntityID) 
-				&& loginAttempts == other.loginAttempts
-				&& Objects.equals(modifiedDate, other.modifiedDate) 
-				&& Objects.equals(passwordHash, other.passwordHash)
-				&& Objects.equals(passwordSalt, other.passwordSalt) 
-				&& Objects.equals(person, other.person)
-				&& Objects.equals(previousPassword1, other.previousPassword1)
-				&& Objects.equals(previousPassword2, other.previousPassword2)
-				&& Objects.equals(previousPassword3, other.previousPassword3) 
-				&& Objects.equals(rowguid, other.rowguid);
-	}
-
-	
 	@Override
 	public String toString() {
-		return "Password [businessEntityID=" + businessEntityID 
-				+ ", passwordHash=" + passwordHash 
-				+ ", passwordSalt=" + passwordSalt 
-				+ ", rowguid=" + rowguid 
-				+ ", modifiedDate=" + modifiedDate 
-				+ ", person=" + person
-				+ ", previousPassword1=" + previousPassword1 
-				+ ", previousPassword2=" + previousPassword2
-				+ ", previousPassword3=" + previousPassword3 
-				+ ", loginAttempts=" + loginAttempts + "]";
+		return getClass().getName() + "[" + -1 + "]"; 
 	}
 }

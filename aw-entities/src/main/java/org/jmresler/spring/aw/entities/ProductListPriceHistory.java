@@ -16,13 +16,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "ProductListPriceHistory", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "ProductListPriceHistory.findAll", query = "SELECT p FROM ProductListPriceHistory p"),
     @NamedQuery(name = "ProductListPriceHistory.findByProductID", query = "SELECT p FROM ProductListPriceHistory p WHERE p.productListPriceHistoryPK.productID = :productID"),
@@ -50,86 +56,8 @@ public class ProductListPriceHistory implements Serializable {
     @ManyToOne(optional = false)
     private Product product;
 
-    public ProductListPriceHistory() {
-    }
-
-    public ProductListPriceHistory(ProductListPriceHistoryPK productListPriceHistoryPK) {
-        this.productListPriceHistoryPK = productListPriceHistoryPK;
-    }
-
-    public ProductListPriceHistory(ProductListPriceHistoryPK productListPriceHistoryPK, BigDecimal listPrice, Date modifiedDate) {
-        this.productListPriceHistoryPK = productListPriceHistoryPK;
-        this.listPrice = listPrice;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public ProductListPriceHistory(int productID, Date startDate) {
-        this.productListPriceHistoryPK = new ProductListPriceHistoryPK(productID, startDate);
-    }
-
-    public ProductListPriceHistoryPK getProductListPriceHistoryPK() {
-        return productListPriceHistoryPK;
-    }
-
-    public void setProductListPriceHistoryPK(ProductListPriceHistoryPK productListPriceHistoryPK) {
-        this.productListPriceHistoryPK = productListPriceHistoryPK;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public BigDecimal getListPrice() {
-        return listPrice;
-    }
-
-    public void setListPrice(BigDecimal listPrice) {
-        this.listPrice = listPrice;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (productListPriceHistoryPK != null ? productListPriceHistoryPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductListPriceHistory)) {
-            return false;
-        }
-        ProductListPriceHistory other = (ProductListPriceHistory) object;
-        if ((this.productListPriceHistoryPK == null && other.productListPriceHistoryPK != null) || (this.productListPriceHistoryPK != null && !this.productListPriceHistoryPK.equals(other.productListPriceHistoryPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.ProductListPriceHistory[ productListPriceHistoryPK=" + productListPriceHistoryPK + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

@@ -18,13 +18,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Currency", catalog = "AdventureWorks2017", schema = "Sales")
-
 @NamedQueries({
     @NamedQuery(name = "Currency.findAll", query = "SELECT c FROM Currency c"),
     @NamedQuery(name = "Currency.findByCurrencyCode", query = "SELECT c FROM Currency c WHERE c.currencyCode = :currencyCode"),
@@ -49,81 +55,8 @@ public class Currency implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "currency")
     private Collection<CountryRegionCurrency> countryRegionCurrencyCollection;
 
-    public Currency() {
-    }
-
-    public Currency(String currencyCode) {
-        this.currencyCode = currencyCode;
-    }
-
-    public Currency(String currencyCode, Date modifiedDate) {
-        this.currencyCode = currencyCode;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<CurrencyRate> getCurrencyRateCollection() {
-        return currencyRateCollection;
-    }
-
-    public void setCurrencyRateCollection(Collection<CurrencyRate> currencyRateCollection) {
-        this.currencyRateCollection = currencyRateCollection;
-    }
-
-    public Collection<CurrencyRate> getCurrencyRateCollection1() {
-        return currencyRateCollection1;
-    }
-
-    public void setCurrencyRateCollection1(Collection<CurrencyRate> currencyRateCollection1) {
-        this.currencyRateCollection1 = currencyRateCollection1;
-    }
-
-    public Collection<CountryRegionCurrency> getCountryRegionCurrencyCollection() {
-        return countryRegionCurrencyCollection;
-    }
-
-    public void setCountryRegionCurrencyCollection(Collection<CountryRegionCurrency> countryRegionCurrencyCollection) {
-        this.countryRegionCurrencyCollection = countryRegionCurrencyCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (currencyCode != null ? currencyCode.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Currency)) {
-            return false;
-        }
-        Currency other = (Currency) object;
-        if ((this.currencyCode == null && other.currencyCode != null) || (this.currencyCode != null && !this.currencyCode.equals(other.currencyCode))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.Currency[ currencyCode=" + currencyCode + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

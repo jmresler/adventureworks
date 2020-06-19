@@ -20,13 +20,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "CurrencyRate", catalog = "AdventureWorks2017", schema = "Sales")
-
 @NamedQueries({
     @NamedQuery(name = "CurrencyRate.findAll", query = "SELECT c FROM CurrencyRate c"),
     @NamedQuery(name = "CurrencyRate.findByCurrencyRateID", query = "SELECT c FROM CurrencyRate c WHERE c.currencyRateID = :currencyRateID"),
@@ -66,108 +72,8 @@ public class CurrencyRate implements Serializable {
     @OneToMany(mappedBy = "currencyRateID")
     private Collection<SalesOrderHeader> salesOrderHeaderCollection;
 
-    public CurrencyRate() {
-    }
-
-    public CurrencyRate(Integer currencyRateID) {
-        this.currencyRateID = currencyRateID;
-    }
-
-    public CurrencyRate(Integer currencyRateID, Date currencyRateDate, BigDecimal averageRate, BigDecimal endOfDayRate, Date modifiedDate) {
-        this.currencyRateID = currencyRateID;
-        this.currencyRateDate = currencyRateDate;
-        this.averageRate = averageRate;
-        this.endOfDayRate = endOfDayRate;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getCurrencyRateID() {
-        return currencyRateID;
-    }
-
-    public void setCurrencyRateID(Integer currencyRateID) {
-        this.currencyRateID = currencyRateID;
-    }
-
-    public Date getCurrencyRateDate() {
-        return currencyRateDate;
-    }
-
-    public void setCurrencyRateDate(Date currencyRateDate) {
-        this.currencyRateDate = currencyRateDate;
-    }
-
-    public BigDecimal getAverageRate() {
-        return averageRate;
-    }
-
-    public void setAverageRate(BigDecimal averageRate) {
-        this.averageRate = averageRate;
-    }
-
-    public BigDecimal getEndOfDayRate() {
-        return endOfDayRate;
-    }
-
-    public void setEndOfDayRate(BigDecimal endOfDayRate) {
-        this.endOfDayRate = endOfDayRate;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Currency getFromCurrencyCode() {
-        return fromCurrencyCode;
-    }
-
-    public void setFromCurrencyCode(Currency fromCurrencyCode) {
-        this.fromCurrencyCode = fromCurrencyCode;
-    }
-
-    public Currency getToCurrencyCode() {
-        return toCurrencyCode;
-    }
-
-    public void setToCurrencyCode(Currency toCurrencyCode) {
-        this.toCurrencyCode = toCurrencyCode;
-    }
-
-    public Collection<SalesOrderHeader> getSalesOrderHeaderCollection() {
-        return salesOrderHeaderCollection;
-    }
-
-    public void setSalesOrderHeaderCollection(Collection<SalesOrderHeader> salesOrderHeaderCollection) {
-        this.salesOrderHeaderCollection = salesOrderHeaderCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (currencyRateID != null ? currencyRateID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CurrencyRate)) {
-            return false;
-        }
-        CurrencyRate other = (CurrencyRate) object;
-        if ((this.currencyRateID == null && other.currencyRateID != null) || (this.currencyRateID != null && !this.currencyRateID.equals(other.currencyRateID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.CurrencyRate[ currencyRateID=" + currencyRateID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

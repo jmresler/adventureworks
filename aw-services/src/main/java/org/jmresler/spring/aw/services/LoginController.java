@@ -17,6 +17,7 @@ import org.jmresler.spring.aw.entities.Password;
 import org.jmresler.spring.aw.entities.Person;
 import org.jmresler.spring.aw.repositories.PersonRepository;
 import org.keycloak.KeycloakSecurityContext;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,12 +34,10 @@ public class LoginController {
 
 	@Autowired
 	private PersonRepository repository;
-	@Autowired
-	private PasswordEncryptionService encryptionService;
 
 	private static final String BAD_PASSWORD = "Bad password";
 	private static final String USER_NOT_FOUND = "User not found";
-
+	private static final String EXCEEDED_LOGIN_ATTEMPTS = "Exceeded login attempts";
 	private final HttpServletRequest request;
 
 	/**
@@ -55,32 +54,37 @@ public class LoginController {
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping(value = "/login", method = { POST })
+	@RequestMapping(value = "/login", method = { POST }, produces = { "application/json; Charset=utf-8" })
 	public String login(@WebParam(name = "userName") String userName, @WebParam(name = "password") String password) {
-		log.info("user : " + userName + " attempted login");
 		return handleUserLookup(userName, password);
 	}
 
+	/**
+	 * 
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
 	private String handleUserLookup(String userName, String password) {
-		try {
-			Optional<Person> optPerson = repository.findByUserName(userName);
+		Optional<Person> optPerson = repository.findByUserName(userName);
 
-			if (optPerson.isPresent()) {
-				Person person = optPerson.get();
-				Password pPassword = person.getPassword();
-				boolean authenticated = encryptionService.authenticate(password, pPassword.getPasswordHash().getBytes(),
-						pPassword.getPasswordSalt().getBytes());
+		if (optPerson.isPresent()) {
+			Person person = optPerson.get();
+			Password pPassword = person.getPassword();
 
-				if (authenticated) {
-					// return JWTS
-				} else {
-					// Increment
-				}
+			if (pPassword.getLoginAttempts() >= 3)
+				return EXCEEDED_LOGIN_ATTEMPTS;
 
+			boolean authenticated = false;
+			BCrypt.checkpw(null, null);
+
+			if (authenticated) {
+				// return JWTS
+			} else {
+				person.getPassword().setLoginAttempts(pPassword.getLoginAttempts() + 1);
+				repository.save(person);
 				return BAD_PASSWORD;
 			}
-		} catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-
 		}
 
 		return USER_NOT_FOUND;
@@ -92,7 +96,8 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/logout", method = { GET })
-	public void logout(String userName) {
+	public boolean logout(String userName) {
+		return true;
 		// invalidate the JWTS token
 		// TODO - should the JWTS token be returned to the UI
 		// or should the UI simply get a message

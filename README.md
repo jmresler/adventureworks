@@ -42,6 +42,14 @@ The application is intended to be built using Jenkins and I use the 'Blue Ocean'
 This is what the functionality of the JenkinsFile is for. It is required for Blue Ocean and can be used
 in Jenkins on its own also.
 
+# What Does Work?
+1. The Adventure Works 2017 database and entities are properly configured
+2. HTTPS works in the Tomcat server
+3. The repositories work properly in aw-services
+4. The Login, Logout and Register services are connected but not complete
+5. The React UI starts up
+6. The React UI handles social logins for Google correctly
+
 # Looking For Contributors	
 
 Feel free to fork the project and meddle with it. Suggest features/changes/functionality completion :-).

@@ -15,13 +15,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "ProductModelProductDescriptionCulture", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "ProductModelProductDescriptionCulture.findAll", query = "SELECT p FROM ProductModelProductDescriptionCulture p"),
     @NamedQuery(name = "ProductModelProductDescriptionCulture.findByProductModelID", query = "SELECT p FROM ProductModelProductDescriptionCulture p WHERE p.productModelProductDescriptionCulturePK.productModelID = :productModelID"),
@@ -48,85 +54,8 @@ public class ProductModelProductDescriptionCulture implements Serializable {
     @ManyToOne(optional = false)
     private ProductModel productModel;
 
-    public ProductModelProductDescriptionCulture() {
-    }
-
-    public ProductModelProductDescriptionCulture(ProductModelProductDescriptionCulturePK productModelProductDescriptionCulturePK) {
-        this.productModelProductDescriptionCulturePK = productModelProductDescriptionCulturePK;
-    }
-
-    public ProductModelProductDescriptionCulture(ProductModelProductDescriptionCulturePK productModelProductDescriptionCulturePK, Date modifiedDate) {
-        this.productModelProductDescriptionCulturePK = productModelProductDescriptionCulturePK;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public ProductModelProductDescriptionCulture(int productModelID, int productDescriptionID, String cultureID) {
-        this.productModelProductDescriptionCulturePK = new ProductModelProductDescriptionCulturePK(productModelID, productDescriptionID, cultureID);
-    }
-
-    public ProductModelProductDescriptionCulturePK getProductModelProductDescriptionCulturePK() {
-        return productModelProductDescriptionCulturePK;
-    }
-
-    public void setProductModelProductDescriptionCulturePK(ProductModelProductDescriptionCulturePK productModelProductDescriptionCulturePK) {
-        this.productModelProductDescriptionCulturePK = productModelProductDescriptionCulturePK;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Culture getCulture() {
-        return culture;
-    }
-
-    public void setCulture(Culture culture) {
-        this.culture = culture;
-    }
-
-    public ProductDescription getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(ProductDescription productDescription) {
-        this.productDescription = productDescription;
-    }
-
-    public ProductModel getProductModel() {
-        return productModel;
-    }
-
-    public void setProductModel(ProductModel productModel) {
-        this.productModel = productModel;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (productModelProductDescriptionCulturePK != null ? productModelProductDescriptionCulturePK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductModelProductDescriptionCulture)) {
-            return false;
-        }
-        ProductModelProductDescriptionCulture other = (ProductModelProductDescriptionCulture) object;
-        if ((this.productModelProductDescriptionCulturePK == null && other.productModelProductDescriptionCulturePK != null) || (this.productModelProductDescriptionCulturePK != null && !this.productModelProductDescriptionCulturePK.equals(other.productModelProductDescriptionCulturePK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.ProductModelProductDescriptionCulture[ productModelProductDescriptionCulturePK=" + productModelProductDescriptionCulturePK + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

@@ -1,4 +1,4 @@
-package org.jmresler.spring.aw.entities;
+package org.jmresler.spring.aw.entities.views;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,13 +13,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
 @Entity
 @Table(name = "vJobCandidateEmployment", catalog = "AdventureWorks2017", schema = "HumanResources")
-
 @NamedQueries({
     @NamedQuery(name = "VJobCandidateEmployment.findAll", query = "SELECT v FROM VJobCandidateEmployment v"),
     @NamedQuery(name = "VJobCandidateEmployment.findByJobCandidateID", query = "SELECT v FROM VJobCandidateEmployment v WHERE v.jobCandidateID = :jobCandidateID"),
@@ -64,95 +68,8 @@ public class VJobCandidateEmployment implements Serializable {
     @Column(name = "City")
     private String city;
 
-    public VJobCandidateEmployment() {
-    }
-
-    public int getJobCandidateID() {
-        return jobCandidateID;
-    }
-
-    public void setJobCandidateID(int jobCandidateID) {
-        this.jobCandidateID = jobCandidateID;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getOrgName() {
-        return orgName;
-    }
-
-    public void setOrgName(String orgName) {
-        this.orgName = orgName;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getResponsibility() {
-        return responsibility;
-    }
-
-    public void setResponsibility(String responsibility) {
-        this.responsibility = responsibility;
-    }
-
-    public String getFunctionCategory() {
-        return functionCategory;
-    }
-
-    public void setFunctionCategory(String functionCategory) {
-        this.functionCategory = functionCategory;
-    }
-
-    public String getIndustryCategory() {
-        return industryCategory;
-    }
-
-    public void setIndustryCategory(String industryCategory) {
-        this.industryCategory = industryCategory;
-    }
-
-    public String getCountryRegion() {
-        return countryRegion;
-    }
-
-    public void setCountryRegion(String countryRegion) {
-        this.countryRegion = countryRegion;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}    
 }

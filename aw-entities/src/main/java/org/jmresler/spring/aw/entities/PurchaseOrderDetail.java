@@ -16,13 +16,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "PurchaseOrderDetail", catalog = "AdventureWorks2017", schema = "Purchasing")
-
 @NamedQueries({
     @NamedQuery(name = "PurchaseOrderDetail.findAll", query = "SELECT p FROM PurchaseOrderDetail p"),
     @NamedQuery(name = "PurchaseOrderDetail.findByPurchaseOrderID", query = "SELECT p FROM PurchaseOrderDetail p WHERE p.purchaseOrderDetailPK.purchaseOrderID = :purchaseOrderID"),
@@ -75,141 +81,8 @@ public class PurchaseOrderDetail implements Serializable {
     @ManyToOne(optional = false)
     private PurchaseOrderHeader purchaseOrderHeader;
 
-    public PurchaseOrderDetail() {
-    }
-
-    public PurchaseOrderDetail(PurchaseOrderDetailPK purchaseOrderDetailPK) {
-        this.purchaseOrderDetailPK = purchaseOrderDetailPK;
-    }
-
-    public PurchaseOrderDetail(PurchaseOrderDetailPK purchaseOrderDetailPK, Date dueDate, short orderQty, int productID, BigDecimal unitPrice, BigDecimal lineTotal, BigDecimal receivedQty, BigDecimal rejectedQty, BigDecimal stockedQty, Date modifiedDate) {
-        this.purchaseOrderDetailPK = purchaseOrderDetailPK;
-        this.dueDate = dueDate;
-        this.orderQty = orderQty;
-        this.productID = productID;
-        this.unitPrice = unitPrice;
-        this.lineTotal = lineTotal;
-        this.receivedQty = receivedQty;
-        this.rejectedQty = rejectedQty;
-        this.stockedQty = stockedQty;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public PurchaseOrderDetail(int purchaseOrderID, int purchaseOrderDetailID) {
-        this.purchaseOrderDetailPK = new PurchaseOrderDetailPK(purchaseOrderID, purchaseOrderDetailID);
-    }
-
-    public PurchaseOrderDetailPK getPurchaseOrderDetailPK() {
-        return purchaseOrderDetailPK;
-    }
-
-    public void setPurchaseOrderDetailPK(PurchaseOrderDetailPK purchaseOrderDetailPK) {
-        this.purchaseOrderDetailPK = purchaseOrderDetailPK;
-    }
-
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public short getOrderQty() {
-        return orderQty;
-    }
-
-    public void setOrderQty(short orderQty) {
-        this.orderQty = orderQty;
-    }
-
-    public int getProductID() {
-        return productID;
-    }
-
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
-
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public BigDecimal getLineTotal() {
-        return lineTotal;
-    }
-
-    public void setLineTotal(BigDecimal lineTotal) {
-        this.lineTotal = lineTotal;
-    }
-
-    public BigDecimal getReceivedQty() {
-        return receivedQty;
-    }
-
-    public void setReceivedQty(BigDecimal receivedQty) {
-        this.receivedQty = receivedQty;
-    }
-
-    public BigDecimal getRejectedQty() {
-        return rejectedQty;
-    }
-
-    public void setRejectedQty(BigDecimal rejectedQty) {
-        this.rejectedQty = rejectedQty;
-    }
-
-    public BigDecimal getStockedQty() {
-        return stockedQty;
-    }
-
-    public void setStockedQty(BigDecimal stockedQty) {
-        this.stockedQty = stockedQty;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public PurchaseOrderHeader getPurchaseOrderHeader() {
-        return purchaseOrderHeader;
-    }
-
-    public void setPurchaseOrderHeader(PurchaseOrderHeader purchaseOrderHeader) {
-        this.purchaseOrderHeader = purchaseOrderHeader;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (purchaseOrderDetailPK != null ? purchaseOrderDetailPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PurchaseOrderDetail)) {
-            return false;
-        }
-        PurchaseOrderDetail other = (PurchaseOrderDetail) object;
-        if ((this.purchaseOrderDetailPK == null && other.purchaseOrderDetailPK != null) || (this.purchaseOrderDetailPK != null && !this.purchaseOrderDetailPK.equals(other.purchaseOrderDetailPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.PurchaseOrderDetail[ purchaseOrderDetailPK=" + purchaseOrderDetailPK + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

@@ -23,10 +23,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "WorkOrder", catalog = "AdventureWorks2017", schema = "Production")
 @NamedQueries({
@@ -80,134 +87,8 @@ public class WorkOrder implements Serializable {
     @ManyToOne
     private ScrapReason scrapReasonID;
 
-    public WorkOrder() {
-    }
-
-    public WorkOrder(Integer workOrderID) {
-        this.workOrderID = workOrderID;
-    }
-
-    public WorkOrder(Integer workOrderID, int orderQty, int stockedQty, short scrappedQty, Date startDate, Date dueDate, Date modifiedDate) {
-        this.workOrderID = workOrderID;
-        this.orderQty = orderQty;
-        this.stockedQty = stockedQty;
-        this.scrappedQty = scrappedQty;
-        this.startDate = startDate;
-        this.dueDate = dueDate;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getWorkOrderID() {
-        return workOrderID;
-    }
-
-    public void setWorkOrderID(Integer workOrderID) {
-        this.workOrderID = workOrderID;
-    }
-
-    public int getOrderQty() {
-        return orderQty;
-    }
-
-    public void setOrderQty(int orderQty) {
-        this.orderQty = orderQty;
-    }
-
-    public int getStockedQty() {
-        return stockedQty;
-    }
-
-    public void setStockedQty(int stockedQty) {
-        this.stockedQty = stockedQty;
-    }
-
-    public short getScrappedQty() {
-        return scrappedQty;
-    }
-
-    public void setScrappedQty(short scrappedQty) {
-        this.scrappedQty = scrappedQty;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<WorkOrderRouting> getWorkOrderRoutingCollection() {
-        return workOrderRoutingCollection;
-    }
-
-    public void setWorkOrderRoutingCollection(Collection<WorkOrderRouting> workOrderRoutingCollection) {
-        this.workOrderRoutingCollection = workOrderRoutingCollection;
-    }
-
-    public Product getProductID() {
-        return productID;
-    }
-
-    public void setProductID(Product productID) {
-        this.productID = productID;
-    }
-
-    public ScrapReason getScrapReasonID() {
-        return scrapReasonID;
-    }
-
-    public void setScrapReasonID(ScrapReason scrapReasonID) {
-        this.scrapReasonID = scrapReasonID;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (workOrderID != null ? workOrderID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof WorkOrder)) {
-            return false;
-        }
-        WorkOrder other = (WorkOrder) object;
-        if ((this.workOrderID == null && other.workOrderID != null) || (this.workOrderID != null && !this.workOrderID.equals(other.workOrderID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.WorkOrder[ workOrderID=" + workOrderID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

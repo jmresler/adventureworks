@@ -21,13 +21,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "PurchaseOrderHeader", catalog = "AdventureWorks2017", schema = "Purchasing")
-
 @NamedQueries({
     @NamedQuery(name = "PurchaseOrderHeader.findAll", query = "SELECT p FROM PurchaseOrderHeader p"),
     @NamedQuery(name = "PurchaseOrderHeader.findByPurchaseOrderID", query = "SELECT p FROM PurchaseOrderHeader p WHERE p.purchaseOrderID = :purchaseOrderID"),
@@ -91,161 +97,8 @@ public class PurchaseOrderHeader implements Serializable {
     @ManyToOne(optional = false)
     private Vendor vendorID;
 
-    public PurchaseOrderHeader() {
-    }
-
-    public PurchaseOrderHeader(Integer purchaseOrderID) {
-        this.purchaseOrderID = purchaseOrderID;
-    }
-
-    public PurchaseOrderHeader(Integer purchaseOrderID, short revisionNumber, short status, int employeeID, Date orderDate, BigDecimal subTotal, BigDecimal taxAmt, BigDecimal freight, BigDecimal totalDue, Date modifiedDate) {
-        this.purchaseOrderID = purchaseOrderID;
-        this.revisionNumber = revisionNumber;
-        this.status = status;
-        this.employeeID = employeeID;
-        this.orderDate = orderDate;
-        this.subTotal = subTotal;
-        this.taxAmt = taxAmt;
-        this.freight = freight;
-        this.totalDue = totalDue;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getPurchaseOrderID() {
-        return purchaseOrderID;
-    }
-
-    public void setPurchaseOrderID(Integer purchaseOrderID) {
-        this.purchaseOrderID = purchaseOrderID;
-    }
-
-    public short getRevisionNumber() {
-        return revisionNumber;
-    }
-
-    public void setRevisionNumber(short revisionNumber) {
-        this.revisionNumber = revisionNumber;
-    }
-
-    public short getStatus() {
-        return status;
-    }
-
-    public void setStatus(short status) {
-        this.status = status;
-    }
-
-    public int getEmployeeID() {
-        return employeeID;
-    }
-
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public Date getShipDate() {
-        return shipDate;
-    }
-
-    public void setShipDate(Date shipDate) {
-        this.shipDate = shipDate;
-    }
-
-    public BigDecimal getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(BigDecimal subTotal) {
-        this.subTotal = subTotal;
-    }
-
-    public BigDecimal getTaxAmt() {
-        return taxAmt;
-    }
-
-    public void setTaxAmt(BigDecimal taxAmt) {
-        this.taxAmt = taxAmt;
-    }
-
-    public BigDecimal getFreight() {
-        return freight;
-    }
-
-    public void setFreight(BigDecimal freight) {
-        this.freight = freight;
-    }
-
-    public BigDecimal getTotalDue() {
-        return totalDue;
-    }
-
-    public void setTotalDue(BigDecimal totalDue) {
-        this.totalDue = totalDue;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<PurchaseOrderDetail> getPurchaseOrderDetailCollection() {
-        return purchaseOrderDetailCollection;
-    }
-
-    public void setPurchaseOrderDetailCollection(Collection<PurchaseOrderDetail> purchaseOrderDetailCollection) {
-        this.purchaseOrderDetailCollection = purchaseOrderDetailCollection;
-    }
-
-    public ShipMethod getShipMethodID() {
-        return shipMethodID;
-    }
-
-    public void setShipMethodID(ShipMethod shipMethodID) {
-        this.shipMethodID = shipMethodID;
-    }
-
-    public Vendor getVendorID() {
-        return vendorID;
-    }
-
-    public void setVendorID(Vendor vendorID) {
-        this.vendorID = vendorID;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (purchaseOrderID != null ? purchaseOrderID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PurchaseOrderHeader)) {
-            return false;
-        }
-        PurchaseOrderHeader other = (PurchaseOrderHeader) object;
-        if ((this.purchaseOrderID == null && other.purchaseOrderID != null) || (this.purchaseOrderID != null && !this.purchaseOrderID.equals(other.purchaseOrderID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.PurchaseOrderHeader[ purchaseOrderID=" + purchaseOrderID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

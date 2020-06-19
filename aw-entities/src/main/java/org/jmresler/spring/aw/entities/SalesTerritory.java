@@ -19,13 +19,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "SalesTerritory", catalog = "AdventureWorks2017", schema = "Sales")
-
 @NamedQueries({
     @NamedQuery(name = "SalesTerritory.findAll", query = "SELECT s FROM SalesTerritory s"),
     @NamedQuery(name = "SalesTerritory.findByTerritoryID", query = "SELECT s FROM SalesTerritory s WHERE s.territoryID = :territoryID"),
@@ -87,152 +93,8 @@ public class SalesTerritory implements Serializable {
     @OneToMany(mappedBy = "territoryID")
     private Collection<SalesOrderHeader> salesOrderHeaderCollection;
 
-    public SalesTerritory() {
-    }
-
-    public SalesTerritory(Integer territoryID) {
-        this.territoryID = territoryID;
-    }
-
-    public SalesTerritory(Integer territoryID, String countryRegionCode, String group, BigDecimal salesYTD, BigDecimal salesLastYear, BigDecimal costYTD, BigDecimal costLastYear, String rowguid, Date modifiedDate) {
-        this.territoryID = territoryID;
-        this.countryRegionCode = countryRegionCode;
-        this.group = group;
-        this.salesYTD = salesYTD;
-        this.salesLastYear = salesLastYear;
-        this.costYTD = costYTD;
-        this.costLastYear = costLastYear;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getTerritoryID() {
-        return territoryID;
-    }
-
-    public void setTerritoryID(Integer territoryID) {
-        this.territoryID = territoryID;
-    }
-
-    public String getCountryRegionCode() {
-        return countryRegionCode;
-    }
-
-    public void setCountryRegionCode(String countryRegionCode) {
-        this.countryRegionCode = countryRegionCode;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
-    public BigDecimal getSalesYTD() {
-        return salesYTD;
-    }
-
-    public void setSalesYTD(BigDecimal salesYTD) {
-        this.salesYTD = salesYTD;
-    }
-
-    public BigDecimal getSalesLastYear() {
-        return salesLastYear;
-    }
-
-    public void setSalesLastYear(BigDecimal salesLastYear) {
-        this.salesLastYear = salesLastYear;
-    }
-
-    public BigDecimal getCostYTD() {
-        return costYTD;
-    }
-
-    public void setCostYTD(BigDecimal costYTD) {
-        this.costYTD = costYTD;
-    }
-
-    public BigDecimal getCostLastYear() {
-        return costLastYear;
-    }
-
-    public void setCostLastYear(BigDecimal costLastYear) {
-        this.costLastYear = costLastYear;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<Customer> getCustomerCollection() {
-        return customerCollection;
-    }
-
-    public void setCustomerCollection(Collection<Customer> customerCollection) {
-        this.customerCollection = customerCollection;
-    }
-
-    public Collection<SalesPerson> getSalesPersonCollection() {
-        return salesPersonCollection;
-    }
-
-    public void setSalesPersonCollection(Collection<SalesPerson> salesPersonCollection) {
-        this.salesPersonCollection = salesPersonCollection;
-    }
-
-    public Collection<SalesTerritoryHistory> getSalesTerritoryHistoryCollection() {
-        return salesTerritoryHistoryCollection;
-    }
-
-    public void setSalesTerritoryHistoryCollection(Collection<SalesTerritoryHistory> salesTerritoryHistoryCollection) {
-        this.salesTerritoryHistoryCollection = salesTerritoryHistoryCollection;
-    }
-
-    public Collection<SalesOrderHeader> getSalesOrderHeaderCollection() {
-        return salesOrderHeaderCollection;
-    }
-
-    public void setSalesOrderHeaderCollection(Collection<SalesOrderHeader> salesOrderHeaderCollection) {
-        this.salesOrderHeaderCollection = salesOrderHeaderCollection;
-    }
-
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (territoryID != null ? territoryID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SalesTerritory)) {
-            return false;
-        }
-        SalesTerritory other = (SalesTerritory) object;
-        if ((this.territoryID == null && other.territoryID != null) || (this.territoryID != null && !this.territoryID.equals(other.territoryID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.SalesTerritory[ territoryID=" + territoryID + " ]";
-    }
-    
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

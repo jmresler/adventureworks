@@ -19,13 +19,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Location", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "Location.findAll", query = "SELECT l FROM Location l"),
     @NamedQuery(name = "Location.findByLocationID", query = "SELECT l FROM Location l WHERE l.locationID = :locationID"),
@@ -55,91 +61,8 @@ public class Location implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "locationID")
     private Collection<WorkOrderRouting> workOrderRoutingCollection;
 
-    public Location() {
-    }
-
-    public Location(Short locationID) {
-        this.locationID = locationID;
-    }
-
-    public Location(Short locationID, BigDecimal costRate, BigDecimal availability, Date modifiedDate) {
-        this.locationID = locationID;
-        this.costRate = costRate;
-        this.availability = availability;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Short getLocationID() {
-        return locationID;
-    }
-
-    public void setLocationID(Short locationID) {
-        this.locationID = locationID;
-    }
-
-    public BigDecimal getCostRate() {
-        return costRate;
-    }
-
-    public void setCostRate(BigDecimal costRate) {
-        this.costRate = costRate;
-    }
-
-    public BigDecimal getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(BigDecimal availability) {
-        this.availability = availability;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<ProductInventory> getProductInventoryCollection() {
-        return productInventoryCollection;
-    }
-
-    public void setProductInventoryCollection(Collection<ProductInventory> productInventoryCollection) {
-        this.productInventoryCollection = productInventoryCollection;
-    }
-
-    public Collection<WorkOrderRouting> getWorkOrderRoutingCollection() {
-        return workOrderRoutingCollection;
-    }
-
-    public void setWorkOrderRoutingCollection(Collection<WorkOrderRouting> workOrderRoutingCollection) {
-        this.workOrderRoutingCollection = workOrderRoutingCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (locationID != null ? locationID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
-            return false;
-        }
-        Location other = (Location) object;
-        if ((this.locationID == null && other.locationID != null) || (this.locationID != null && !this.locationID.equals(other.locationID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.Location[ locationID=" + locationID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

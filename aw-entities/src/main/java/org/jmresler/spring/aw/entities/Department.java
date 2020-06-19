@@ -18,13 +18,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Department", catalog = "AdventureWorks2017", schema = "HumanResources")
-
 @NamedQueries({
     @NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d"),
     @NamedQuery(name = "Department.findByDepartmentID", query = "SELECT d FROM Department d WHERE d.departmentID = :departmentID"),
@@ -45,65 +51,8 @@ public class Department implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
     private Collection<EmployeeDepartmentHistory> employeeDepartmentHistoryCollection;
 
-    public Department() {
-    }
-
-    public Department(Short departmentID) {
-        this.departmentID = departmentID;
-    }
-
-    public Department(Short departmentID, Date modifiedDate) {
-        this.departmentID = departmentID;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Short getDepartmentID() {
-        return departmentID;
-    }
-
-    public void setDepartmentID(Short departmentID) {
-        this.departmentID = departmentID;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<EmployeeDepartmentHistory> getEmployeeDepartmentHistoryCollection() {
-        return employeeDepartmentHistoryCollection;
-    }
-
-    public void setEmployeeDepartmentHistoryCollection(Collection<EmployeeDepartmentHistory> employeeDepartmentHistoryCollection) {
-        this.employeeDepartmentHistoryCollection = employeeDepartmentHistoryCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (departmentID != null ? departmentID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Department)) {
-            return false;
-        }
-        Department other = (Department) object;
-        if ((this.departmentID == null && other.departmentID != null) || (this.departmentID != null && !this.departmentID.equals(other.departmentID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.Department[ departmentID=" + departmentID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

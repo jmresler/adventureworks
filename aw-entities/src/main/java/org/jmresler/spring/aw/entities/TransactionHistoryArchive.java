@@ -16,13 +16,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "TransactionHistoryArchive", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "TransactionHistoryArchive.findAll", query = "SELECT t FROM TransactionHistoryArchive t"),
     @NamedQuery(name = "TransactionHistoryArchive.findByTransactionID", query = "SELECT t FROM TransactionHistoryArchive t WHERE t.transactionID = :transactionID"),
@@ -70,120 +76,8 @@ public class TransactionHistoryArchive implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
 
-    public TransactionHistoryArchive() {
-    }
-
-    public TransactionHistoryArchive(Integer transactionID) {
-        this.transactionID = transactionID;
-    }
-
-    public TransactionHistoryArchive(Integer transactionID, int productID, int referenceOrderID, int referenceOrderLineID, Date transactionDate, String transactionType, int quantity, BigDecimal actualCost, Date modifiedDate) {
-        this.transactionID = transactionID;
-        this.productID = productID;
-        this.referenceOrderID = referenceOrderID;
-        this.referenceOrderLineID = referenceOrderLineID;
-        this.transactionDate = transactionDate;
-        this.transactionType = transactionType;
-        this.quantity = quantity;
-        this.actualCost = actualCost;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getTransactionID() {
-        return transactionID;
-    }
-
-    public void setTransactionID(Integer transactionID) {
-        this.transactionID = transactionID;
-    }
-
-    public int getProductID() {
-        return productID;
-    }
-
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
-
-    public int getReferenceOrderID() {
-        return referenceOrderID;
-    }
-
-    public void setReferenceOrderID(int referenceOrderID) {
-        this.referenceOrderID = referenceOrderID;
-    }
-
-    public int getReferenceOrderLineID() {
-        return referenceOrderLineID;
-    }
-
-    public void setReferenceOrderLineID(int referenceOrderLineID) {
-        this.referenceOrderLineID = referenceOrderLineID;
-    }
-
-    public Date getTransactionDate() {
-        return transactionDate;
-    }
-
-    public void setTransactionDate(Date transactionDate) {
-        this.transactionDate = transactionDate;
-    }
-
-    public String getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public BigDecimal getActualCost() {
-        return actualCost;
-    }
-
-    public void setActualCost(BigDecimal actualCost) {
-        this.actualCost = actualCost;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (transactionID != null ? transactionID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TransactionHistoryArchive)) {
-            return false;
-        }
-        TransactionHistoryArchive other = (TransactionHistoryArchive) object;
-        if ((this.transactionID == null && other.transactionID != null) || (this.transactionID != null && !this.transactionID.equals(other.transactionID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.TransactionHistoryArchive[ transactionID=" + transactionID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

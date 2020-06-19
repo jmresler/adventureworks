@@ -18,13 +18,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "ProductDescription", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "ProductDescription.findAll", query = "SELECT p FROM ProductDescription p"),
     @NamedQuery(name = "ProductDescription.findByProductDescriptionID", query = "SELECT p FROM ProductDescription p WHERE p.productDescriptionID = :productDescriptionID"),
@@ -52,83 +58,8 @@ public class ProductDescription implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productDescription")
     private Collection<ProductModelProductDescriptionCulture> productModelProductDescriptionCultureCollection;
 
-    public ProductDescription() {
-    }
-
-    public ProductDescription(Integer productDescriptionID) {
-        this.productDescriptionID = productDescriptionID;
-    }
-
-    public ProductDescription(Integer productDescriptionID, String description, String rowguid, Date modifiedDate) {
-        this.productDescriptionID = productDescriptionID;
-        this.description = description;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getProductDescriptionID() {
-        return productDescriptionID;
-    }
-
-    public void setProductDescriptionID(Integer productDescriptionID) {
-        this.productDescriptionID = productDescriptionID;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<ProductModelProductDescriptionCulture> getProductModelProductDescriptionCultureCollection() {
-        return productModelProductDescriptionCultureCollection;
-    }
-
-    public void setProductModelProductDescriptionCultureCollection(Collection<ProductModelProductDescriptionCulture> productModelProductDescriptionCultureCollection) {
-        this.productModelProductDescriptionCultureCollection = productModelProductDescriptionCultureCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (productDescriptionID != null ? productDescriptionID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductDescription)) {
-            return false;
-        }
-        ProductDescription other = (ProductDescription) object;
-        if ((this.productDescriptionID == null && other.productDescriptionID != null) || (this.productDescriptionID != null && !this.productDescriptionID.equals(other.productDescriptionID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.ProductDescription[ productDescriptionID=" + productDescriptionID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

@@ -19,13 +19,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Employee", catalog = "AdventureWorks2017", schema = "HumanResources")
-
 @NamedQueries({
     @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e"),
     @NamedQuery(name = "Employee.findByBusinessEntityID", query = "SELECT e FROM Employee e WHERE e.businessEntityID = :businessEntityID"),
@@ -98,188 +104,8 @@ public class Employee implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
     private Collection<EmployeeDepartmentHistory> employeeDepartmentHistoryCollection;
 
-    public Employee() {
-    }
-
-    public Employee(Integer businessEntityID) {
-        this.businessEntityID = businessEntityID;
-    }
-
-    public Employee(Integer businessEntityID, String nationalIDNumber, String loginID, String jobTitle, Date birthDate, String maritalStatus, String gender, Date hireDate, short vacationHours, short sickLeaveHours, String rowguid, Date modifiedDate) {
-        this.businessEntityID = businessEntityID;
-        this.nationalIDNumber = nationalIDNumber;
-        this.loginID = loginID;
-        this.jobTitle = jobTitle;
-        this.birthDate = birthDate;
-        this.maritalStatus = maritalStatus;
-        this.gender = gender;
-        this.hireDate = hireDate;
-        this.vacationHours = vacationHours;
-        this.sickLeaveHours = sickLeaveHours;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getBusinessEntityID() {
-        return businessEntityID;
-    }
-
-    public void setBusinessEntityID(Integer businessEntityID) {
-        this.businessEntityID = businessEntityID;
-    }
-
-    public String getNationalIDNumber() {
-        return nationalIDNumber;
-    }
-
-    public void setNationalIDNumber(String nationalIDNumber) {
-        this.nationalIDNumber = nationalIDNumber;
-    }
-
-    public String getLoginID() {
-        return loginID;
-    }
-
-    public void setLoginID(String loginID) {
-        this.loginID = loginID;
-    }
-
-
-    public Short getOrganizationLevel() {
-        return organizationLevel;
-    }
-
-    public void setOrganizationLevel(Short organizationLevel) {
-        this.organizationLevel = organizationLevel;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getMaritalStatus() {
-        return maritalStatus;
-    }
-
-    public void setMaritalStatus(String maritalStatus) {
-        this.maritalStatus = maritalStatus;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Date getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
-    }
-
-    public short getVacationHours() {
-        return vacationHours;
-    }
-
-    public void setVacationHours(short vacationHours) {
-        this.vacationHours = vacationHours;
-    }
-
-    public short getSickLeaveHours() {
-        return sickLeaveHours;
-    }
-
-    public void setSickLeaveHours(short sickLeaveHours) {
-        this.sickLeaveHours = sickLeaveHours;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<EmployeePayHistory> getEmployeePayHistoryCollection() {
-        return employeePayHistoryCollection;
-    }
-
-    public void setEmployeePayHistoryCollection(Collection<EmployeePayHistory> employeePayHistoryCollection) {
-        this.employeePayHistoryCollection = employeePayHistoryCollection;
-    }
-
-    public Collection<JobCandidate> getJobCandidateCollection() {
-        return jobCandidateCollection;
-    }
-
-    public void setJobCandidateCollection(Collection<JobCandidate> jobCandidateCollection) {
-        this.jobCandidateCollection = jobCandidateCollection;
-    }
-
-    public Collection<EmployeeDepartmentHistory> getEmployeeDepartmentHistoryCollection() {
-        return employeeDepartmentHistoryCollection;
-    }
-
-    public void setEmployeeDepartmentHistoryCollection(Collection<EmployeeDepartmentHistory> employeeDepartmentHistoryCollection) {
-        this.employeeDepartmentHistoryCollection = employeeDepartmentHistoryCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (businessEntityID != null ? businessEntityID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Employee)) {
-            return false;
-        }
-        Employee other = (Employee) object;
-        if ((this.businessEntityID == null && other.businessEntityID != null) || (this.businessEntityID != null && !this.businessEntityID.equals(other.businessEntityID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.Employee[ businessEntityID=" + businessEntityID + " ]";
-    }
-
-    public byte[] getOrganizationNode() {
-        return organizationNode;
-    }
-
-    public void setOrganizationNode(byte[] organizationNode) {
-        this.organizationNode = organizationNode;
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}    
 }

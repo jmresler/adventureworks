@@ -15,13 +15,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "SalesTerritoryHistory", catalog = "AdventureWorks2017", schema = "Sales")
-
 @NamedQueries({
     @NamedQuery(name = "SalesTerritoryHistory.findAll", query = "SELECT s FROM SalesTerritoryHistory s"),
     @NamedQuery(name = "SalesTerritoryHistory.findByBusinessEntityID", query = "SELECT s FROM SalesTerritoryHistory s WHERE s.salesTerritoryHistoryPK.businessEntityID = :businessEntityID"),
@@ -53,94 +59,8 @@ public class SalesTerritoryHistory implements Serializable {
     @ManyToOne(optional = false)
     private SalesTerritory salesTerritory;
 
-    public SalesTerritoryHistory() {
-    }
-
-    public SalesTerritoryHistory(SalesTerritoryHistoryPK salesTerritoryHistoryPK) {
-        this.salesTerritoryHistoryPK = salesTerritoryHistoryPK;
-    }
-
-    public SalesTerritoryHistory(SalesTerritoryHistoryPK salesTerritoryHistoryPK, String rowguid, Date modifiedDate) {
-        this.salesTerritoryHistoryPK = salesTerritoryHistoryPK;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public SalesTerritoryHistory(int businessEntityID, int territoryID, Date startDate) {
-        this.salesTerritoryHistoryPK = new SalesTerritoryHistoryPK(businessEntityID, territoryID, startDate);
-    }
-
-    public SalesTerritoryHistoryPK getSalesTerritoryHistoryPK() {
-        return salesTerritoryHistoryPK;
-    }
-
-    public void setSalesTerritoryHistoryPK(SalesTerritoryHistoryPK salesTerritoryHistoryPK) {
-        this.salesTerritoryHistoryPK = salesTerritoryHistoryPK;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public SalesPerson getSalesPerson() {
-        return salesPerson;
-    }
-
-    public void setSalesPerson(SalesPerson salesPerson) {
-        this.salesPerson = salesPerson;
-    }
-
-    public SalesTerritory getSalesTerritory() {
-        return salesTerritory;
-    }
-
-    public void setSalesTerritory(SalesTerritory salesTerritory) {
-        this.salesTerritory = salesTerritory;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (salesTerritoryHistoryPK != null ? salesTerritoryHistoryPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SalesTerritoryHistory)) {
-            return false;
-        }
-        SalesTerritoryHistory other = (SalesTerritoryHistory) object;
-        if ((this.salesTerritoryHistoryPK == null && other.salesTerritoryHistoryPK != null) || (this.salesTerritoryHistoryPK != null && !this.salesTerritoryHistoryPK.equals(other.salesTerritoryHistoryPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.SalesTerritoryHistory[ salesTerritoryHistoryPK=" + salesTerritoryHistoryPK + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

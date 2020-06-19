@@ -18,13 +18,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Culture", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "Culture.findAll", query = "SELECT c FROM Culture c"),
     @NamedQuery(name = "Culture.findByCultureID", query = "SELECT c FROM Culture c WHERE c.cultureID = :cultureID"),
@@ -45,65 +51,8 @@ public class Culture implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "culture")
     private Collection<ProductModelProductDescriptionCulture> productModelProductDescriptionCultureCollection;
 
-    public Culture() {
-    }
-
-    public Culture(String cultureID) {
-        this.cultureID = cultureID;
-    }
-
-    public Culture(String cultureID, Date modifiedDate) {
-        this.cultureID = cultureID;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public String getCultureID() {
-        return cultureID;
-    }
-
-    public void setCultureID(String cultureID) {
-        this.cultureID = cultureID;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<ProductModelProductDescriptionCulture> getProductModelProductDescriptionCultureCollection() {
-        return productModelProductDescriptionCultureCollection;
-    }
-
-    public void setProductModelProductDescriptionCultureCollection(Collection<ProductModelProductDescriptionCulture> productModelProductDescriptionCultureCollection) {
-        this.productModelProductDescriptionCultureCollection = productModelProductDescriptionCultureCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (cultureID != null ? cultureID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Culture)) {
-            return false;
-        }
-        Culture other = (Culture) object;
-        if ((this.cultureID == null && other.cultureID != null) || (this.cultureID != null && !this.cultureID.equals(other.cultureID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.Culture[ cultureID=" + cultureID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

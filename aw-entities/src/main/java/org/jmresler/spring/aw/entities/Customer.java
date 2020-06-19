@@ -20,13 +20,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Customer", catalog = "AdventureWorks2017", schema = "Sales")
-
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
     @NamedQuery(name = "Customer.findByCustomerID", query = "SELECT c FROM Customer c WHERE c.customerID = :customerID"),
@@ -64,107 +70,8 @@ public class Customer implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerID")
     private Collection<SalesOrderHeader> salesOrderHeaderCollection;
 
-    public Customer() {
-    }
-
-    public Customer(Integer customerID) {
-        this.customerID = customerID;
-    }
-
-    public Customer(Integer customerID, String accountNumber, String rowguid, Date modifiedDate) {
-        this.customerID = customerID;
-        this.accountNumber = accountNumber;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(Integer customerID) {
-        this.customerID = customerID;
-    }
-
-    public Integer getPersonID() {
-        return personID;
-    }
-
-    public void setPersonID(Integer personID) {
-        this.personID = personID;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public SalesTerritory getTerritoryID() {
-        return territoryID;
-    }
-
-    public void setTerritoryID(SalesTerritory territoryID) {
-        this.territoryID = territoryID;
-    }
-
-    public Store getStoreID() {
-        return storeID;
-    }
-
-    public void setStoreID(Store storeID) {
-        this.storeID = storeID;
-    }
-
-    public Collection<SalesOrderHeader> getSalesOrderHeaderCollection() {
-        return salesOrderHeaderCollection;
-    }
-
-    public void setSalesOrderHeaderCollection(Collection<SalesOrderHeader> salesOrderHeaderCollection) {
-        this.salesOrderHeaderCollection = salesOrderHeaderCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (customerID != null ? customerID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Customer)) {
-            return false;
-        }
-        Customer other = (Customer) object;
-        if ((this.customerID == null && other.customerID != null) || (this.customerID != null && !this.customerID.equals(other.customerID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.Customer[ customerID=" + customerID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

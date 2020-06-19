@@ -16,10 +16,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
+
 @Entity
 @Table(name = "SalesPersonQuotaHistory", catalog = "AdventureWorks2017", schema = "Sales")
 
@@ -50,87 +58,8 @@ public class SalesPersonQuotaHistory implements Serializable {
     @ManyToOne(optional = false)
     private SalesPerson salesPerson;
 
-    public SalesPersonQuotaHistory() {
-    }
-
-    public SalesPersonQuotaHistory(SalesPersonQuotaHistoryPK salesPersonQuotaHistoryPK) {
-        this.salesPersonQuotaHistoryPK = salesPersonQuotaHistoryPK;
-    }
-
-    public SalesPersonQuotaHistory(SalesPersonQuotaHistoryPK salesPersonQuotaHistoryPK, BigDecimal salesQuota, String rowguid, Date modifiedDate) {
-        this.salesPersonQuotaHistoryPK = salesPersonQuotaHistoryPK;
-        this.salesQuota = salesQuota;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public SalesPersonQuotaHistory(int businessEntityID, Date quotaDate) {
-        this.salesPersonQuotaHistoryPK = new SalesPersonQuotaHistoryPK(businessEntityID, quotaDate);
-    }
-
-    public SalesPersonQuotaHistoryPK getSalesPersonQuotaHistoryPK() {
-        return salesPersonQuotaHistoryPK;
-    }
-
-    public void setSalesPersonQuotaHistoryPK(SalesPersonQuotaHistoryPK salesPersonQuotaHistoryPK) {
-        this.salesPersonQuotaHistoryPK = salesPersonQuotaHistoryPK;
-    }
-
-    public BigDecimal getSalesQuota() {
-        return salesQuota;
-    }
-
-    public void setSalesQuota(BigDecimal salesQuota) {
-        this.salesQuota = salesQuota;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public SalesPerson getSalesPerson() {
-        return salesPerson;
-    }
-
-    public void setSalesPerson(SalesPerson salesPerson) {
-        this.salesPerson = salesPerson;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (salesPersonQuotaHistoryPK != null ? salesPersonQuotaHistoryPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SalesPersonQuotaHistory)) {
-            return false;
-        }
-        SalesPersonQuotaHistory other = (SalesPersonQuotaHistory) object;
-        if ((this.salesPersonQuotaHistoryPK == null && other.salesPersonQuotaHistoryPK != null) || (this.salesPersonQuotaHistoryPK != null && !this.salesPersonQuotaHistoryPK.equals(other.salesPersonQuotaHistoryPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.SalesPersonQuotaHistory[ salesPersonQuotaHistoryPK=" + salesPersonQuotaHistoryPK + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

@@ -15,13 +15,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "EmployeeDepartmentHistory", catalog = "AdventureWorks2017", schema = "HumanResources")
-
 @NamedQueries({
     @NamedQuery(name = "EmployeeDepartmentHistory.findAll", query = "SELECT e FROM EmployeeDepartmentHistory e"),
     @NamedQuery(name = "EmployeeDepartmentHistory.findByBusinessEntityID", query = "SELECT e FROM EmployeeDepartmentHistory e WHERE e.employeeDepartmentHistoryPK.businessEntityID = :businessEntityID"),
@@ -53,93 +59,8 @@ public class EmployeeDepartmentHistory implements Serializable {
     @ManyToOne(optional = false)
     private Shift shift;
 
-    public EmployeeDepartmentHistory() {
-    }
-
-    public EmployeeDepartmentHistory(EmployeeDepartmentHistoryPK employeeDepartmentHistoryPK) {
-        this.employeeDepartmentHistoryPK = employeeDepartmentHistoryPK;
-    }
-
-    public EmployeeDepartmentHistory(EmployeeDepartmentHistoryPK employeeDepartmentHistoryPK, Date modifiedDate) {
-        this.employeeDepartmentHistoryPK = employeeDepartmentHistoryPK;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public EmployeeDepartmentHistory(int businessEntityID, short departmentID, short shiftID, Date startDate) {
-        this.employeeDepartmentHistoryPK = new EmployeeDepartmentHistoryPK(businessEntityID, departmentID, shiftID, startDate);
-    }
-
-    public EmployeeDepartmentHistoryPK getEmployeeDepartmentHistoryPK() {
-        return employeeDepartmentHistoryPK;
-    }
-
-    public void setEmployeeDepartmentHistoryPK(EmployeeDepartmentHistoryPK employeeDepartmentHistoryPK) {
-        this.employeeDepartmentHistoryPK = employeeDepartmentHistoryPK;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public Shift getShift() {
-        return shift;
-    }
-
-    public void setShift(Shift shift) {
-        this.shift = shift;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (employeeDepartmentHistoryPK != null ? employeeDepartmentHistoryPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EmployeeDepartmentHistory)) {
-            return false;
-        }
-        EmployeeDepartmentHistory other = (EmployeeDepartmentHistory) object;
-        if ((this.employeeDepartmentHistoryPK == null && other.employeeDepartmentHistoryPK != null) || (this.employeeDepartmentHistoryPK != null && !this.employeeDepartmentHistoryPK.equals(other.employeeDepartmentHistoryPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.EmployeeDepartmentHistory[ employeeDepartmentHistoryPK=" + employeeDepartmentHistoryPK + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

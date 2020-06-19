@@ -20,13 +20,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
 @Entity
 @Table(name = "StateProvince", catalog = "AdventureWorks2017", schema = "Person")
-
 @NamedQueries({
     @NamedQuery(name = "StateProvince.findAll", query = "SELECT s FROM StateProvince s"),
     @NamedQuery(name = "StateProvince.findByStateProvinceID", query = "SELECT s FROM StateProvince s WHERE s.stateProvinceID = :stateProvinceID"),
@@ -62,107 +67,9 @@ public class StateProvince implements Serializable {
     @ManyToOne(optional = false)
     private CountryRegion countryRegionCode;
 
-    public StateProvince() {
-    }
 
-    public StateProvince(Integer stateProvinceID) {
-        this.stateProvinceID = stateProvinceID;
-    }
-
-    public StateProvince(Integer stateProvinceID, String stateProvinceCode, int territoryID, String rowguid, Date modifiedDate) {
-        this.stateProvinceID = stateProvinceID;
-        this.stateProvinceCode = stateProvinceCode;
-        this.territoryID = territoryID;
-        this.rowguid = rowguid;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getStateProvinceID() {
-        return stateProvinceID;
-    }
-
-    public void setStateProvinceID(Integer stateProvinceID) {
-        this.stateProvinceID = stateProvinceID;
-    }
-
-    public String getStateProvinceCode() {
-        return stateProvinceCode;
-    }
-
-    public void setStateProvinceCode(String stateProvinceCode) {
-        this.stateProvinceCode = stateProvinceCode;
-    }
-
-    public int getTerritoryID() {
-        return territoryID;
-    }
-
-    public void setTerritoryID(int territoryID) {
-        this.territoryID = territoryID;
-    }
-
-    public String getRowguid() {
-        return rowguid;
-    }
-
-    public void setRowguid(String rowguid) {
-        this.rowguid = rowguid;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<Address> getAddressCollection() {
-        return addressCollection;
-    }
-
-    public void setAddressCollection(Collection<Address> addressCollection) {
-        this.addressCollection = addressCollection;
-    }
-
-    public CountryRegion getCountryRegionCode() {
-        return countryRegionCode;
-    }
-
-    public void setCountryRegionCode(CountryRegion countryRegionCode) {
-        this.countryRegionCode = countryRegionCode;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (stateProvinceID != null ? stateProvinceID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StateProvince)) {
-            return false;
-        }
-        StateProvince other = (StateProvince) object;
-        if ((this.stateProvinceID == null && other.stateProvinceID != null) || (this.stateProvinceID != null && !this.stateProvinceID.equals(other.stateProvinceID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "StateProvince{stateProvinceID=" + stateProvinceID 
-                + ", stateProvinceCode=" + stateProvinceCode 
-                + ", territoryID=" + territoryID 
-                + ", rowguid=" + rowguid 
-                + ", modifiedDate=" + modifiedDate 
-                + ", addressCollection=" + addressCollection 
-                + ", countryRegionCode=" + countryRegionCode + '}';
-    }
-
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + stateProvinceCode + "]"; 
+	}
 }

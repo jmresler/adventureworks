@@ -19,13 +19,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "ProductPhoto", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "ProductPhoto.findAll", query = "SELECT p FROM ProductPhoto p"),
     @NamedQuery(name = "ProductPhoto.findByProductPhotoID", query = "SELECT p FROM ProductPhoto p WHERE p.productPhotoID = :productPhotoID"),
@@ -58,97 +64,8 @@ public class ProductPhoto implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productPhoto")
     private Collection<ProductProductPhoto> productProductPhotoCollection;
 
-    public ProductPhoto() {
-    }
-
-    public ProductPhoto(Integer productPhotoID) {
-        this.productPhotoID = productPhotoID;
-    }
-
-    public ProductPhoto(Integer productPhotoID, Date modifiedDate) {
-        this.productPhotoID = productPhotoID;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getProductPhotoID() {
-        return productPhotoID;
-    }
-
-    public void setProductPhotoID(Integer productPhotoID) {
-        this.productPhotoID = productPhotoID;
-    }
-
-    public byte[] getThumbNailPhoto() {
-        return thumbNailPhoto;
-    }
-
-    public void setThumbNailPhoto(byte[] thumbNailPhoto) {
-        this.thumbNailPhoto = thumbNailPhoto;
-    }
-
-    public String getThumbnailPhotoFileName() {
-        return thumbnailPhotoFileName;
-    }
-
-    public void setThumbnailPhotoFileName(String thumbnailPhotoFileName) {
-        this.thumbnailPhotoFileName = thumbnailPhotoFileName;
-    }
-
-    public byte[] getLargePhoto() {
-        return largePhoto;
-    }
-
-    public void setLargePhoto(byte[] largePhoto) {
-        this.largePhoto = largePhoto;
-    }
-
-    public String getLargePhotoFileName() {
-        return largePhotoFileName;
-    }
-
-    public void setLargePhotoFileName(String largePhotoFileName) {
-        this.largePhotoFileName = largePhotoFileName;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Collection<ProductProductPhoto> getProductProductPhotoCollection() {
-        return productProductPhotoCollection;
-    }
-
-    public void setProductProductPhotoCollection(Collection<ProductProductPhoto> productProductPhotoCollection) {
-        this.productProductPhotoCollection = productProductPhotoCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (productPhotoID != null ? productPhotoID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductPhoto)) {
-            return false;
-        }
-        ProductPhoto other = (ProductPhoto) object;
-        if ((this.productPhotoID == null && other.productPhotoID != null) || (this.productPhotoID != null && !this.productPhotoID.equals(other.productPhotoID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.ProductPhoto[ productPhotoID=" + productPhotoID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

@@ -10,7 +10,7 @@ public class SessionTimeoutTest {
 
     @DataProvider
     protected Object[][] getData() {
-        return null;
+        return new Object[][] {};
     }
 
     @BeforeTest

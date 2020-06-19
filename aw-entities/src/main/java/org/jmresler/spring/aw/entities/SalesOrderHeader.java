@@ -374,9 +374,8 @@ public class SalesOrderHeader implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.SalesOrderHeader[ salesOrderID=" + salesOrderID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }

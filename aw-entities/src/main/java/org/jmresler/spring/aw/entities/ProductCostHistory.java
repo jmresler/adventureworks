@@ -16,13 +16,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "ProductCostHistory", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "ProductCostHistory.findAll", query = "SELECT p FROM ProductCostHistory p"),
     @NamedQuery(name = "ProductCostHistory.findByProductID", query = "SELECT p FROM ProductCostHistory p WHERE p.productCostHistoryPK.productID = :productID"),
@@ -50,86 +56,8 @@ public class ProductCostHistory implements Serializable {
     @ManyToOne(optional = false)
     private Product product;
 
-    public ProductCostHistory() {
-    }
-
-    public ProductCostHistory(ProductCostHistoryPK productCostHistoryPK) {
-        this.productCostHistoryPK = productCostHistoryPK;
-    }
-
-    public ProductCostHistory(ProductCostHistoryPK productCostHistoryPK, BigDecimal standardCost, Date modifiedDate) {
-        this.productCostHistoryPK = productCostHistoryPK;
-        this.standardCost = standardCost;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public ProductCostHistory(int productID, Date startDate) {
-        this.productCostHistoryPK = new ProductCostHistoryPK(productID, startDate);
-    }
-
-    public ProductCostHistoryPK getProductCostHistoryPK() {
-        return productCostHistoryPK;
-    }
-
-    public void setProductCostHistoryPK(ProductCostHistoryPK productCostHistoryPK) {
-        this.productCostHistoryPK = productCostHistoryPK;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public BigDecimal getStandardCost() {
-        return standardCost;
-    }
-
-    public void setStandardCost(BigDecimal standardCost) {
-        this.standardCost = standardCost;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (productCostHistoryPK != null ? productCostHistoryPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductCostHistory)) {
-            return false;
-        }
-        ProductCostHistory other = (ProductCostHistory) object;
-        if ((this.productCostHistoryPK == null && other.productCostHistoryPK != null) || (this.productCostHistoryPK != null && !this.productCostHistoryPK.equals(other.productCostHistoryPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.ProductCostHistory[ productCostHistoryPK=" + productCostHistoryPK + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}   
 }

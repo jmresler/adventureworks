@@ -6,39 +6,40 @@
 	<persistence-unit name="aw-entities-pu"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>org.jmresler.spring.aw.entities.VJobCandidateEmployment</class>
+		<class>org.jmresler.spring.aw.entities.views.VJobCandidateEmployment</class>
 		<class>org.jmresler.spring.aw.entities.EmployeePayHistory</class>
 		<class>org.jmresler.spring.aw.entities.JobCandidate</class>
-		<class>org.jmresler.spring.aw.entities.VEmployee</class>
+		<class>org.jmresler.spring.aw.entities.views.VEmployee</class>
 		<class>org.jmresler.spring.aw.entities.EmployeeDepartmentHistory</class>
-		<class>org.jmresler.spring.aw.entities.VJobCandidateEducation</class>
+		<class>org.jmresler.spring.aw.entities.views.VJobCandidateEducation</class>
 		<class>org.jmresler.spring.aw.entities.Shift</class>
-		<class>org.jmresler.spring.aw.entities.VJobCandidate</class>
-		<class>org.jmresler.spring.aw.entities.VEmployeeDepartment</class>
-		<class>org.jmresler.spring.aw.entities.VEmployeeDepartmentHistory</class>
+		<class>org.jmresler.spring.aw.entities.views.VJobCandidate</class>
+		<class>org.jmresler.spring.aw.entities.views.VEmployeeDepartment</class>
+		<class>org.jmresler.spring.aw.entities.views.VEmployeeDepartmentHistory</class>
 		<class>org.jmresler.spring.aw.entities.Department</class>
 		<class>org.jmresler.spring.aw.entities.Employee</class>
 		<class>org.jmresler.spring.aw.entities.CommonPasswords</class>
 		<class>org.jmresler.spring.aw.entities.BusinessEntity</class>
 		<class>org.jmresler.spring.aw.entities.BusinessEntityContact</class>
 		<class>org.jmresler.spring.aw.entities.EmailAddress</class>
-		<class>org.jmresler.spring.aw.entities.VAdditionalContactInfo</class>
+		<class>org.jmresler.spring.aw.entities.views.VAdditionalContactInfo</class>
 		<class>org.jmresler.spring.aw.entities.ContactType</class>
 		<class>org.jmresler.spring.aw.entities.StateProvince</class>
 		<class>org.jmresler.spring.aw.entities.Person</class>
 		<class>org.jmresler.spring.aw.entities.BusinessEntityAddress</class>
 		<class>org.jmresler.spring.aw.entities.AddressType</class>
-		<class>org.jmresler.spring.aw.entities.VStateProvinceCountryRegion</class>
+		<class>org.jmresler.spring.aw.entities.views.VStateProvinceCountryRegion</class>
 		<class>org.jmresler.spring.aw.entities.CountryRegion</class>
 		<class>org.jmresler.spring.aw.entities.PhoneNumberType</class>
 		<class>org.jmresler.spring.aw.entities.Address</class>
 		<class>org.jmresler.spring.aw.entities.Password</class>
 		<class>org.jmresler.spring.aw.entities.PersonPhone</class>
 		<class>org.jmresler.spring.aw.entities.Illustration</class>
+		<class>org.jmresler.spring.aw.entities.Product</class>
 		<class>org.jmresler.spring.aw.entities.ProductProductPhoto</class>
 		<class>org.jmresler.spring.aw.entities.ProductDocument</class>
 		<class>org.jmresler.spring.aw.entities.WorkOrderRouting</class>
-		<class>org.jmresler.spring.aw.entities.VProductModelCatalogDescription</class>
+		<class>org.jmresler.spring.aw.entities.views.VProductModelCatalogDescription</class>
 		<class>org.jmresler.spring.aw.entities.Document</class>
 		<class>org.jmresler.spring.aw.entities.TransactionHistoryArchive</class>
 		<class>org.jmresler.spring.aw.entities.ProductModelIllustration</class>
@@ -46,13 +47,12 @@
 		<class>org.jmresler.spring.aw.entities.Culture</class>
 		<class>org.jmresler.spring.aw.entities.TransactionHistory</class>
 		<class>org.jmresler.spring.aw.entities.ScrapReason</class>
-		<class>org.jmresler.spring.aw.entities.VProductAndDescription</class>
+		<class>org.jmresler.spring.aw.entities.views.VProductAndDescription</class>
 		<class>org.jmresler.spring.aw.entities.BillOfMaterials</class>
 		<class>org.jmresler.spring.aw.entities.ProductModelProductDescriptionCulture</class>
 		<class>org.jmresler.spring.aw.entities.ProductCostHistory</class>
 		<class>org.jmresler.spring.aw.entities.UnitMeasure</class>
 		<class>org.jmresler.spring.aw.entities.WorkOrder</class>
-		<class>org.jmresler.spring.aw.entities.Product</class>
 		<class>org.jmresler.spring.aw.entities.ProductSubcategory</class>
 		<class>org.jmresler.spring.aw.entities.ProductDescription</class>
 		<class>org.jmresler.spring.aw.entities.Location</class>
@@ -60,33 +60,32 @@
 		<class>org.jmresler.spring.aw.entities.ProductCategory</class>
 		<class>org.jmresler.spring.aw.entities.ProductListPriceHistory</class>
 		<class>org.jmresler.spring.aw.entities.ProductPhoto</class>
-		<class>org.jmresler.spring.aw.entities.VProductModelInstructions</class>
+		<class>org.jmresler.spring.aw.entities.views.VProductModelInstructions</class>
 		<class>org.jmresler.spring.aw.entities.ProductReview</class>
 		<class>org.jmresler.spring.aw.entities.ShipMethod</class>
 		<class>org.jmresler.spring.aw.entities.ProductVendor</class>
-		<class>org.jmresler.spring.aw.entities.UserRoles</class>
-		<class>org.jmresler.spring.aw.entities.VVendorWithAddresses</class>
-		<class>org.jmresler.spring.aw.entities.VVendorWithContacts</class>
+		<class>org.jmresler.spring.aw.entities.views.VVendorWithAddresses</class>
+		<class>org.jmresler.spring.aw.entities.views.VVendorWithContacts</class>
 		<class>org.jmresler.spring.aw.entities.Vendor</class>
 		<class>org.jmresler.spring.aw.entities.PurchaseOrderHeader</class>
 		<class>org.jmresler.spring.aw.entities.PurchaseOrderDetail</class>
 		<class>org.jmresler.spring.aw.entities.CreditCard</class>
-		<class>org.jmresler.spring.aw.entities.VSalesPersonSalesByFiscalYears</class>
-		<class>org.jmresler.spring.aw.entities.VSalesPerson</class>
+		<class>org.jmresler.spring.aw.entities.views.VSalesPersonSalesByFiscalYears</class>
+		<class>org.jmresler.spring.aw.entities.views.VSalesPerson</class>
 		<class>org.jmresler.spring.aw.entities.SalesPerson</class>
-		<class>org.jmresler.spring.aw.entities.VStoreWithAddresses</class>
-		<class>org.jmresler.spring.aw.entities.VStoreWithDemographics</class>
+		<class>org.jmresler.spring.aw.entities.views.VStoreWithAddresses</class>
+		<class>org.jmresler.spring.aw.entities.views.VStoreWithDemographics</class>
 		<class>org.jmresler.spring.aw.entities.CountryRegionCurrency</class>
 		<class>org.jmresler.spring.aw.entities.SalesTaxRate</class>
 		<class>org.jmresler.spring.aw.entities.SalesPersonQuotaHistory</class>
 		<class>org.jmresler.spring.aw.entities.ShoppingCartItem</class>
 		<class>org.jmresler.spring.aw.entities.SalesTerritoryHistory</class>
 		<class>org.jmresler.spring.aw.entities.SalesTerritory</class>
-		<class>org.jmresler.spring.aw.entities.VPersonDemographics</class>
+		<class>org.jmresler.spring.aw.entities.views.VPersonDemographics</class>
 		<class>org.jmresler.spring.aw.entities.SalesOrderDetail</class>
-		<class>org.jmresler.spring.aw.entities.VStoreWithContacts</class>
+		<class>org.jmresler.spring.aw.entities.views.VStoreWithContacts</class>
 		<class>org.jmresler.spring.aw.entities.Customer</class>
-		<class>org.jmresler.spring.aw.entities.VIndividualCustomer</class>
+		<class>org.jmresler.spring.aw.entities.views.VIndividualCustomer</class>
 		<class>org.jmresler.spring.aw.entities.SpecialOfferProduct</class>
 		<class>org.jmresler.spring.aw.entities.SalesOrderHeaderSalesReason</class>
 		<class>org.jmresler.spring.aw.entities.SalesOrderHeader</class>
@@ -99,16 +98,28 @@
 		<class>org.jmresler.spring.aw.entities.AWBuildVersion</class>
 		<class>org.jmresler.spring.aw.entities.DatabaseLog</class>
 		<class>org.jmresler.spring.aw.entities.ErrorLog</class>
+		<class>org.jmresler.spring.aw.entities.MessageOfTheDay</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url"	value="jdbc:sqlserver://localhost\SQLEXPRESS:1433;databaseName=AdventureWorks2017" />
-			<property name="javax.persistence.jdbc.user" value="awadmin" />
-			<property name="javax.persistence.jdbc.driver"	value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-			<property name="javax.persistence.jdbc.password" value="password" />
-			<property name="eclipselink.logging.level" value="OFF" />
-			<property name="javax.persistence.schema-generation.scripts.action" value="create"/>
-			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
-			<property name="eclipselink.ddl-generation.output-mode" value="sql-script"/>
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:sqlserver://localhost\SQLEXPRESS:1433;databaseName=AdventureWorks2017" />
+			<property name="javax.persistence.jdbc.user" 
+				value="awadmin" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<property name="javax.persistence.jdbc.password"
+				value="password" />
+			<property name="eclipselink.logging.level" 
+				value="INFO" />
+			<property
+				name="javax.persistence.schema-generation.scripts.action"
+				value="create" />
+			<property
+				name="javax.persistence.schema-generation.create-source"
+				value="metadata-then-script" />
+			<property name="eclipselink.ddl-generation"
+				value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode"
+				value="sql-script" />
 		</properties>
 	</persistence-unit>
 </persistence>

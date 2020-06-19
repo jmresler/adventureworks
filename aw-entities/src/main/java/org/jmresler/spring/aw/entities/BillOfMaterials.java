@@ -18,13 +18,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author John
  */
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "BillOfMaterials", catalog = "AdventureWorks2017", schema = "Production")
-
 @NamedQueries({
     @NamedQuery(name = "BillOfMaterials.findAll", query = "SELECT b FROM BillOfMaterials b"),
     @NamedQuery(name = "BillOfMaterials.findByBillOfMaterialsID", query = "SELECT b FROM BillOfMaterials b WHERE b.billOfMaterialsID = :billOfMaterialsID"),
@@ -69,116 +75,8 @@ public class BillOfMaterials implements Serializable {
     @ManyToOne(optional = false)
     private UnitMeasure unitMeasureCode;
 
-    public BillOfMaterials() {
-    }
-
-    public BillOfMaterials(Integer billOfMaterialsID) {
-        this.billOfMaterialsID = billOfMaterialsID;
-    }
-
-    public BillOfMaterials(Integer billOfMaterialsID, Date startDate, short bOMLevel, BigDecimal perAssemblyQty, Date modifiedDate) {
-        this.billOfMaterialsID = billOfMaterialsID;
-        this.startDate = startDate;
-        this.bOMLevel = bOMLevel;
-        this.perAssemblyQty = perAssemblyQty;
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Integer getBillOfMaterialsID() {
-        return billOfMaterialsID;
-    }
-
-    public void setBillOfMaterialsID(Integer billOfMaterialsID) {
-        this.billOfMaterialsID = billOfMaterialsID;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public short getBOMLevel() {
-        return bOMLevel;
-    }
-
-    public void setBOMLevel(short bOMLevel) {
-        this.bOMLevel = bOMLevel;
-    }
-
-    public BigDecimal getPerAssemblyQty() {
-        return perAssemblyQty;
-    }
-
-    public void setPerAssemblyQty(BigDecimal perAssemblyQty) {
-        this.perAssemblyQty = perAssemblyQty;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Product getProductAssemblyID() {
-        return productAssemblyID;
-    }
-
-    public void setProductAssemblyID(Product productAssemblyID) {
-        this.productAssemblyID = productAssemblyID;
-    }
-
-    public Product getComponentID() {
-        return componentID;
-    }
-
-    public void setComponentID(Product componentID) {
-        this.componentID = componentID;
-    }
-
-    public UnitMeasure getUnitMeasureCode() {
-        return unitMeasureCode;
-    }
-
-    public void setUnitMeasureCode(UnitMeasure unitMeasureCode) {
-        this.unitMeasureCode = unitMeasureCode;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (billOfMaterialsID != null ? billOfMaterialsID.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BillOfMaterials)) {
-            return false;
-        }
-        BillOfMaterials other = (BillOfMaterials) object;
-        if ((this.billOfMaterialsID == null && other.billOfMaterialsID != null) || (this.billOfMaterialsID != null && !this.billOfMaterialsID.equals(other.billOfMaterialsID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.jmresler.spring.aw.entities.BillOfMaterials[ billOfMaterialsID=" + billOfMaterialsID + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return getClass().getName() + "[" + -1 + "]"; 
+	}
 }
