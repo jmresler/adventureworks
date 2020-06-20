@@ -19,6 +19,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -47,15 +50,21 @@ public class ProductSubcategory implements Serializable {
     @Basic(optional = false)
     @Column(name = "ProductSubcategoryID")
     private Integer productSubcategoryID;
+    
     @Basic(optional = false)
     @Column(name = "rowguid")
     private String rowguid;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonManagedReference
     @OneToMany(mappedBy = "productSubcategoryID")
     private Collection<Product> productCollection;
+    
+    @JsonManagedReference
     @JoinColumn(name = "ProductCategoryID", referencedColumnName = "ProductCategoryID")
     @ManyToOne(optional = false)
     private ProductCategory productCategoryID;

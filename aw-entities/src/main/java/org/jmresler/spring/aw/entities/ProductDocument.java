@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,13 +40,17 @@ public class ProductDocument implements Serializable {
 
     @EmbeddedId
     protected ProductDocumentPK productDocumentPK;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
     @JoinColumn(name = "DocumentNode", referencedColumnName = "DocumentNode", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Document document;
+    
+    @JsonBackReference
     @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Product product;

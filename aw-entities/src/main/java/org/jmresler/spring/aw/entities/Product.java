@@ -21,6 +21,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -63,83 +66,129 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "ProductID")
     private Integer productID;
+    
     @Basic(optional = false)
     @Column(name = "ProductNumber")
     private String productNumber;
+    
     @Column(name = "Color")
     private String color;
+    
     @Basic(optional = false)
     @Column(name = "SafetyStockLevel")
     private short safetyStockLevel;
+    
+    
     @Basic(optional = false)
     @Column(name = "ReorderPoint")
     private short reorderPoint;
+    
     @Basic(optional = false)
     @Column(name = "StandardCost")
     private BigDecimal standardCost;
+    
     @Basic(optional = false)
     @Column(name = "ListPrice")
     private BigDecimal listPrice;
+    
     @Column(name = "Size")
     private String size;
+    
     @Column(name = "Weight")
     private BigDecimal weight;
+    
     @Basic(optional = false)
     @Column(name = "DaysToManufacture")
     private int daysToManufacture;
+    
     @Column(name = "ProductLine")
     private String productLine;
+    
     @Column(name = "Class")
     private String class1;
+    
     @Column(name = "Style")
     private String style;
+    
     @Basic(optional = false)
     @Column(name = "SellStartDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date sellStartDate;
+    
     @Column(name = "SellEndDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date sellEndDate;
+    
     @Column(name = "DiscontinuedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date discontinuedDate;
+    
     @Basic(optional = false)
     @Column(name = "rowguid")
     private String rowguid;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Collection<ProductInventory> productInventoryCollection;
+    
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productID")
     private Collection<TransactionHistory> transactionHistoryCollection;
+    
+    @JsonBackReference
     @JoinColumn(name = "ProductModelID", referencedColumnName = "ProductModelID")
     @ManyToOne
     private ProductModel productModelID;
+    
+    @JsonManagedReference
     @JoinColumn(name = "ProductSubcategoryID", referencedColumnName = "ProductSubcategoryID")
     @ManyToOne
     private ProductSubcategory productSubcategoryID;
+    
+    @JsonBackReference
     @JoinColumn(name = "SizeUnitMeasureCode", referencedColumnName = "UnitMeasureCode")
     @ManyToOne
     private UnitMeasure sizeUnitMeasureCode;
+    
+    @JsonBackReference
     @JoinColumn(name = "WeightUnitMeasureCode", referencedColumnName = "UnitMeasureCode")
     @ManyToOne
     private UnitMeasure weightUnitMeasureCode;
+    
+    @JsonBackReference
     @OneToMany(mappedBy = "productAssemblyID")
     private Collection<BillOfMaterials> billOfMaterialsCollection;
+    
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "componentID")
     private Collection<BillOfMaterials> billOfMaterialsCollection1;
+    
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productID")
     private Collection<ProductReview> productReviewCollection;
+    
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Collection<ProductCostHistory> productCostHistoryCollection;
+    
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productID")
     private Collection<WorkOrder> workOrderCollection;
+    
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Collection<ProductProductPhoto> productProductPhotoCollection;
+    
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Collection<ProductListPriceHistory> productListPriceHistoryCollection;
+    
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Collection<ProductDocument> productDocumentCollection;
 

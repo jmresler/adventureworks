@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,14 +46,21 @@ public class UnitMeasure implements Serializable {
     @Basic(optional = false)
     @Column(name = "UnitMeasureCode")
     private String unitMeasureCode;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonBackReference
     @OneToMany(mappedBy = "sizeUnitMeasureCode")
     private Collection<Product> productCollection;
+    
+    @JsonBackReference
     @OneToMany(mappedBy = "weightUnitMeasureCode")
     private Collection<Product> productCollection1;
+    
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unitMeasureCode")
     private Collection<BillOfMaterials> billOfMaterialsCollection;
 

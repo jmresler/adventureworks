@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -47,21 +49,30 @@ public class ProductModel implements Serializable {
     @Basic(optional = false)
     @Column(name = "ProductModelID")
     private Integer productModelID;
+    
     @Column(name = "CatalogDescription")
     private String catalogDescription;
+    
     @Column(name = "Instructions")
     private String instructions;
+    
     @Basic(optional = false)
     @Column(name = "rowguid")
     private String rowguid;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productModel")
     private Collection<ProductModelIllustration> productModelIllustrationCollection;
+    
+    @JsonBackReference
     @OneToMany(mappedBy = "productModelID")
     private Collection<Product> productCollection;
+    
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productModel")
     private Collection<ProductModelProductDescriptionCulture> productModelProductDescriptionCultureCollection;
 

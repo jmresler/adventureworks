@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,18 +48,24 @@ public class Location implements Serializable {
     @Basic(optional = false)
     @Column(name = "LocationID")
     private Short locationID;
+    
     @Basic(optional = false)
     @Column(name = "CostRate")
     private BigDecimal costRate;
+    
     @Basic(optional = false)
     @Column(name = "Availability")
     private BigDecimal availability;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "location")
     private Collection<ProductInventory> productInventoryCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "locationID")
     private Collection<WorkOrderRouting> workOrderRoutingCollection;
 

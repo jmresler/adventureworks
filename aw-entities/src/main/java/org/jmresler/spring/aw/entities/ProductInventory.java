@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -43,25 +45,34 @@ public class ProductInventory implements Serializable {
 
     @EmbeddedId
     protected ProductInventoryPK productInventoryPK;
+    
     @Basic(optional = false)
     @Column(name = "Shelf")
     private String shelf;
+    
     @Basic(optional = false)
     @Column(name = "Bin")
     private short bin;
+    
     @Basic(optional = false)
     @Column(name = "Quantity")
     private short quantity;
+    
     @Basic(optional = false)
     @Column(name = "rowguid")
     private String rowguid;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonManagedReference
     @JoinColumn(name = "LocationID", referencedColumnName = "LocationID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Location location;
+    
+    @JsonManagedReference
     @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Product product;

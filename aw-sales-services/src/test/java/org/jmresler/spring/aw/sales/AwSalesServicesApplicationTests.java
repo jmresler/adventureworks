@@ -1,4 +1,4 @@
-package org.jmresler.aw.sales;
+package org.jmresler.spring.aw.sales;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

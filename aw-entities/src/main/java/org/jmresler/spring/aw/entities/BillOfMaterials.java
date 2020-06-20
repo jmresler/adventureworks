@@ -18,6 +18,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -48,29 +51,40 @@ public class BillOfMaterials implements Serializable {
     @Basic(optional = false)
     @Column(name = "BillOfMaterialsID")
     private Integer billOfMaterialsID;
+    
     @Basic(optional = false)
     @Column(name = "StartDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
+    
     @Column(name = "EndDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
+    
     @Basic(optional = false)
     @Column(name = "BOMLevel")
     private short bOMLevel;
+    
     @Basic(optional = false)
     @Column(name = "PerAssemblyQty")
     private BigDecimal perAssemblyQty;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonManagedReference
     @JoinColumn(name = "ProductAssemblyID", referencedColumnName = "ProductID")
     @ManyToOne
     private Product productAssemblyID;
+    
+    @JsonManagedReference
     @JoinColumn(name = "ComponentID", referencedColumnName = "ProductID")
     @ManyToOne(optional = false)
     private Product componentID;
+    
+    @JsonManagedReference
     @JoinColumn(name = "UnitMeasureCode", referencedColumnName = "UnitMeasureCode")
     @ManyToOne(optional = false)
     private UnitMeasure unitMeasureCode;

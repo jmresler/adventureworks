@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -50,29 +52,38 @@ public class TransactionHistory implements Serializable {
     @Basic(optional = false)
     @Column(name = "TransactionID")
     private Integer transactionID;
+    
     @Basic(optional = false)
     @Column(name = "ReferenceOrderID")
     private int referenceOrderID;
+    
     @Basic(optional = false)
     @Column(name = "ReferenceOrderLineID")
     private int referenceOrderLineID;
+    
     @Basic(optional = false)
     @Column(name = "TransactionDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date transactionDate;
+    
     @Basic(optional = false)
     @Column(name = "TransactionType")
     private String transactionType;
+    
     @Basic(optional = false)
     @Column(name = "Quantity")
     private int quantity;
+    
     @Basic(optional = false)
     @Column(name = "ActualCost")
     private BigDecimal actualCost;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonBackReference
     @JoinColumn(name = "ProductID", referencedColumnName = "ProductID")
     @ManyToOne(optional = false)
     private Product productID;

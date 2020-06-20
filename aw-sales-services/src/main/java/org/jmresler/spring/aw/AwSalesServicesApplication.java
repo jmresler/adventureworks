@@ -1,4 +1,4 @@
-package org.jmresler.aw.sales;
+package org.jmresler.spring.aw;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

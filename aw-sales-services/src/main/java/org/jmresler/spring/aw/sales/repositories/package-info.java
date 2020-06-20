@@ -1,1 +1,1 @@
-package org.jmresler.aw.sales.repositories;
+package org.jmresler.spring.aw.sales.repositories;
