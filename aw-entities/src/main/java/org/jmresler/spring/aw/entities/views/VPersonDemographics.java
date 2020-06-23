@@ -77,6 +77,6 @@ public class VPersonDemographics implements Serializable {
 
 	@Override
 	public String toString() {
-		return getClass().getName() + "[" + -1 + "]"; 
+		return getClass().getName() + "[" + businessEntityID + "]"; 
 	}   
 }

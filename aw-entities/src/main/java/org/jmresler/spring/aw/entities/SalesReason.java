@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,10 +46,13 @@ public class SalesReason implements Serializable {
     @Basic(optional = false)
     @Column(name = "SalesReasonID")
     private Integer salesReasonID;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "salesReason")
     private Collection<SalesOrderHeaderSalesReason> salesOrderHeaderSalesReasonCollection;
 

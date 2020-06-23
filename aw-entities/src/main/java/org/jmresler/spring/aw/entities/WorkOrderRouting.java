@@ -85,6 +85,7 @@ public class WorkOrderRouting implements Serializable {
     @ManyToOne(optional = false)
     private WorkOrder workOrder;
 
+
 	@Override
 	public String toString() {
 		return getClass().getName() + "[" + -1 + "]"; 

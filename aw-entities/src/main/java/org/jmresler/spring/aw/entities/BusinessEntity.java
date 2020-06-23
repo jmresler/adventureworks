@@ -1,6 +1,7 @@
 package org.jmresler.spring.aw.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,23 +44,31 @@ public class BusinessEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @JsonManagedReference
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "BusinessEntityID")
     private Integer businessEntityID;
+    
     @Basic(optional = false)
     @Column(name = "rowguid")
     private String rowguid;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    @JsonIgnore
+    
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessEntity")
     private Collection<BusinessEntityContact> businessEntityContactCollection;
+    
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessEntity")
     private Collection<BusinessEntityAddress> businessEntityAddressCollection;
+    
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessEntity")
     private Person person;
 

@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,24 +51,32 @@ public class Customer implements Serializable {
     @Basic(optional = false)
     @Column(name = "CustomerID")
     private Integer customerID;
+    
     @Column(name = "PersonID")
     private Integer personID;
+    
     @Basic(optional = false)
     @Column(name = "AccountNumber")
     private String accountNumber;
+    
     @Basic(optional = false)
     @Column(name = "rowguid")
     private String rowguid;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonBackReference
     @JoinColumn(name = "TerritoryID", referencedColumnName = "TerritoryID")
     @ManyToOne
     private SalesTerritory territoryID;
+    
     @JoinColumn(name = "StoreID", referencedColumnName = "BusinessEntityID")
     @ManyToOne
     private Store storeID;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerID")
     private Collection<SalesOrderHeader> salesOrderHeaderCollection;
 

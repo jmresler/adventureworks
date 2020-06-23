@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,13 +40,18 @@ public class SalesOrderHeaderSalesReason implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected SalesOrderHeaderSalesReasonPK salesOrderHeaderSalesReasonPK;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonBackReference
     @JoinColumn(name = "SalesOrderID", referencedColumnName = "SalesOrderID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SalesOrderHeader salesOrderHeader;
+    
+    @JsonBackReference
     @JoinColumn(name = "SalesReasonID", referencedColumnName = "SalesReasonID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SalesReason salesReason;

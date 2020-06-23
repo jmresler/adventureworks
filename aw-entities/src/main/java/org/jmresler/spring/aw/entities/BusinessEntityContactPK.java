@@ -29,9 +29,11 @@ public class BusinessEntityContactPK implements Serializable {
 	@Basic(optional = false)
     @Column(name = "BusinessEntityID")
     private int businessEntityID;
-    @Basic(optional = false)
+    
+	@Basic(optional = false)
     @Column(name = "PersonID")
     private int personID;
+    
     @Basic(optional = false)
     @Column(name = "ContactTypeID")
     private int contactTypeID;

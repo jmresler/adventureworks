@@ -15,6 +15,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,13 +43,18 @@ public class PersonPhone implements Serializable {
 
     @EmbeddedId
     protected PersonPhonePK personPhonePK;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonBackReference
     @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Person person;
+    
+    @JsonBackReference
     @JoinColumn(name = "PhoneNumberTypeID", referencedColumnName = "PhoneNumberTypeID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private PhoneNumberType phoneNumberType;

@@ -1,8 +1,8 @@
 package org.jmresler.spring.aw.repositories;
 
 import org.jmresler.spring.aw.entities.Password;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PasswordRepository extends CrudRepository<Password, Integer> {
+public interface PasswordRepository extends JpaRepository<Password, Integer> {
 
 }

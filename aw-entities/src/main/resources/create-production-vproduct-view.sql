@@ -1,8 +1,8 @@
 USE [AdventureWorks2017]
 GO
 
-DROP VIEW [Production].[vProductView]
-GO
+-- DROP VIEW [Production].[vProductView]
+-- GO
 
 /****** Object:  View [Production].[vProductView]    Script Date: 6/20/2020 9:59:39 AM ******/
 SET ANSI_NULLS ON

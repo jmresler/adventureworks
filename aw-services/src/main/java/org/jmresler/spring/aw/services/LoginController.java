@@ -76,7 +76,7 @@ public class LoginController {
 				return EXCEEDED_LOGIN_ATTEMPTS;
 
 			boolean authenticated = false;
-			BCrypt.checkpw(null, null);
+			BCrypt.checkpw(password, pPassword.getPasswordHash());
 
 			if (authenticated) {
 				// return JWTS

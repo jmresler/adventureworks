@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.EqualsAndHashCode;
@@ -42,24 +43,30 @@ import lombok.Setter;
 public class BusinessEntityAddress implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected BusinessEntityAddressPK businessEntityAddressPK;
+    
     @Basic(optional = false)
     @Column(name = "rowguid")
     private String rowguid;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
     @JsonIgnore
     @JoinColumn(name = "AddressID", referencedColumnName = "AddressID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Address address;
+    
     @JsonIgnore
     @JoinColumn(name = "AddressTypeID", referencedColumnName = "AddressTypeID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private AddressType addressType;
-    @JsonIgnore
+    
+    @JsonBackReference
     @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private BusinessEntity businessEntity;
@@ -67,6 +74,6 @@ public class BusinessEntityAddress implements Serializable {
     
 	@Override
 	public String toString() {
-		return getClass().getName() + "[" + -1 + "]"; 
+		return getClass().getName() + "[rowguid: " + rowguid + ", Date: " + modifiedDate + "]"; 
 	}
 }

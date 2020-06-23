@@ -1,5 +1,6 @@
 package org.jmresler.spring.aw.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.EqualsAndHashCode;
@@ -46,21 +47,27 @@ public class BusinessEntityContact implements Serializable {
 
     @EmbeddedId
     protected BusinessEntityContactPK businessEntityContactPK;
+    
     @Basic(optional = false)
     @Column(name = "rowguid")
     private String rowguid;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonBackReference
     @JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private BusinessEntity businessEntity;
-    @JsonIgnore
+    
+    @JsonBackReference
     @JoinColumn(name = "ContactTypeID", referencedColumnName = "ContactTypeID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private ContactType contactType;
-    @JsonIgnore
+    
+    @JsonBackReference
     @JoinColumn(name = "PersonID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Person person;

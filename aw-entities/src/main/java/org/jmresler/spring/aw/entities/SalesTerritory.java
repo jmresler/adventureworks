@@ -52,6 +52,7 @@ public class SalesTerritory implements Serializable {
     @Basic(optional = false)
     @Column(name = "TerritoryID")
     private Integer territoryID;
+    
     @Basic(optional = false)
     @Column(name = "CountryRegionCode")
     private String countryRegionCode;
@@ -65,31 +66,41 @@ public class SalesTerritory implements Serializable {
     @Basic(optional = false)
     @Column(name = "[Group]")
     private String group;
+    
     @Basic(optional = false)
     @Column(name = "SalesYTD")
     private BigDecimal salesYTD;
+    
     @Basic(optional = false)
     @Column(name = "SalesLastYear")
     private BigDecimal salesLastYear;
+    
     @Basic(optional = false)
     @Column(name = "CostYTD")
     private BigDecimal costYTD;
+    
     @Basic(optional = false)
     @Column(name = "CostLastYear")
     private BigDecimal costLastYear;
+    
     @Basic(optional = false)
     @Column(name = "rowguid")
     private String rowguid;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
     @OneToMany(mappedBy = "territoryID")
     private Collection<Customer> customerCollection;
+    
     @OneToMany(mappedBy = "territoryID")
     private Collection<SalesPerson> salesPersonCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "salesTerritory")
     private Collection<SalesTerritoryHistory> salesTerritoryHistoryCollection;
+    
     @OneToMany(mappedBy = "territoryID")
     private Collection<SalesOrderHeader> salesOrderHeaderCollection;
 

@@ -22,7 +22,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.EqualsAndHashCode;
 
@@ -61,54 +63,73 @@ public class Person implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "BusinessEntityID")
 	private Integer businessEntityID;
+	
 	@Basic(optional = false)
 	@Column(name = "UserName")
 	private String userName;
+	
 	@Basic(optional = false)
 	@Column(name = "PersonType")
 	private String personType;
+	
 	@Basic(optional = false)
 	@Column(name = "NameStyle")
 	private Boolean nameStyle;
+	
 	@Column(name = "Title")
 	private String title;
+	
 	@Basic(optional = false)
 	@Column(name = "FirstName")
 	private String firstName;
+	
 	@Basic(optional = false)
 	@Column(name = "MiddleName")
 	private String middleName;
+	
 	@Basic(optional = false)
 	@Column(name = "LastName")
 	private String lastName;
+	
 	@Column(name = "Suffix")
 	private String suffix;
+	
 	@Basic(optional = false)
 	@Column(name = "EmailPromotion")
 	private int emailPromotion;
+	
 	@Column(name = "AdditionalContactInfo")
 	private String additionalContactInfo;
+	
 	@Column(name = "Demographics")
 	private String demographics;
+	
 	@Basic(optional = false)
 	@Column(name = "rowguid")
 	private String rowguid;
+	
 	@Basic(optional = false)
 	@Column(name = "ModifiedDate")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modifiedDate;
-	@JsonIgnore
+	
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	private Collection<PersonPhone> personPhoneCollection;
-	@JsonIgnore
+	
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	private Collection<EmailAddress> emailAddressCollection;
+	
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	private Collection<BusinessEntityContact> businessEntityContactCollection;
-	@JsonIgnore
+	
+	@JsonBackReference
 	@JoinColumn(name = "BusinessEntityID", referencedColumnName = "BusinessEntityID", insertable = false, updatable = false)
 	@OneToOne(optional = false)
 	private BusinessEntity businessEntity;
+	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "person")
 	private Password password;
 

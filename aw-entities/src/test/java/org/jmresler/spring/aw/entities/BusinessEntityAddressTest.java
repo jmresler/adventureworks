@@ -16,7 +16,9 @@ public class BusinessEntityAddressTest {
 	public void test() {
 		TypedQuery<BusinessEntityAddress> beaQuery = manager.createNamedQuery("BusinessEntityAddress.findAll", BusinessEntityAddress.class);
 		beaQuery.getResultList().forEach(result -> {
-			System.out.println(result);
+			System.out.println("Address ID:          " + result.getBusinessEntityAddressPK().getAddressID());
+			System.out.println("Business Entity ID: " + result.getBusinessEntityAddressPK().getBusinessEntityID());
+			System.out.println();
 		});
 	}
 

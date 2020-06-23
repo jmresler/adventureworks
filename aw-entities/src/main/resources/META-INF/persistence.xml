@@ -16,6 +16,7 @@
 		<class>org.jmresler.spring.aw.entities.views.VJobCandidate</class>
 		<class>org.jmresler.spring.aw.entities.views.VEmployeeDepartment</class>
 		<class>org.jmresler.spring.aw.entities.views.VEmployeeDepartmentHistory</class>
+		<class>org.jmresler.spring.aw.entities.views.VProductView</class>
 		<class>org.jmresler.spring.aw.entities.Department</class>
 		<class>org.jmresler.spring.aw.entities.Employee</class>
 		<class>org.jmresler.spring.aw.entities.CommonPasswords</class>

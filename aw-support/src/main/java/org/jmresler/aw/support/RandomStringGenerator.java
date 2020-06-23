@@ -7,9 +7,8 @@ public class RandomStringGenerator {
 	private static final int DEFAULT_STRING_LENGTH = 10;
 	private static final int MAX_SIZE_STRING = 250;
 	private static final char[] LEGAL_CHARS = 
-			" !#$%abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+			"!#$%&+*abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
 	private Random random;
-	private long salt;
 
 	/**
 	 * Creates a RandomStringGenerator with a salt equal to System.currentTimeMillis()
@@ -26,8 +25,6 @@ public class RandomStringGenerator {
 	public RandomStringGenerator(long salt) {
 		random = new Random(salt);
 	}
-	
-	
 	
 	/**
 	 * 

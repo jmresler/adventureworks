@@ -15,7 +15,10 @@ public class SalesOrderDetailTest {
 	@Test
 	public void test() {
 		TypedQuery<SalesOrderDetail> orderQuery = manager.createNamedQuery("SalesOrderDetail.findAll", SalesOrderDetail.class);
-		orderQuery.getResultList().forEach(System.out::println);
+		orderQuery.getResultList().forEach(salesOrder -> {
+			System.out.println(salesOrder);
+			System.out.println();
+		});
 	}
 
 }

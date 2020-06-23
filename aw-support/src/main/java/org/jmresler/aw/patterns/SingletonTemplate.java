@@ -1,4 +1,4 @@
-package org.jmresler.spring.aw.patterns;
+package org.jmresler.aw.patterns;
 
 
 /**

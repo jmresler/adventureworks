@@ -50,30 +50,40 @@ public class SalesOrderDetail implements Serializable {
 
     @EmbeddedId
     protected SalesOrderDetailPK salesOrderDetailPK;
+    
     @Column(name = "CarrierTrackingNumber")
     private String carrierTrackingNumber;
+    
     @Basic(optional = false)
     @Column(name = "OrderQty")
     private short orderQty;
+    
     @Basic(optional = false)
     @Column(name = "UnitPrice")
     private BigDecimal unitPrice;
+    
     @Basic(optional = false)
     @Column(name = "UnitPriceDiscount")
     private BigDecimal unitPriceDiscount;
+    
     @Basic(optional = false)
     @Column(name = "LineTotal")
     private BigDecimal lineTotal;
+    
     @Basic(optional = false)
     @Column(name = "rowguid")
     private String rowguid;
+    
     @Basic(optional = false)
     @Column(name = "ModifiedDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    
+    @JsonBackReference
     @JoinColumn(name = "SalesOrderID", referencedColumnName = "SalesOrderID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SalesOrderHeader salesOrderHeader;
+    
     @JsonBackReference
     @JoinColumns({
         @JoinColumn(name = "SpecialOfferID", referencedColumnName = "SpecialOfferID"),
@@ -84,6 +94,6 @@ public class SalesOrderDetail implements Serializable {
 
 	@Override
 	public String toString() {
-		return getClass().getName() + "[" + -1 + "]"; 
+		return getClass().getName() + "[Sales Order Detail ID: " + salesOrderDetailPK.getSalesOrderDetailID() + ", Sales Order ID: " + salesOrderDetailPK.getSalesOrderID() + "]"; 
 	}
 }

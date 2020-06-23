@@ -66,6 +66,6 @@ public class VIndividualCustomer implements Serializable {
 
 	@Override
 	public String toString() {
-		return getClass().getName() + "[" + -1 + "]"; 
+		return getClass().getName() + "[" + businessEntityID + "]"; 
 	}
 }
