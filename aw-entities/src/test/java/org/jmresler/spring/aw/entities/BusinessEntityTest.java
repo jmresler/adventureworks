@@ -19,7 +19,7 @@ public class BusinessEntityTest {
 	// null for the call here. The Person is not returned, thus any references
 	// to the fields in that method cause NPE's. The issue is occurring in the
 	// JPA libraries as it indicates an error, not a failure.
-	@Test(timeout = 3500L)
+	@Test
 	public void test() {
 		TypedQuery<BusinessEntity> beQuery = manager.createNamedQuery("BusinessEntity.findAll", BusinessEntity.class);
 		if (beQuery != null && beQuery.getResultList() != null) {
