@@ -3,10 +3,12 @@ import { saveAuthorisation, isAuthorised } from '../../utils/auth'
 import { useIntl } from 'react-intl'
 import Page from 'material-ui-shell/lib/containers/Page/Page'
 import React, { useState, useContext } from 'react'
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import Checkbox from '@material-ui/core/Checkbox'
 import Paper from '@material-ui/core/Paper'
 import MenuContext from 'material-ui-shell/lib/providers/Menu/Context'
 import { Link } from 'react-router-dom'
@@ -57,7 +59,7 @@ const SignIn = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const { setAuthMenuOpen } = useContext(MenuContext)
-
+  
   function handleSubmit(event) {
     event.preventDefault()
     authenticate({
@@ -95,6 +97,7 @@ const SignIn = () => {
               onInput={(e) => setUsername(e.target.value)}
               variant="outlined"
               margin="normal"
+              size="small"
               required
               fullWidth
               id="username"
@@ -108,6 +111,7 @@ const SignIn = () => {
               onInput={(e) => setPassword(e.target.value)}
               variant="outlined"
               margin="normal"
+              size="small"
               required
               fullWidth
               name="password"
@@ -116,8 +120,18 @@ const SignIn = () => {
               id="password"
               autoComplete="current-password"
             />
+            <FormControlLabel
+              size="small"
+              label={intl.formatMessage({ id: 'remember_me' })}            
+              control={
+                <Checkbox
+                  name="checkedF"
+                />
+              }
+            />
             <Button
               type="submit"
+              size="small"
               fullWidth
               variant="contained"
               color="primary"
@@ -135,8 +149,8 @@ const SignIn = () => {
               justifyContent: 'space-between',
             }}
           >
-            <Link to="/password_reset">Forgot Password?</Link>
-            <Link to="/signup">Register</Link>
+            <Link to="/password_reset" size="small">{intl.formatMessage({ id: 'forgot_password' })}</Link>
+            <Link to="/signup" size="small">{intl.formatMessage({ id: 'register' })}</Link>
           </div>
         </div>
       </Paper>

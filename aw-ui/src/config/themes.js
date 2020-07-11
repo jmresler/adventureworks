@@ -1,6 +1,8 @@
 import red from '@material-ui/core/colors/red'
 import pink from '@material-ui/core/colors/pink'
 import green from '@material-ui/core/colors/green'
+import brown from '@material-ui/core/colors/brown'
+import grey from '@material-ui/core/colors/grey'
 
 const themes = [
   {
@@ -28,6 +30,30 @@ const themes = [
       },
     },
   },
+  {
+    id: 'brown',
+    color: brown[500],
+    source: {
+      palette: {
+        primary: brown,
+        secondary: red,
+        error: red,
+      },
+    },	
+  },
+
+  {
+
+    id: 'grey',
+    color: grey[500],
+    source: {
+      palette: {
+        primary: grey,
+        secondary: brown,
+        error: red,
+  	}
+    }
+  }
 ]
 
 export default themes

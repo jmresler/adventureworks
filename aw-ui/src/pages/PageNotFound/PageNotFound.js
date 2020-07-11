@@ -45,6 +45,7 @@ const PageNotFound = ({ intl, classes }) => {
             color="secondary"
             aria-label="home"
             href="/"
+            size="small"
             className={classes.button}
           >
             <Home />

@@ -16,10 +16,10 @@ export default function () {
         flexDirection: 'column',
       }}
     >
-      <h2>Landing Page</h2>
+      <h2 style={{color:"black"}}>Adventure Works 2017</h2>
 
       <div>
-        <Link to="/home">Home</Link>
+        <Link to="/home" style={{color:"black"}}>Home</Link>
       </div>
     </div>
   )

@@ -66,7 +66,7 @@ const SignUp = () => {
     <Page
       pageTitle={intl.formatMessage({
         id: 'password_reset',
-        defaultMessage: 'Password reset',
+        defaultMessage: 'Password Reset',
       })}
       onBackClick={() => {
         history.goBack()
@@ -86,6 +86,7 @@ const SignUp = () => {
               onInput={(e) => setUsername(e.target.value)}
               variant="outlined"
               margin="normal"
+              size="small"
               required
               fullWidth
               id="email"
@@ -100,6 +101,7 @@ const SignUp = () => {
 
             <Button
               type="submit"
+              size="small"
               fullWidth
               variant="contained"
               color="primary"

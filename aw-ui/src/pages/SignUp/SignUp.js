@@ -102,6 +102,7 @@ const SignUp = () => {
               onInput={(e) => setUsername(e.target.value)}
               variant="outlined"
               margin="normal"
+              size="small"
               required
               fullWidth
               id="username"
@@ -118,6 +119,7 @@ const SignUp = () => {
               onInput={(e) => setUsername(e.target.value)}
               variant="outlined"
               margin="normal"
+              size="small"
               required
               fullWidth
               id="email"
@@ -133,6 +135,7 @@ const SignUp = () => {
               onInput={(e) => setPassword(e.target.value)}
               variant="outlined"
               margin="normal"
+              size="small"
               required
               fullWidth
               name="password"
@@ -149,6 +152,7 @@ const SignUp = () => {
               onInput={(e) => setPassword(e.target.value)}
               variant="outlined"
               margin="normal"
+              size="small"
               required
               fullWidth
               name="password_confirm"
@@ -162,6 +166,7 @@ const SignUp = () => {
             />
             <Button
               type="submit"
+              size="small"
               fullWidth
               variant="contained"
               color="primary"
