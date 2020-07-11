@@ -40,7 +40,8 @@ aw-support/.settings/*
 aw-support/*.iml
 aw-support/target/*
 
-/aw-ui/nbproject/private/
+aw-ui/nbproject/private/
+aw-ui/package-lock.json
 
 
 aw-services/*.iml
