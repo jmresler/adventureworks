@@ -24,6 +24,7 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /.metadata/
+aw-entities/.factorypath
 aw-entities/.classpath
 aw-entities/.project
 aw-entities/.settings/*
@@ -31,6 +32,13 @@ aw-entities/createDDL.jdbc
 aw-entities/dropDDL.jdbc
 aw-entities/*.iml
 aw-entities/target/*
+
+aw-support/.factorypath
+aw-support/.classpath
+aw-support/.project
+aw-support/.settings/*
+aw-support/*.iml
+aw-support/target/*
 
 /aw-ui/nbproject/private/
 
